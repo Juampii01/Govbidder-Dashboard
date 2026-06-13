@@ -61,7 +61,8 @@ const NAV_GROUPS: NavGroup[] = [
     label: "Contenido",
     visible: adminOnly,
     items: [
-      { name: "Contenido", href: "/contenido", icon: Megaphone },
+      { name: "Marketing",  href: "/marketing",  icon: Megaphone },
+      { name: "Contenido",  href: "/contenido",  icon: Rss       },
     ],
   },
   {
