@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
-import { BarChart3, DollarSign, Users2, LayoutGrid, FileBarChart } from "lucide-react"
+import { BarChart3, DollarSign, Users2, LayoutGrid, FileBarChart, Info } from "lucide-react"
 import { cn } from "@/lib/utils"
 
 // Panel (composición del antiguo /dashboard)
@@ -88,7 +88,26 @@ export function PerformanceView({ initialTab = "panel" }: { initialTab?: string 
       {/* Content */}
       <div>
         {tab === "panel"     && <PanelContent />}
-        {tab === "ventas"    && <SalesView />}
+        {tab === "ventas"    && (
+          <div className="space-y-5">
+            {/* Contexto: explica el embudo y señaliza que el proceso comercial
+                todavía se está definiendo (las métricas son provisorias). */}
+            <div className="flex items-start gap-3 rounded-2xl border border-amber-200 bg-amber-50/60 px-4 py-3.5">
+              <Info className="h-4 w-4 mt-0.5 shrink-0 text-amber-600" />
+              <div className="text-[12.5px] leading-relaxed text-amber-900">
+                <p className="font-semibold">Embudo de ventas — en definición</p>
+                <p className="mt-0.5 text-amber-800">
+                  Seguimos el recorrido comercial paso a paso: <b>llamadas agendadas</b> →{" "}
+                  <b>atendidas</b> → <b>clientes cerrados</b>, con la conversión de cada
+                  etapa. El proceso de ventas todavía se está armando, así que estas
+                  métricas son provisorias hasta cerrar bien cómo trabaja el equipo
+                  comercial. Cuando esté definido, ajustamos las etapas y los números.
+                </p>
+              </div>
+            </div>
+            <SalesView />
+          </div>
+        )}
         {tab === "agendadas" && <PersonasAgendadasView />}
         {tab === "metricas"  && <MetricsView />}
       </div>
