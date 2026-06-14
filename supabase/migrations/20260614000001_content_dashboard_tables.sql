@@ -1168,7 +1168,7 @@ ALTER TABLE "Profile" DROP COLUMN "globalRole";
 DROP TYPE IF EXISTS "GlobalRole";
 
 -- 9. Indexes
-CREATE INDEX IF NOT EXISTS IF NOT EXISTS "Profile_clientId_idx" ON "Profile"("clientId");
+CREATE INDEX IF NOT EXISTS "Profile_clientId_idx" ON "Profile"("clientId");
 
 
 -- ── Migración: 20260515000000_add_tiktok_video ──
@@ -1276,10 +1276,10 @@ ALTER TABLE "Profile" ADD COLUMN IF NOT EXISTS "themeKey" TEXT NOT NULL DEFAULT 
 ALTER TABLE "GuionTab" ADD COLUMN IF NOT EXISTS "updatedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP;
 
 -- Add missing indexes
-CREATE INDEX IF NOT EXISTS IF NOT EXISTS "GuionItem_tabId_idx" ON "GuionItem"("tabId");
-CREATE INDEX IF NOT EXISTS IF NOT EXISTS "Task_clientId_columnId_idx" ON "Task"("clientId", "columnId");
-CREATE INDEX IF NOT EXISTS IF NOT EXISTS "IncomeRecord_reelId_idx" ON "IncomeRecord"("reelId");
-CREATE INDEX IF NOT EXISTS IF NOT EXISTS "ScrapeJob_competitorId_idx" ON "ScrapeJob"("competitorId");
+CREATE INDEX IF NOT EXISTS "GuionItem_tabId_idx" ON "GuionItem"("tabId");
+CREATE INDEX IF NOT EXISTS "Task_clientId_columnId_idx" ON "Task"("clientId", "columnId");
+CREATE INDEX IF NOT EXISTS "IncomeRecord_reelId_idx" ON "IncomeRecord"("reelId");
+CREATE INDEX IF NOT EXISTS "ScrapeJob_competitorId_idx" ON "ScrapeJob"("competitorId");
 
 -- Fix ScrapeJob → Competitor FK: ensure CASCADE delete (jobs are derivative of competitors)
 ALTER TABLE "ScrapeJob" DROP CONSTRAINT IF EXISTS "ScrapeJob_competitorId_fkey";
@@ -1309,10 +1309,10 @@ CREATE TABLE IF NOT EXISTS "AudienceSnapshot" (
 );
 
 -- CreateIndex (idempotent)
-CREATE UNIQUE INDEX IF NOT EXISTS IF NOT EXISTS "AudienceSnapshot_clientId_platform_date_key" ON "AudienceSnapshot"("clientId", "platform", "date");
+CREATE UNIQUE INDEX IF NOT EXISTS "AudienceSnapshot_clientId_platform_date_key" ON "AudienceSnapshot"("clientId", "platform", "date");
 
 -- CreateIndex (idempotent)
-CREATE INDEX IF NOT EXISTS IF NOT EXISTS "AudienceSnapshot_clientId_platform_date_idx" ON "AudienceSnapshot"("clientId", "platform", "date");
+CREATE INDEX IF NOT EXISTS "AudienceSnapshot_clientId_platform_date_idx" ON "AudienceSnapshot"("clientId", "platform", "date");
 
 
 -- ── Migración: 20260528000000_add_instagram_comment ──
@@ -1335,13 +1335,13 @@ CREATE TABLE IF NOT EXISTS "InstagramComment" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX IF NOT EXISTS IF NOT EXISTS "InstagramComment_clientId_commentId_key" ON "InstagramComment"("clientId", "commentId");
+CREATE UNIQUE INDEX IF NOT EXISTS "InstagramComment_clientId_commentId_key" ON "InstagramComment"("clientId", "commentId");
 
 -- CreateIndex
-CREATE INDEX IF NOT EXISTS IF NOT EXISTS "InstagramComment_clientId_mediaId_idx" ON "InstagramComment"("clientId", "mediaId");
+CREATE INDEX IF NOT EXISTS "InstagramComment_clientId_mediaId_idx" ON "InstagramComment"("clientId", "mediaId");
 
 -- CreateIndex
-CREATE INDEX IF NOT EXISTS IF NOT EXISTS "InstagramComment_clientId_parentId_idx" ON "InstagramComment"("clientId", "parentId");
+CREATE INDEX IF NOT EXISTS "InstagramComment_clientId_parentId_idx" ON "InstagramComment"("clientId", "parentId");
 
 
 -- ── Migración: 20260529000000_add_published_post ──
@@ -1365,10 +1365,10 @@ CREATE TABLE IF NOT EXISTS "PublishedPost" (
 );
 
 -- CreateIndex
-CREATE INDEX IF NOT EXISTS IF NOT EXISTS "PublishedPost_clientId_createdAt_idx" ON "PublishedPost"("clientId", "createdAt");
+CREATE INDEX IF NOT EXISTS "PublishedPost_clientId_createdAt_idx" ON "PublishedPost"("clientId", "createdAt");
 
 -- CreateIndex
-CREATE INDEX IF NOT EXISTS IF NOT EXISTS "PublishedPost_clientId_status_idx" ON "PublishedPost"("clientId", "status");
+CREATE INDEX IF NOT EXISTS "PublishedPost_clientId_status_idx" ON "PublishedPost"("clientId", "status");
 
 
 -- ── Migración: 20260530000000_add_ig_messages ──
@@ -1406,12 +1406,12 @@ CREATE TABLE IF NOT EXISTS "IGMessage" (
 );
 
 -- Unique indexes
-CREATE UNIQUE INDEX IF NOT EXISTS IF NOT EXISTS "IGConversation_clientId_conversationId_key" ON "IGConversation"("clientId", "conversationId");
-CREATE UNIQUE INDEX IF NOT EXISTS IF NOT EXISTS "IGMessage_clientId_messageId_key" ON "IGMessage"("clientId", "messageId");
+CREATE UNIQUE INDEX IF NOT EXISTS "IGConversation_clientId_conversationId_key" ON "IGConversation"("clientId", "conversationId");
+CREATE UNIQUE INDEX IF NOT EXISTS "IGMessage_clientId_messageId_key" ON "IGMessage"("clientId", "messageId");
 
 -- Regular indexes
-CREATE INDEX IF NOT EXISTS IF NOT EXISTS "IGConversation_clientId_lastMessageAt_idx" ON "IGConversation"("clientId", "lastMessageAt");
-CREATE INDEX IF NOT EXISTS IF NOT EXISTS "IGMessage_clientId_conversationId_timestamp_idx" ON "IGMessage"("clientId", "conversationId", "timestamp");
+CREATE INDEX IF NOT EXISTS "IGConversation_clientId_lastMessageAt_idx" ON "IGConversation"("clientId", "lastMessageAt");
+CREATE INDEX IF NOT EXISTS "IGMessage_clientId_conversationId_timestamp_idx" ON "IGMessage"("clientId", "conversationId", "timestamp");
 
 
 -- ── Migración: 20260531000000_rename_impressions_to_totalviews ──
@@ -1477,7 +1477,7 @@ CREATE UNIQUE INDEX IF NOT EXISTS "YouTubeVideo_clientId_videoId_key" ON "YouTub
 -- adds the FK only if it doesn't already exist.
 
 -- 1) Required unique constraint on the referenced column
-CREATE UNIQUE INDEX IF NOT EXISTS IF NOT EXISTS "IGConversation_conversationId_key"
+CREATE UNIQUE INDEX IF NOT EXISTS "IGConversation_conversationId_key"
   ON "IGConversation"("conversationId");
 
 -- 2) Drop any orphan messages that would violate the FK (none expected)
