@@ -5,10 +5,8 @@ import Image from "next/image"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import {
-  X, BarChart3, DollarSign, LayoutGrid, FileBarChart,
-  Users2, ListTodo, Users, Layers, Wrench, BookOpen, CalendarDays,
-  Home, ChevronLeft, ChevronRight, Rss, FormInput, Shield, LayoutTemplate,
-  Megaphone,
+  X, BarChart3, ListTodo, Home, ChevronLeft, ChevronRight,
+  Megaphone, Settings,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { type Role, isAdminOrAbove } from "@/lib/types/role"
@@ -41,55 +39,23 @@ interface NavGroup {
 
 const adminOnly = (role: Role) => isAdminOrAbove(role)
 
+// Sidebar centralizado: pocos accesos "hub". Cada hub es una landing donde se
+// elige el sub-destino con tarjetas auto-explicativas. Menos ruido, más claro.
 const NAV_GROUPS: NavGroup[] = [
   {
-    label: "Inicio",
+    label: "Principal",
     items: [
-      { name: "Hoy", href: "/inicio", icon: Home },
+      { name: "Inicio",      href: "/inicio",        icon: Home      },
+      { name: "Performance", href: "/performance",   icon: BarChart3 },
+      { name: "Content",     href: "/marketing",     icon: Megaphone, visible: adminOnly },
+      { name: "Operación",   href: "/operacion",     icon: ListTodo  },
     ],
   },
   {
-    label: "Performance",
-    items: [
-      { name: "Panel",          href: "/dashboard",     icon: BarChart3   },
-      { name: "Ventas",         href: "/sales",         icon: DollarSign,   visible: adminOnly },
-      { name: "Métricas",       href: "/metrics",       icon: LayoutGrid,   visible: adminOnly },
-      { name: "Cargar reporte", href: "/admin/reports", icon: FileBarChart, visible: adminOnly },
-    ],
-  },
-  {
-    label: "Marketing",
+    label: "Administración",
     visible: adminOnly,
     items: [
-      { name: "Content", href: "/marketing", icon: Megaphone },
-    ],
-  },
-  {
-    label: "Día a día",
-    items: [
-      { name: "Personas Agendadas", href: "/admin/personas", icon: Users2       },
-      { name: "Tareas",             href: "/admin/tasks",    icon: ListTodo     },
-      { name: "Agenda",             href: "/calendar",       icon: CalendarDays },
-    ],
-  },
-  {
-    label: "Equipo",
-    visible: adminOnly,
-    items: [
-      { name: "Miembros",      href: "/admin/team",        icon: Users  },
-      { name: "Departamentos", href: "/admin/departments", icon: Layers },
-      { name: "Actividad",     href: "/admin/activity",    icon: Rss    },
-    ],
-  },
-  {
-    label: "Configuración",
-    items: [
-      { name: "Plantillas",       href: "/admin/task-templates",   icon: LayoutTemplate, visible: adminOnly },
-      { name: "Formularios",      href: "/admin/forms",            icon: FormInput,      visible: adminOnly },
-      { name: "Centro Operativo", href: "/admin/centro-operativo", icon: Layers,         visible: adminOnly },
-      { name: "Auditoría",        href: "/admin/audit-log",        icon: Shield,         visible: adminOnly },
-      { name: "Herramientas",     href: "/tools",                  icon: Wrench,         visible: adminOnly },
-      { name: "Biblioteca",       href: "/recursos",               icon: BookOpen,       visible: adminOnly },
+      { name: "Configuración", href: "/configuracion", icon: Settings },
     ],
   },
 ]

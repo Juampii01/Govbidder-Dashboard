@@ -31,7 +31,6 @@ const CRUMB_GROUPS: Record<string, string> = {
   "/admin/activity":         "Operación",
   "/admin/forms":            "Operación",
   "/admin/task-templates":   "Operación",
-  "/admin/audit-log":        "Operación",
   "/tools":                 "Programa",
   "/recursos":              "Programa",
   "/calendar":              "Programa",

@@ -24,6 +24,9 @@ type CurrentUser = {
 
 const PAGE_TITLES: Record<string, string> = {
   "/inicio":                      "Página Principal",
+  "/performance":                 "Performance",
+  "/operacion":                   "Operación",
+  "/configuracion":               "Configuración",
   "/dashboard":                   "Panel",
   "/sales":                       "Ingresos",
   "/metrics":                     "Métricas",
@@ -38,7 +41,6 @@ const PAGE_TITLES: Record<string, string> = {
   "/admin/activity":               "Actividad",
   "/admin/forms":                  "Forms públicos",
   "/admin/task-templates":         "Templates de tareas",
-  "/admin/audit-log":              "Audit log",
   "/contenido":                    "Contenido",
   "/marketing":                    "Marketing · KPIs",
   "/marketing/instagram":          "Instagram",
