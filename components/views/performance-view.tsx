@@ -50,8 +50,8 @@ export function PerformanceView({ initialTab = "panel" }: { initialTab?: string 
       {/* Header */}
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Performance</h1>
-          <p className="text-[13px] text-slate-500 mt-0.5">{current.desc}</p>
+          <h1 className="text-2xl font-bold text-foreground">Performance</h1>
+          <p className="text-[13px] text-muted-foreground mt-0.5">{current.desc}</p>
         </div>
         <Link
           href="/admin/reports"
@@ -63,7 +63,7 @@ export function PerformanceView({ initialTab = "panel" }: { initialTab?: string 
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-1 overflow-x-auto rounded-xl border border-slate-200 bg-white p-1">
+      <div className="flex gap-1 overflow-x-auto rounded-xl border border-border bg-card p-1">
         {TABS.map((t) => {
           const Icon = t.icon
           const active = tab === t.id
@@ -75,7 +75,7 @@ export function PerformanceView({ initialTab = "panel" }: { initialTab?: string 
                 "flex items-center gap-2 whitespace-nowrap rounded-lg px-3.5 py-2 text-[13px] font-medium transition-all",
                 active
                   ? "bg-[#1e3a8a]/[0.10] text-[#1e3a8a] font-semibold"
-                  : "text-slate-500 hover:bg-slate-50 hover:text-slate-800",
+                  : "text-muted-foreground hover:bg-muted hover:text-foreground",
               )}
             >
               <Icon className="h-4 w-4" />
