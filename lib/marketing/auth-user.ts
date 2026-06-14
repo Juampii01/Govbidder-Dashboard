@@ -13,20 +13,17 @@ export class ForbiddenError extends Error {
   constructor(msg = 'Sin acceso') { super(msg); this.name = 'ForbiddenError' }
 }
 
-async function getSession() {
+export async function getUserIdOrNull(): Promise<string | null> {
   const cookieStore = await cookies()
   const supabase = createServerClient(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     { cookies: { getAll: () => cookieStore.getAll(), setAll: () => {} } }
   )
-  const { data: { session } } = await supabase.auth.getSession()
-  return session
-}
-
-export async function getUserIdOrNull(): Promise<string | null> {
-  const session = await getSession()
-  return session?.user?.id ?? null
+  // getUser() valida el JWT contra el server de auth (más seguro que getSession,
+  // que solo decodifica el token local). El middleware ya refrescó la cookie.
+  const { data: { user } } = await supabase.auth.getUser()
+  return user?.id ?? null
 }
 
 export async function requireUserId(): Promise<string> {
