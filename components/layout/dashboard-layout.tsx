@@ -19,6 +19,7 @@ type CurrentUser = {
   name: string
   role: Role
   department_id: string | null
+  department_name: string | null
   clientId: string
 }
 
@@ -117,9 +118,22 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
         }
       } catch { /* fallback to metadata */ }
 
+      // Resolver el nombre del departamento (para gates por área, ej. Marketing).
+      let departmentName: string | null = null
+      if (departmentId) {
+        try {
+          const { data: dept } = await supabase
+            .from("departments")
+            .select("name")
+            .eq("id", departmentId)
+            .maybeSingle()
+          departmentName = dept?.name ?? null
+        } catch { /* opcional */ }
+      }
+
       if (!mounted) return
 
-      setCurrentUser({ email: user.email ?? "", name, role, department_id: departmentId, clientId })
+      setCurrentUser({ email: user.email ?? "", name, role, department_id: departmentId, department_name: departmentName, clientId })
       setActiveClientId(clientId)
       setAuthChecked(true)
     }
@@ -268,6 +282,7 @@ export function DashboardLayout({ children }: { children: React.ReactNode }) {
         collapsed={sidebarCollapsed}
         onToggleCollapse={handleToggleCollapse}
         role={currentUser?.role ?? "user"}
+        departmentName={currentUser?.department_name ?? null}
       />
 
       <div

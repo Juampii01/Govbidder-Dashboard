@@ -20,6 +20,14 @@ interface SidebarProps {
   onToggleCollapse: () => void
   /** Caller's role — gates which items are visible. */
   role:        Role
+  /** Nombre del departamento del usuario (para gates por área, ej. Marketing). */
+  departmentName?: string | null
+}
+
+/** Contexto de visibilidad: rol + departamento. */
+interface NavCtx {
+  role: Role
+  departmentName: string | null
 }
 
 interface NavItem {
@@ -27,17 +35,21 @@ interface NavItem {
   href:     string
   icon:     any
   /** Si está, item visible solo cuando el predicado retorna true. */
-  visible?: (role: Role) => boolean
+  visible?: (ctx: NavCtx) => boolean
 }
 
 interface NavGroup {
   label:    string
   items:    NavItem[]
   /** Si está, el grupo ENTERO solo se muestra cuando el predicado retorna true. */
-  visible?: (role: Role) => boolean
+  visible?: (ctx: NavCtx) => boolean
 }
 
-const adminOnly = (role: Role) => isAdminOrAbove(role)
+const adminOnly = (ctx: NavCtx) => isAdminOrAbove(ctx.role)
+
+/** Admin O integrante del departamento de Marketing. */
+const adminOrMarketing = (ctx: NavCtx) =>
+  isAdminOrAbove(ctx.role) || (ctx.departmentName ?? "").trim().toLowerCase() === "marketing"
 
 // Sidebar centralizado: pocos accesos "hub". Cada hub es una landing donde se
 // elige el sub-destino con tarjetas auto-explicativas. Menos ruido, más claro.
@@ -47,7 +59,7 @@ const NAV_GROUPS: NavGroup[] = [
     items: [
       { name: "Inicio",      href: "/inicio",        icon: Home      },
       { name: "Performance", href: "/performance",   icon: BarChart3 },
-      { name: "Content",     href: "/marketing",     icon: Megaphone, visible: adminOnly },
+      { name: "Content",     href: "/marketing",     icon: Megaphone, visible: adminOrMarketing },
       { name: "Operación",   href: "/operacion",     icon: ListTodo  },
     ],
   },
@@ -60,8 +72,9 @@ const NAV_GROUPS: NavGroup[] = [
   },
 ]
 
-export function Sidebar({ open, onClose, collapsed, onToggleCollapse, role }: SidebarProps) {
+export function Sidebar({ open, onClose, collapsed, onToggleCollapse, role, departmentName = null }: SidebarProps) {
   const pathname = usePathname()
+  const ctx: NavCtx = { role, departmentName }
 
   // On mobile, show all labels even when "collapsed" prop is true.
   // The collapsed mode only applies on lg+ screens.
@@ -132,8 +145,8 @@ export function Sidebar({ open, onClose, collapsed, onToggleCollapse, role }: Si
         )}>
           {NAV_GROUPS.map((group) => {
             // Group-level gate first: si el grupo tiene `visible` y no pasa, se oculta entero.
-            if (group.visible && !group.visible(role)) return null
-            const visibleItems = group.items.filter(i => !i.visible || i.visible(role))
+            if (group.visible && !group.visible(ctx)) return null
+            const visibleItems = group.items.filter(i => !i.visible || i.visible(ctx))
             if (visibleItems.length === 0) return null
             return (
             <div key={group.label}>
