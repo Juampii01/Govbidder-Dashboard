@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server"
+import { cookies } from "next/headers"
 import { createClient } from "@/lib/supabase"
 import { createServiceClient } from "@/lib/supabase-service"
+import { ACTIVE_BRAND_COOKIE, DEFAULT_BRAND_ID, isValidBrandId } from "@/lib/marketing/brands"
 
 async function getUser(req: NextRequest) {
   const token = req.headers.get("authorization")?.replace("Bearer ", "")
@@ -15,17 +17,10 @@ export async function GET(req: NextRequest) {
 
   const db = createServiceClient()
 
-  // Resolve clientId desde la tabla Profile del Content Dashboard (mismo Supabase)
-  const { data: cdProfile } = await db
-    .from("Profile")
-    .select("clientId")
-    .eq("id", user.id)
-    .maybeSingle()
-
-  const clientId = cdProfile?.clientId
-  if (!clientId) {
-    return NextResponse.json({ connected: false, social: [], pipeline: {}, ads: null })
-  }
+  // clientId = marca activa (cookie), igual que el resto del Content Dashboard.
+  const store = await cookies()
+  const sel = store.get(ACTIVE_BRAND_COOKIE)?.value
+  const clientId = isValidBrandId(sel) ? sel : DEFAULT_BRAND_ID
 
   const [snapshotsRes, pipelineRes, campaignsRes] = await Promise.all([
     // Último snapshot por plataforma (IG, YT, TikTok)

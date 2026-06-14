@@ -7,11 +7,66 @@ import { usePathname, useRouter } from "next/navigation"
 import { Toaster } from "sonner"
 import { createClient } from "@/lib/supabase"
 import { cn } from "@/lib/utils"
+import { BRANDS, type BrandId } from "@/lib/marketing/brands"
 import {
   ArrowLeft, Megaphone, Instagram, Youtube, Music2, MonitorPlay,
   Palette, Search, FlaskConical, MessageSquare, LayoutList, Database,
   X, Menu,
 } from "lucide-react"
+
+// ─── Brand switcher (Santo / Tío Sam) ──────────────────────────────────────────
+
+function BrandSwitcher() {
+  const router = useRouter()
+  const [active, setActive] = useState<BrandId | null>(null)
+  const [busy, setBusy] = useState(false)
+
+  useEffect(() => {
+    fetch("/api/marketing/brand")
+      .then((r) => (r.ok ? r.json() : null))
+      .then((d) => d && setActive(d.active))
+      .catch(() => {})
+  }, [])
+
+  async function select(id: BrandId) {
+    if (id === active || busy) return
+    setBusy(true)
+    try {
+      await fetch("/api/marketing/brand", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ brandId: id }),
+      })
+      setActive(id)
+      router.refresh()
+    } finally {
+      setBusy(false)
+    }
+  }
+
+  return (
+    <div className="px-3 pt-3">
+      <p className="px-1 mb-1.5 text-[10px] font-bold uppercase tracking-[0.15em] text-slate-400">Marca</p>
+      <div className="flex gap-1 rounded-xl bg-slate-100 p-1">
+        {BRANDS.map((b) => (
+          <button
+            key={b.id}
+            onClick={() => select(b.id)}
+            disabled={busy}
+            className={cn(
+              "flex-1 rounded-lg px-2 py-1.5 text-[12px] font-semibold transition-all disabled:opacity-60",
+              active === b.id
+                ? "bg-white text-[#1e3a8a] shadow-sm"
+                : "text-slate-500 hover:text-slate-800",
+            )}
+          >
+            {b.name}
+          </button>
+        ))}
+      </div>
+    </div>
+  )
+}
 
 // ─── Nav model ─────────────────────────────────────────────────────────────────
 
@@ -119,6 +174,9 @@ export function ContentShell({ children }: { children: React.ReactNode }) {
             Volver a GovBidder
           </Link>
         </div>
+
+        {/* Selector de marca (Santo / Tío Sam) — compartido por el equipo */}
+        <BrandSwitcher />
 
         {/* Nav */}
         <nav className="flex-1 overflow-y-auto px-3 py-4 space-y-5">

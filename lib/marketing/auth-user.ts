@@ -5,6 +5,7 @@
 import { cookies } from 'next/headers'
 import { createServerClient } from '@supabase/ssr'
 import { db } from './db'
+import { ACTIVE_BRAND_COOKIE, DEFAULT_BRAND_ID, isValidBrandId } from './brands'
 
 export class UnauthorizedError extends Error {
   constructor(msg = 'No autorizado') { super(msg); this.name = 'UnauthorizedError' }
@@ -35,8 +36,11 @@ export async function requireUserId(): Promise<string> {
 export async function getActiveClientId(): Promise<string | null> {
   const userId = await getUserIdOrNull()
   if (!userId) return null
-  const profile = await db.profile.findUnique({ where: { id: userId }, select: { clientId: true } })
-  return profile?.clientId ?? null
+  // La marca activa es compartida por el equipo y se elige con el selector
+  // (cookie). No depende de Profile.clientId. Default = marca principal.
+  const cookieStore = await cookies()
+  const selected = cookieStore.get(ACTIVE_BRAND_COOKIE)?.value
+  return isValidBrandId(selected) ? selected : DEFAULT_BRAND_ID
 }
 
 export async function requireActiveClient(): Promise<{ userId: string; clientId: string }> {
