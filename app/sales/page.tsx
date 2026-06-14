@@ -1,12 +1,2 @@
-import { DashboardLayout } from "@/components/layout/dashboard-layout"
-import { SalesView } from "@/components/views/sales-view"
-
-export const metadata = { title: "Ingresos" }
-
-export default function SalesPage() {
-  return (
-    <DashboardLayout>
-      <SalesView />
-    </DashboardLayout>
-  )
-}
+import { redirect } from "next/navigation"
+export default function SalesRedirect() { redirect("/performance?tab=ventas") }
