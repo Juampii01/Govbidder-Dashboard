@@ -106,7 +106,7 @@ export function ReelCard({ reel, onOpenDrawer }: ReelCardProps) {
           <button
             onClick={handleVerEnIG}
             aria-label="Ver en Instagram"
-            className="flex items-center gap-1 px-2 py-1 rounded-full text-[10px] font-semibold transition-all hover:bg-white/20 opacity-0 group-hover:opacity-100"
+            className="flex items-center gap-1 px-2 py-1 rounded-full text-[10px] font-semibold transition-all hover:bg-card/20 opacity-0 group-hover:opacity-100"
             style={{ backgroundColor: 'rgba(255,255,255,0.15)', color: '#fff', backdropFilter: 'blur(6px)', border: '1px solid rgba(255,255,255,0.25)' }}
           >
             <ExternalLink size={9} />
