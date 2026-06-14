@@ -40,7 +40,18 @@ const PAGE_TITLES: Record<string, string> = {
   "/admin/task-templates":         "Templates de tareas",
   "/admin/audit-log":              "Audit log",
   "/contenido":                    "Contenido",
-  "/marketing":                    "Marketing",
+  "/marketing":                    "Marketing · KPIs",
+  "/marketing/instagram":          "Instagram",
+  "/marketing/youtube":            "YouTube",
+  "/marketing/tiktok":             "TikTok",
+  "/marketing/ads":                "Meta Ads",
+  "/marketing/contenido":          "Estudio de Contenido",
+  "/marketing/investigacion":      "Investigación",
+  "/marketing/analizador":         "Analizador de Reels",
+  "/marketing/ai":                 "AI",
+  "/marketing/tareas":             "Tareas",
+  "/marketing/bases":              "Bases del Negocio",
+  "/marketing/video-feed":         "Video Feed",
 }
 
 const SelectedMonthContext = createContext<string | null>(null)
