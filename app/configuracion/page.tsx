@@ -15,7 +15,7 @@ export default function ConfiguracionPage() {
       />
 
       <HubSection label="Equipo">
-        <HubCard href="/admin/team" icon={Users} color="#1e3a8a"
+        <HubCard href="/admin/team" icon={Users} color="#3b82f6"
           title="Miembros" desc="Personas del equipo, roles y accesos." />
         <HubCard href="/admin/departments" icon={Layers} color="#7c3aed"
           title="Departamentos" desc="Áreas del negocio y su organización." />
