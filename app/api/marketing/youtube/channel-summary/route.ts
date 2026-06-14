@@ -7,8 +7,8 @@
  */
 
 import { NextResponse } from 'next/server'
-import { db } from '@/lib/db'
-import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/auth-user'
+import { db } from '@/lib/marketing/db'
+import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/marketing/auth-user'
 
 export async function GET(): Promise<NextResponse> {
   let clientId: string

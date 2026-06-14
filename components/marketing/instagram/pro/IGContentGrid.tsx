@@ -2,7 +2,7 @@
 import { useState, useMemo } from 'react'
 import { Grid3X3, List, Eye, Heart, MessageCircle } from 'lucide-react'
 import { IGReelCard } from './IGReelCard'
-import type { UserReelRow } from '@/hooks/useInstagramData'
+import type { UserReelRow } from '@/hooks/marketing/useInstagramData'
 
 type Sort = 'recent' | 'views' | 'likes' | 'comments'
 

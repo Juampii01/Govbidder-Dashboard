@@ -2,8 +2,8 @@
 
 import { useState } from 'react'
 import { Eye, Heart, MessageCircle, ExternalLink, Clock, Film, FileText, BarChart2 } from 'lucide-react'
-import type { ReelDTO } from '@/lib/types/competidores'
-import { formatK } from '@/lib/utils/formatters'
+import type { ReelDTO } from '@/lib/marketing/types/competidores'
+import { formatK } from '@/lib/marketing/utils/formatters'
 
 function formatDuration(sec: number): string {
   const total = Math.round(sec)

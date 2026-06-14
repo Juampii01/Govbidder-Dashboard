@@ -12,8 +12,8 @@
  */
 
 import { notFound, redirect } from 'next/navigation'
-import { db } from '@/lib/db'
-import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/auth-user'
+import { db } from '@/lib/marketing/db'
+import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/marketing/auth-user'
 import { ReelDetailSimple } from './ReelDetailSimple'
 
 export const dynamic = 'force-dynamic'

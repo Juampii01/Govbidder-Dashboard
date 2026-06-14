@@ -1,8 +1,8 @@
 'use client'
 
 import { Eye, Heart, MessageCircle, Share2, ExternalLink, Clock, Film } from 'lucide-react'
-import { formatK } from '@/lib/utils/formatters'
-import type { ReelDTO } from '@/lib/types/competidores'
+import { formatK } from '@/lib/marketing/utils/formatters'
+import type { ReelDTO } from '@/lib/marketing/types/competidores'
 
 interface ReelTabProps {
   reel: ReelDTO

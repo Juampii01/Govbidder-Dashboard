@@ -1,7 +1,7 @@
 'use client'
 
 import { Trophy, ThumbsUp, MessageCircle, PlaySquare, Eye } from 'lucide-react'
-import type { YouTubeVideoRow } from '@/hooks/useYouTubeData'
+import type { YouTubeVideoRow } from '@/hooks/marketing/useYouTubeData'
 import { fmtViews } from './yt-theme'
 
 interface YTTopVideosProps {

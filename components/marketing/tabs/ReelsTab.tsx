@@ -2,14 +2,14 @@
 
 import { useState, useMemo } from 'react'
 import { Play } from 'lucide-react'
-import { ReelCard } from '@/components/reels/ReelCard'
-import { ReelFilters, type SortKey, type SortDir, type ReelType, type TrafficType } from '@/components/reels/ReelFilters'
-import { ReelsSummaryPanel } from '@/components/reels/ReelsSummaryPanel'
-import { ViewsScatterChart } from '@/components/reels/ViewsScatterChart'
-import { RadarDiaSemana } from '@/components/reels/RadarDiaSemana'
-import { useInstagramDataContext } from '@/components/instagram/InstagramDataContext'
-import { userReelToView } from '@/lib/instagram/to-reel-view'
-import type { Reel } from '@/lib/types'
+import { ReelCard } from '@/components/marketing/reels/ReelCard'
+import { ReelFilters, type SortKey, type SortDir, type ReelType, type TrafficType } from '@/components/marketing/reels/ReelFilters'
+import { ReelsSummaryPanel } from '@/components/marketing/reels/ReelsSummaryPanel'
+import { ViewsScatterChart } from '@/components/marketing/reels/ViewsScatterChart'
+import { RadarDiaSemana } from '@/components/marketing/reels/RadarDiaSemana'
+import { useInstagramDataContext } from '@/components/marketing/instagram/InstagramDataContext'
+import { userReelToView } from '@/lib/marketing/instagram/to-reel-view'
+import type { Reel } from '@/lib/marketing/types'
 
 export function ReelsTab() {
   const [sort, setSort] = useState<SortKey>('fecha')

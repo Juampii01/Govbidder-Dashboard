@@ -1,9 +1,9 @@
 'use client'
 
 import { Eye, ThumbsUp, MessageSquare, MousePointerClick, Loader2, Film } from 'lucide-react'
-import { formatK } from '@/lib/utils/formatters'
-import { usePeriod } from '@/hooks/usePeriod'
-import { useYouTubeVideos, type YouTubeVideoRow } from '@/hooks/useYouTubeData'
+import { formatK } from '@/lib/marketing/utils/formatters'
+import { usePeriod } from '@/hooks/marketing/usePeriod'
+import { useYouTubeVideos, type YouTubeVideoRow } from '@/hooks/marketing/useYouTubeData'
 
 interface Props {
   connected: boolean

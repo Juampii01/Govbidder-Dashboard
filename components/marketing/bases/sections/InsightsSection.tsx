@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect, useRef } from 'react'
 import { Plus, X, Lightbulb } from 'lucide-react'
-import { InsightItem } from '@/lib/types'
+import { InsightItem } from '@/lib/marketing/types'
 
 const STORAGE_KEY = 'insights'
 

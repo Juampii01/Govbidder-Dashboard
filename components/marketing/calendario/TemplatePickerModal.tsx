@@ -1,7 +1,7 @@
 'use client'
 
 import { motion } from 'motion/react'
-import { ContentTemplate } from '@/lib/types'
+import { ContentTemplate } from '@/lib/marketing/types'
 
 interface TemplatePickerModalProps {
   type: 'reel' | 'historia'

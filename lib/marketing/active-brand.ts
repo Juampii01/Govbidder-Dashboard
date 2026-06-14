@@ -1,9 +1,9 @@
 import 'server-only'
 
-import { DEFAULT_THEME_KEY, type ThemeKey } from '@/lib/themes'
+import { DEFAULT_THEME_KEY, type ThemeKey } from '@/lib/marketing/themes'
 
-export type { ThemeKey } from '@/lib/themes'
-export { VALID_THEME_KEYS, DEFAULT_THEME_KEY, isValidThemeKey } from '@/lib/themes'
+export type { ThemeKey } from '@/lib/marketing/themes'
+export { VALID_THEME_KEYS, DEFAULT_THEME_KEY, isValidThemeKey } from '@/lib/marketing/themes'
 
 /**
  * Resolve the brand theme for SSR.

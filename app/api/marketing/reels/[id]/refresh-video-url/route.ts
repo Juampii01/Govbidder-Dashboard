@@ -23,15 +23,15 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
-import { db } from '@/lib/db'
-import { checkRateLimit } from '@/lib/utils/ratelimit'
-import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/auth-user'
+import { db } from '@/lib/marketing/db'
+import { checkRateLimit } from '@/lib/marketing/utils/ratelimit'
+import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/marketing/auth-user'
 import {
   startRun,
   pollRun,
   fetchItems,
-} from '@/lib/apify/instagram-reel-scraper'
-import type { ReelDTO } from '@/lib/types/competidores'
+} from '@/lib/marketing/apify/instagram-reel-scraper'
+import type { ReelDTO } from '@/lib/marketing/types/competidores'
 
 export const maxDuration = 120
 

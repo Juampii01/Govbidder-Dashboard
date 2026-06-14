@@ -7,17 +7,17 @@ import {
   useTikTokChannelSummary,
   useTikTokVideos,
   triggerTikTokSync,
-} from '@/hooks/useTikTokData'
-import { useSocialConnection } from '@/hooks/useSocialConnection'
-import { TTNotConnected } from '@/components/tiktok/pro/TTNotConnected'
-import { TTProfileHeader } from '@/components/tiktok/pro/TTProfileHeader'
-import { TTTabNav, type TTTab } from '@/components/tiktok/pro/TTTabNav'
-import { TTOverviewStats } from '@/components/tiktok/pro/TTOverviewStats'
-import { TTTopVideos } from '@/components/tiktok/pro/TTTopVideos'
-import { TTInsightsPanel } from '@/components/tiktok/pro/TTInsightsPanel'
-import { TTMetricsGrid } from '@/components/tiktok/pro/TTMetricsGrid'
-import { TTVideoGrid } from '@/components/tiktok/pro/TTVideoGrid'
-import { TT_TEAL, TT_PINK } from '@/components/tiktok/pro/tt-theme'
+} from '@/hooks/marketing/useTikTokData'
+import { useSocialConnection } from '@/hooks/marketing/useSocialConnection'
+import { TTNotConnected } from '@/components/marketing/tiktok/pro/TTNotConnected'
+import { TTProfileHeader } from '@/components/marketing/tiktok/pro/TTProfileHeader'
+import { TTTabNav, type TTTab } from '@/components/marketing/tiktok/pro/TTTabNav'
+import { TTOverviewStats } from '@/components/marketing/tiktok/pro/TTOverviewStats'
+import { TTTopVideos } from '@/components/marketing/tiktok/pro/TTTopVideos'
+import { TTInsightsPanel } from '@/components/marketing/tiktok/pro/TTInsightsPanel'
+import { TTMetricsGrid } from '@/components/marketing/tiktok/pro/TTMetricsGrid'
+import { TTVideoGrid } from '@/components/marketing/tiktok/pro/TTVideoGrid'
+import { TT_TEAL, TT_PINK } from '@/components/marketing/tiktok/pro/tt-theme'
 
 function PageSkeleton() {
   return (

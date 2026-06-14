@@ -1,8 +1,8 @@
 'use client'
 
 import { Loader2, Target, TrendingUp, MousePointer, Eye } from 'lucide-react'
-import { useAdCampaigns, type AdCampaignRow } from '@/hooks/useAdsData'
-import { formatK } from '@/lib/utils/formatters'
+import { useAdCampaigns, type AdCampaignRow } from '@/hooks/marketing/useAdsData'
+import { formatK } from '@/lib/marketing/utils/formatters'
 
 interface Props {
   connected: boolean

@@ -4,8 +4,8 @@
  * to 0 so the UI can render without undefined errors.
  */
 
-import type { Reel } from '@/lib/types'
-import type { UserReelRow } from '@/hooks/useInstagramData'
+import type { Reel } from '@/lib/marketing/types'
+import type { UserReelRow } from '@/hooks/marketing/useInstagramData'
 
 function formatDuration(sec: number | null | undefined): string {
   if (!sec || sec <= 0) return '0:00'

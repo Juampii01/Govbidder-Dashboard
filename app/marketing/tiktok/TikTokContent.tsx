@@ -1,3 +1,3 @@
 'use client'
 
-export { TikTokContent } from '@/components/tiktok/TikTokContent'
+export { TikTokContent } from '@/components/marketing/tiktok/TikTokContent'

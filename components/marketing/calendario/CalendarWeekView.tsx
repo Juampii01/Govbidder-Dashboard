@@ -1,6 +1,6 @@
 'use client'
 
-import { ContentItem } from '@/lib/types'
+import { ContentItem } from '@/lib/marketing/types'
 
 const DAY_NAMES = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom']
 

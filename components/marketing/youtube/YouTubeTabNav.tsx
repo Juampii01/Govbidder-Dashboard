@@ -2,7 +2,7 @@
 
 import { LayoutDashboard, Film, Users } from 'lucide-react'
 import { useSearchParams, useRouter, usePathname } from 'next/navigation'
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/marketing/utils'
 
 export type YouTubeTab = 'dashboard' | 'videos' | 'audiencia'
 

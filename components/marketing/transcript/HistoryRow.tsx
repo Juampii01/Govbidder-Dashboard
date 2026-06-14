@@ -1,8 +1,8 @@
 'use client'
 
 import { Trash2 } from 'lucide-react'
-import { PlatformBadge } from '@/components/ui/PlatformBadge'
-import { formatDate } from '@/lib/utils/formatDate'
+import { PlatformBadge } from '@/components/marketing/ui/PlatformBadge'
+import { formatDate } from '@/lib/marketing/utils/formatDate'
 import { ResultPanel } from './ResultPanel'
 import type { HistoryItem } from './types'
 

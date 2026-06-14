@@ -2,8 +2,8 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { ChipEditor } from '../ChipEditor'
-import { OfertaData } from '@/lib/types'
-import { tryParseArray } from '@/lib/utils/parseArray'
+import { OfertaData } from '@/lib/marketing/types'
+import { tryParseArray } from '@/lib/marketing/utils/parseArray'
 
 const STORAGE_KEY = 'oferta'
 

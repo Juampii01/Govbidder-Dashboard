@@ -1,7 +1,7 @@
 'use client'
 
 import { RefreshCw, LogOut, CheckCircle } from 'lucide-react'
-import type { TikTokAccountSummary } from '@/hooks/useTikTokData'
+import type { TikTokAccountSummary } from '@/hooks/marketing/useTikTokData'
 import { fmtTT, TT_TEAL, TT_PINK } from './tt-theme'
 
 interface TTProfileHeaderProps {

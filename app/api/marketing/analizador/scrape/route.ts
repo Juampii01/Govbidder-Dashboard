@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { ScrapeRequestSchema } from '@/lib/schemas/analizador/scrape'
-import { checkRateLimit } from '@/lib/utils/ratelimit'
-import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/auth-user'
+import { ScrapeRequestSchema } from '@/lib/marketing/schemas/analizador/scrape'
+import { checkRateLimit } from '@/lib/marketing/utils/ratelimit'
+import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/marketing/auth-user'
 
 export async function POST(req: NextRequest) {
   try {

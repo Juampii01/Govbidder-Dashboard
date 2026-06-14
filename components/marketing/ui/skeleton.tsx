@@ -6,7 +6,7 @@ import { cn } from "@/lib/marketing/utils"
  * Uses the global `.animate-shimmer` keyframe (defined in `app/globals.css`)
  * which gives a theme-aware moving highlight instead of the static pulse.
  * Drop-in compatible with the previous shadcn-style API — existing code
- * importing `@/components/ui/skeleton` keeps working without changes.
+ * importing `@/components/marketing/ui/skeleton` keeps working without changes.
  */
 function Skeleton({
   className,

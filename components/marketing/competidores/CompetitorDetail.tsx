@@ -4,11 +4,11 @@ import { useState, useEffect, useCallback, useRef } from 'react'
 import { useRouter } from 'next/navigation'
 import { RefreshCw, Trash2, Users, Loader2, AlertCircle, RefreshCcw, ChevronLeft, Film, ExternalLink } from 'lucide-react'
 import { toast } from 'sonner'
-import { ReelGrid } from '@/components/competidores/ReelGrid'
-import { SortControls } from '@/components/competidores/SortControls'
-import { ScrapeProgressDialog } from '@/components/competidores/ScrapeProgressDialog'
-import { DeleteCompetitorDialog } from '@/components/competidores/DeleteCompetitorDialog'
-import { ReelDetailDrawer } from '@/components/competidores/ReelDetailDrawer'
+import { ReelGrid } from '@/components/marketing/competidores/ReelGrid'
+import { SortControls } from '@/components/marketing/competidores/SortControls'
+import { ScrapeProgressDialog } from '@/components/marketing/competidores/ScrapeProgressDialog'
+import { DeleteCompetitorDialog } from '@/components/marketing/competidores/DeleteCompetitorDialog'
+import { ReelDetailDrawer } from '@/components/marketing/competidores/ReelDetailDrawer'
 import type {
   CompetitorDTO,
   ReelDTO,
@@ -16,9 +16,9 @@ import type {
   RefreshCompetitorResponse,
   ReelSortField,
   ReelSortDir,
-} from '@/lib/types/competidores'
-import { DEFAULT_SORT } from '@/lib/types/competidores'
-import { addActive } from '@/lib/competidores/active-jobs'
+} from '@/lib/marketing/types/competidores'
+import { DEFAULT_SORT } from '@/lib/marketing/types/competidores'
+import { addActive } from '@/lib/marketing/competidores/active-jobs'
 
 interface Props {
   username: string

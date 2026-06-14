@@ -2,11 +2,11 @@
 
 import { useState } from 'react'
 import { Users, Telescope, FileText } from 'lucide-react'
-import { PageHeader } from '@/components/ui/PageHeader'
-import { CompetitorList } from '@/components/competidores/CompetitorList'
-import { ContentResearchView } from '@/components/content-research/ContentResearchView'
-import { TranscriptView } from '@/components/transcript/TranscriptView'
-import type { Platform } from '@/components/ui/PlatformBadge'
+import { PageHeader } from '@/components/marketing/ui/PageHeader'
+import { CompetitorList } from '@/components/marketing/competidores/CompetitorList'
+import { ContentResearchView } from '@/components/marketing/content-research/ContentResearchView'
+import { TranscriptView } from '@/components/marketing/transcript/TranscriptView'
+import type { Platform } from '@/components/marketing/ui/PlatformBadge'
 
 // ─── Types ───────────────────────────────────────────────────
 type MainTab = 'competidores' | 'investigar' | 'transcript'

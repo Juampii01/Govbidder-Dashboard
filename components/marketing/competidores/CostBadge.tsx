@@ -1,6 +1,6 @@
 'use client'
 
-import { formatCostUsd } from '@/lib/utils/cost-format'
+import { formatCostUsd } from '@/lib/marketing/utils/cost-format'
 
 interface CostBadgeProps {
   usd: number

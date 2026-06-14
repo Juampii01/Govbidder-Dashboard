@@ -9,8 +9,8 @@ import {
   DialogHeader,
   DialogTitle,
   DialogDescription,
-} from '@/components/ui/dialog'
-import { useSocialConnection, type SocialPlatform } from '@/hooks/useSocialConnection'
+} from '@/components/marketing/ui/dialog'
+import { useSocialConnection, type SocialPlatform } from '@/hooks/marketing/useSocialConnection'
 
 interface PlatformConfig {
   label: string

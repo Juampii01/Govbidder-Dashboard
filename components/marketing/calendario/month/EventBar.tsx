@@ -1,6 +1,6 @@
 'use client'
 
-import type { ContentItem } from '@/lib/types'
+import type { ContentItem } from '@/lib/marketing/types'
 import { Check, Circle, CircleDashed, Flag } from 'lucide-react'
 import { LANE_HEIGHT } from './calendarUtils'
 import { QuickActions } from './QuickActions'

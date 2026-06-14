@@ -7,7 +7,7 @@
  * `CurrentResult` represents the freshly returned `POST /api/transcript`
  * payload — text fields are always present here.
  */
-import type { Platform } from '@/components/ui/PlatformBadge'
+import type { Platform } from '@/components/marketing/ui/PlatformBadge'
 
 export interface HistoryItem {
   id: string

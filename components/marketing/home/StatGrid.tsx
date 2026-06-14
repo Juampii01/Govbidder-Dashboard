@@ -2,8 +2,8 @@
 
 import { Eye, Heart, Users, MessageCircle, TrendingUp } from 'lucide-react'
 import { motion } from 'motion/react'
-import type { DashboardStats } from '@/lib/types'
-import { useCountUp } from '@/lib/hooks/useCountUp'
+import type { DashboardStats } from '@/lib/marketing/types'
+import { useCountUp } from '@/lib/marketing/hooks/useCountUp'
 
 function fmt(n: number) {
   if (n >= 1_000_000) return (n / 1_000_000).toFixed(1) + 'M'

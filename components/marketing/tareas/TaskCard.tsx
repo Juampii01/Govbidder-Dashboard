@@ -3,9 +3,9 @@
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import { Calendar, CheckCircle2, Circle } from 'lucide-react'
-import { Task } from '@/lib/types'
+import { Task } from '@/lib/marketing/types'
 import { LabelBadge } from './LabelBadge'
-import { formatDate } from '@/lib/utils/formatDate'
+import { formatDate } from '@/lib/marketing/utils/formatDate'
 
 interface TaskCardProps {
   task: Task

@@ -9,10 +9,10 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
-import { db } from '@/lib/db'
-import { cleanupExpiredStates } from '@/lib/utils/cleanup-oauth-states'
-import { encryptToken } from '@/lib/crypto'
-import { META_GRAPH_BASE } from '@/lib/meta'
+import { db } from '@/lib/marketing/db'
+import { cleanupExpiredStates } from '@/lib/marketing/utils/cleanup-oauth-states'
+import { encryptToken } from '@/lib/marketing/crypto'
+import { META_GRAPH_BASE } from '@/lib/marketing/meta'
 
 // ─── Validation ──────────────────────────────────────────────────────────────
 

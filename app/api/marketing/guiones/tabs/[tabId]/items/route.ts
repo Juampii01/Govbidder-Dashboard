@@ -4,8 +4,8 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
-import { db } from '@/lib/db'
-import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/auth-user'
+import { db } from '@/lib/marketing/db'
+import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/marketing/auth-user'
 
 const CreateItemSchema = z.object({
   title:   z.string().min(1).max(200),

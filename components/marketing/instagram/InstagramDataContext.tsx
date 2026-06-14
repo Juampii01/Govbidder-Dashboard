@@ -1,7 +1,7 @@
 'use client'
 
 import { createContext, useContext } from 'react'
-import type { InstagramAccountSummary, UserReelRow } from '@/hooks/useInstagramData'
+import type { InstagramAccountSummary, UserReelRow } from '@/hooks/marketing/useInstagramData'
 
 export interface InstagramDataContextValue {
   connected: boolean

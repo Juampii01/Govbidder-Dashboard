@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import { LayoutGrid, List } from 'lucide-react'
-import type { TikTokVideoRow } from '@/hooks/useTikTokData'
+import type { TikTokVideoRow } from '@/hooks/marketing/useTikTokData'
 import { TTVideoCard } from './TTVideoCard'
 import { fmtTT, TT_TEAL } from './tt-theme'
 

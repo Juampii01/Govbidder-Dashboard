@@ -1,5 +1,5 @@
-import { getMultiplierColor, getMultiplierBg } from '@/lib/utils/multiplier'
-import { formatMultiplier } from '@/lib/utils/formatters'
+import { getMultiplierColor, getMultiplierBg } from '@/lib/marketing/utils/multiplier'
+import { formatMultiplier } from '@/lib/marketing/utils/formatters'
 
 interface Props {
   multiplier: number

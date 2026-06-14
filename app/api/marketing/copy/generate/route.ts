@@ -1,8 +1,8 @@
 import Anthropic from '@anthropic-ai/sdk'
 import { NextRequest, NextResponse } from 'next/server'
-import { GenerateRequestSchema } from '@/lib/schemas/copy/generate'
-import { checkRateLimit } from '@/lib/utils/ratelimit'
-import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/auth-user'
+import { GenerateRequestSchema } from '@/lib/marketing/schemas/copy/generate'
+import { checkRateLimit } from '@/lib/marketing/utils/ratelimit'
+import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/marketing/auth-user'
 
 export const maxDuration = 120
 

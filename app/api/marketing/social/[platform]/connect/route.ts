@@ -7,9 +7,9 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
-import { db } from '@/lib/db'
-import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/auth-user'
-import { META_GRAPH_VERSION } from '@/lib/meta'
+import { db } from '@/lib/marketing/db'
+import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/marketing/auth-user'
+import { META_GRAPH_VERSION } from '@/lib/marketing/meta'
 
 // ─── Validation ──────────────────────────────────────────────────────────────
 

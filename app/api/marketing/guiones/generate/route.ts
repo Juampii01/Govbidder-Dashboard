@@ -11,8 +11,8 @@ export const maxDuration = 120
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import Anthropic from '@anthropic-ai/sdk'
-import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/auth-user'
-import { checkRateLimit } from '@/lib/utils/ratelimit'
+import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/marketing/auth-user'
+import { checkRateLimit } from '@/lib/marketing/utils/ratelimit'
 
 const GenerateSchema = z.object({
   topic: z.string().min(1).max(500),

@@ -3,11 +3,11 @@
 import dynamic from 'next/dynamic'
 import { Suspense, useState } from 'react'
 import { Loader2, RefreshCw, Play } from 'lucide-react'
-import { TimeFilter } from '@/components/layout/TimeFilter'
+import { TimeFilter } from '@/components/marketing/layout/TimeFilter'
 import { YouTubeTabNav, useYouTubeTab } from './YouTubeTabNav'
-import { ConnectButton } from '@/components/shared/ConnectButton'
-import { useYouTubeChannelSummary, triggerYouTubeSync } from '@/hooks/useYouTubeData'
-import { PageHeader } from '@/components/ui/PageHeader'
+import { ConnectButton } from '@/components/marketing/shared/ConnectButton'
+import { useYouTubeChannelSummary, triggerYouTubeSync } from '@/hooks/marketing/useYouTubeData'
+import { PageHeader } from '@/components/marketing/ui/PageHeader'
 
 const YouTubeDashboardTab = dynamic(
   () => import('./YouTubeDashboardTab').then((m) => m.YouTubeDashboardTab),

@@ -2,7 +2,7 @@
 
 import { useRef, useState, useCallback, useEffect } from 'react'
 import { createPortal } from 'react-dom'
-import type { ContentItem } from '@/lib/types'
+import type { ContentItem } from '@/lib/marketing/types'
 import { MonthGrid } from './month/MonthGrid'
 import { getMonthGrid, toDateStr, addDays, daysBetween, parseDate } from './month/calendarUtils'
 

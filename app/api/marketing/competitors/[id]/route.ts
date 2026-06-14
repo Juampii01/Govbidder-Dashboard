@@ -8,17 +8,17 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
-import { db } from '@/lib/db'
-import { checkRateLimit } from '@/lib/utils/ratelimit'
-import { resolveCompetitor } from '@/lib/competidores/resolve-competitor'
-import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/auth-user'
+import { db } from '@/lib/marketing/db'
+import { checkRateLimit } from '@/lib/marketing/utils/ratelimit'
+import { resolveCompetitor } from '@/lib/marketing/competidores/resolve-competitor'
+import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/marketing/auth-user'
 import type {
   GetCompetitorResponse,
   CompetitorDTO,
   ReelDTO,
   ReelSortField,
   ReelSortDir,
-} from '@/lib/types/competidores'
+} from '@/lib/marketing/types/competidores'
 import type { Prisma } from '@prisma/client'
 
 // ─── Helpers ───────────────────────────────────────────────────────────────

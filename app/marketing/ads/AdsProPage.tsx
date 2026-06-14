@@ -2,38 +2,38 @@
 
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
-import { useAdsAccountSummary, useAdCampaigns, triggerAdsSync } from '@/hooks/useAdsData'
-import { useSocialConnection } from '@/hooks/useSocialConnection'
-import { AdsNotConnected } from '@/components/ads/pro/AdsNotConnected'
-import { AdsAccountHeader } from '@/components/ads/pro/AdsAccountHeader'
-import { type AdsTab } from '@/components/ads/pro/AdsTabNav'
+import { useAdsAccountSummary, useAdCampaigns, triggerAdsSync } from '@/hooks/marketing/useAdsData'
+import { useSocialConnection } from '@/hooks/marketing/useSocialConnection'
+import { AdsNotConnected } from '@/components/marketing/ads/pro/AdsNotConnected'
+import { AdsAccountHeader } from '@/components/marketing/ads/pro/AdsAccountHeader'
+import { type AdsTab } from '@/components/marketing/ads/pro/AdsTabNav'
 
 const AdsTabNav = dynamic(
-  () => import('@/components/ads/pro/AdsTabNav').then((m) => m.AdsTabNav),
+  () => import('@/components/marketing/ads/pro/AdsTabNav').then((m) => m.AdsTabNav),
   { ssr: false },
 )
 
 const AdsOverviewStats = dynamic(
-  () => import('@/components/ads/pro/AdsOverviewStats').then((m) => m.AdsOverviewStats),
+  () => import('@/components/marketing/ads/pro/AdsOverviewStats').then((m) => m.AdsOverviewStats),
   { ssr: false },
 )
 
 const AdsCampaignTable = dynamic(
-  () => import('@/components/ads/pro/AdsCampaignTable').then((m) => m.AdsCampaignTable),
+  () => import('@/components/marketing/ads/pro/AdsCampaignTable').then((m) => m.AdsCampaignTable),
   { ssr: false },
 )
 
 const AdsPerformanceChart = dynamic(
-  () => import('@/components/ads/pro/AdsPerformanceChart').then((m) => m.AdsPerformanceChart),
+  () => import('@/components/marketing/ads/pro/AdsPerformanceChart').then((m) => m.AdsPerformanceChart),
   { ssr: false },
 )
 
 const AdsInsightsPanel = dynamic(
-  () => import('@/components/ads/pro/AdsInsightsPanel').then((m) => m.AdsInsightsPanel),
+  () => import('@/components/marketing/ads/pro/AdsInsightsPanel').then((m) => m.AdsInsightsPanel),
   { ssr: false },
 )
 const AdsMetricsGrid = dynamic(
-  () => import('@/components/ads/pro/AdsMetricsGrid').then((m) => m.AdsMetricsGrid),
+  () => import('@/components/marketing/ads/pro/AdsMetricsGrid').then((m) => m.AdsMetricsGrid),
   { ssr: false },
 )
 

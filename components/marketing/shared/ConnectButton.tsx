@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { Link2, Check } from 'lucide-react'
-import { useSocialConnection, type SocialPlatform } from '@/hooks/useSocialConnection'
+import { useSocialConnection, type SocialPlatform } from '@/hooks/marketing/useSocialConnection'
 import { ConnectAccountModal } from './ConnectAccountModal'
 
 interface Props {

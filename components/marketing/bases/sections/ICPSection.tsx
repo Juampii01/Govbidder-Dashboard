@@ -2,8 +2,8 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { ChipEditor } from '../ChipEditor'
-import { ICPData } from '@/lib/types'
-import { tryParseArray } from '@/lib/utils/parseArray'
+import { ICPData } from '@/lib/marketing/types'
+import { tryParseArray } from '@/lib/marketing/utils/parseArray'
 
 const EMPTY: ICPData = {
   nombre: '', edad: '', ingresos: '', nicho: '', rol: '',

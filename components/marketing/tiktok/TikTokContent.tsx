@@ -3,11 +3,11 @@
 import dynamic from 'next/dynamic'
 import { Suspense, useState } from 'react'
 import { Loader2, RefreshCw, Music } from 'lucide-react'
-import { TimeFilter } from '@/components/layout/TimeFilter'
+import { TimeFilter } from '@/components/marketing/layout/TimeFilter'
 import { TikTokTabNav, useTikTokTab } from './TikTokTabNav'
-import { ConnectButton } from '@/components/shared/ConnectButton'
-import { useTikTokChannelSummary, useTikTokVideos, triggerTikTokSync } from '@/hooks/useTikTokData'
-import { PageHeader } from '@/components/ui/PageHeader'
+import { ConnectButton } from '@/components/marketing/shared/ConnectButton'
+import { useTikTokChannelSummary, useTikTokVideos, triggerTikTokSync } from '@/hooks/marketing/useTikTokData'
+import { PageHeader } from '@/components/marketing/ui/PageHeader'
 
 const TikTokDashboardTab = dynamic(
   () => import('./TikTokDashboardTab').then((m) => m.TikTokDashboardTab),

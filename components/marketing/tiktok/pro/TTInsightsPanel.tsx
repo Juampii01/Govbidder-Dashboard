@@ -1,7 +1,7 @@
 'use client'
 
 import { Share2, Zap, Flame } from 'lucide-react'
-import type { TikTokVideoRow } from '@/hooks/useTikTokData'
+import type { TikTokVideoRow } from '@/hooks/marketing/useTikTokData'
 import { fmtTT, TT_TEAL, TT_PINK } from './tt-theme'
 
 interface TTInsightsPanelProps {

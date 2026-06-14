@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react'
 import { Play, Heart, MessageCircle, Eye, TrendingUp, TrendingDown } from 'lucide-react'
-import type { UserReelRow } from '@/hooks/useInstagramData'
+import type { UserReelRow } from '@/hooks/marketing/useInstagramData'
 
 function fmt(n: number) {
   if (n >= 1_000_000) return (n / 1_000_000).toFixed(1) + 'M'

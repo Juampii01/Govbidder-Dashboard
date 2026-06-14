@@ -6,9 +6,9 @@
  * the logic.
  */
 
-import { db } from '@/lib/db'
+import { db } from '@/lib/marketing/db'
 import type { SocialConnection } from '@prisma/client'
-import { encryptToken, decryptToken } from '@/lib/crypto'
+import { encryptToken, decryptToken } from '@/lib/marketing/crypto'
 
 // Expose a stable error type so callers can distinguish "user must reconnect"
 // from generic network failures.

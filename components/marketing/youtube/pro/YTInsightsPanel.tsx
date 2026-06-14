@@ -1,7 +1,7 @@
 'use client'
 
 import { Flame, Target, Lightbulb } from 'lucide-react'
-import type { YouTubeVideoRow } from '@/hooks/useYouTubeData'
+import type { YouTubeVideoRow } from '@/hooks/marketing/useYouTubeData'
 import { fmtViews, YT_RED } from './yt-theme'
 
 interface YTInsightsPanelProps {

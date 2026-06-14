@@ -8,9 +8,9 @@
  * Public route — no auth required (signup happens pre-auth).
  */
 import { NextResponse, type NextRequest } from 'next/server'
-import { NotifySignupSchema } from '@/lib/schemas/auth'
-import { checkRateLimit } from '@/lib/utils/ratelimit'
-import { sendNewSignupNotification } from '@/lib/email'
+import { NotifySignupSchema } from '@/lib/marketing/schemas/auth'
+import { checkRateLimit } from '@/lib/marketing/utils/ratelimit'
+import { sendNewSignupNotification } from '@/lib/marketing/email'
 
 export const runtime = 'nodejs'
 

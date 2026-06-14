@@ -1,7 +1,7 @@
 'use client'
 
-import { useContentItems } from '@/hooks/useContentItems'
-import { FORMAT_ICONS, CATEGORY_COLORS } from '@/components/pipeline/CategoryChip'
+import { useContentItems } from '@/hooks/marketing/useContentItems'
+import { FORMAT_ICONS, CATEGORY_COLORS } from '@/components/marketing/pipeline/CategoryChip'
 
 const DAY_NAMES = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom']
 

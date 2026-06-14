@@ -1,7 +1,7 @@
 'use client'
 
 import { RefreshCw, LogOut, CheckCircle2, AlertTriangle } from 'lucide-react'
-import type { YouTubeChannelSummary } from '@/hooks/useYouTubeData'
+import type { YouTubeChannelSummary } from '@/hooks/marketing/useYouTubeData'
 import { fmtSubs, fmtViews, YT_RED } from './yt-theme'
 
 interface YTChannelHeaderProps {

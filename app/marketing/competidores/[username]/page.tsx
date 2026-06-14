@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { CompetitorDetail } from '@/components/competidores/CompetitorDetail'
+import { CompetitorDetail } from '@/components/marketing/competidores/CompetitorDetail'
 
 // Next.js 16: params is a Promise — must await.
 interface PageProps {

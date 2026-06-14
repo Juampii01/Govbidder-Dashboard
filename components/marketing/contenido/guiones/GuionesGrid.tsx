@@ -4,7 +4,7 @@ import {
   Plus, Trash2, MoreHorizontal, X, FileText,
   ChevronRight, Smile, XCircle, FolderOpen, Folder,
 } from 'lucide-react'
-import type { GuionTab, GuionItem } from '@/lib/types'
+import type { GuionTab, GuionItem } from '@/lib/marketing/types'
 
 const TAB_COLORS = [
   'var(--accent)',

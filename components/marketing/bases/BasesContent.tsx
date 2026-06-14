@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { BookOpen } from 'lucide-react'
-import { PageHeader } from '@/components/ui/PageHeader'
+import { PageHeader } from '@/components/marketing/ui/PageHeader'
 import { BASES_SECTIONS } from './BasesTabNav'
 import { ICPSection } from './sections/ICPSection'
 import { ChipListSection } from './sections/ChipListSection'

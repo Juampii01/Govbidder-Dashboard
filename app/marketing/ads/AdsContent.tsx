@@ -1,3 +1,3 @@
 'use client'
 
-export { AdsContent } from '@/components/ads/AdsContent'
+export { AdsContent } from '@/components/marketing/ads/AdsContent'

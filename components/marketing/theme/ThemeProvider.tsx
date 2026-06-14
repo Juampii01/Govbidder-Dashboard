@@ -18,8 +18,8 @@
  */
 
 import { createContext, useCallback, useContext, useEffect, useState } from 'react'
-import { VALID_THEME_KEYS, DEFAULT_THEME_KEY, isValidThemeKey, type ThemeKey } from '@/lib/themes'
-import { useAuth } from '@/components/layout/AuthProvider'
+import { VALID_THEME_KEYS, DEFAULT_THEME_KEY, isValidThemeKey, type ThemeKey } from '@/lib/marketing/themes'
+import { useAuth } from '@/components/marketing/layout/AuthProvider'
 
 const STORAGE_KEY = 'admin_theme'
 

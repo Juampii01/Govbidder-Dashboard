@@ -2,8 +2,8 @@
 import { useState, useEffect, useRef } from 'react'
 import { MessageCircle, Send, ChevronLeft, MessageSquare, Hash, Loader2, AlertCircle, Clock, Inbox, RefreshCw } from 'lucide-react'
 import { IG_GRADIENT_CSS } from './ig-theme'
-import { useInstagramDataContext } from '@/components/instagram/InstagramDataContext'
-import { useInstagramMessages, type IGConversation } from '@/hooks/useInstagramMessages'
+import { useInstagramDataContext } from '@/components/marketing/instagram/InstagramDataContext'
+import { useInstagramMessages, type IGConversation } from '@/hooks/marketing/useInstagramMessages'
 
 type InboxMode = 'dms' | 'comments'
 

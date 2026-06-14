@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { ArrowLeft, ExternalLink, Clock, Eye, Heart, MessageCircle, Bookmark, Share2 } from 'lucide-react'
-import { formatK } from '@/lib/utils/formatters'
+import { formatK } from '@/lib/marketing/utils/formatters'
 
 interface ReelDetailViewData {
   id: string

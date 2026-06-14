@@ -3,10 +3,10 @@
 import { useSortable } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
 import { Calendar } from 'lucide-react'
-import { ContentPiece } from '@/lib/types'
+import { ContentPiece } from '@/lib/marketing/types'
 import { CategoryChip, FORMAT_ICONS, PLATFORM_ICONS } from './CategoryChip'
-import { formatDate } from '@/lib/utils/formatDate'
-import { stripHtml } from '@/lib/utils/stripHtml'
+import { formatDate } from '@/lib/marketing/utils/formatDate'
+import { stripHtml } from '@/lib/marketing/utils/stripHtml'
 
 interface PipelineCardProps {
   item: ContentPiece

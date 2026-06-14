@@ -7,7 +7,7 @@
  * unlocks `instagram_manage_insights` we can extend these with `/media/insights`.
  */
 
-import type { InstagramMedia, InstagramAccount } from '@/lib/schemas/instagram'
+import type { InstagramMedia, InstagramAccount } from '@/lib/marketing/schemas/instagram'
 
 export interface UserReelUpsert {
   instagramId: string

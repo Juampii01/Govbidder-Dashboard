@@ -1,7 +1,7 @@
 'use client'
 
-import type { ReelDTO } from '@/lib/types/competidores'
-import { ReelCard } from '@/components/competidores/ReelCard'
+import type { ReelDTO } from '@/lib/marketing/types/competidores'
+import { ReelCard } from '@/components/marketing/competidores/ReelCard'
 import { Film } from 'lucide-react'
 
 interface ReelGridProps {

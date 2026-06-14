@@ -2,8 +2,8 @@
 
 import { useCallback, useEffect, useState } from 'react'
 import { Users } from 'lucide-react'
-import { formatK } from '@/lib/utils/formatters'
-import type { CompetitorDTO } from '@/lib/types/competidores'
+import { formatK } from '@/lib/marketing/utils/formatters'
+import type { CompetitorDTO } from '@/lib/marketing/types/competidores'
 import Link from 'next/link'
 
 export function CompetenciaTab() {

@@ -9,15 +9,15 @@
  */
 
 import { NextResponse } from 'next/server'
-import { db } from '@/lib/db'
-import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/auth-user'
-import { youtubeFetch, YouTubeAuthError } from '@/lib/youtube/auth'
+import { db } from '@/lib/marketing/db'
+import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/marketing/auth-user'
+import { youtubeFetch, YouTubeAuthError } from '@/lib/marketing/youtube/auth'
 import {
   YTChannelListSchema,
   YTPlaylistItemsListSchema,
   YTVideoListSchema,
-} from '@/lib/schemas/youtube'
-import { transformVideo } from '@/lib/youtube/transform'
+} from '@/lib/marketing/schemas/youtube'
+import { transformVideo } from '@/lib/marketing/youtube/transform'
 
 const MAX_VIDEOS = 25
 

@@ -6,7 +6,7 @@ import {
   ResponsiveContainer,
 } from 'recharts'
 import { BarChart2, Wifi } from 'lucide-react'
-import type { DashboardStats } from '@/lib/types'
+import type { DashboardStats } from '@/lib/marketing/types'
 
 function fmt(n: number) {
   if (n >= 1_000_000) return (n / 1_000_000).toFixed(1) + 'M'

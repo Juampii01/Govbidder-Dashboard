@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useCallback } from 'react'
 import { useState } from 'react'
-import type { GuionTab, GuionItem } from '@/lib/types'
+import type { GuionTab, GuionItem } from '@/lib/marketing/types'
 import { GuionesGrid } from './guiones/GuionesGrid'
 import { GuionEditor } from './guiones/GuionEditor'
 import { EmojiPickerPortal } from './guiones/EmojiPicker'

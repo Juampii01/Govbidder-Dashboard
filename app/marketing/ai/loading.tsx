@@ -1,4 +1,4 @@
-import { Skeleton } from '@/components/ui/skeleton'
+import { Skeleton } from '@/components/marketing/ui/skeleton'
 
 // Skeleton for /ai — mimics EternityAIContent layout: chat area + conversation
 // sidebar. Prevents a blank screen on first navigation while

@@ -1,7 +1,7 @@
 'use client'
 
 import { Eye, Heart, MessageCircle, TrendingUp, Zap, Calendar, BarChart3, Activity, Target, Flame } from 'lucide-react'
-import type { UserReelRow } from '@/hooks/useInstagramData'
+import type { UserReelRow } from '@/hooks/marketing/useInstagramData'
 
 const WEEKDAYS = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb']
 

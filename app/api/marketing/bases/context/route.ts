@@ -1,7 +1,7 @@
 import { NextResponse } from 'next/server'
-import { db } from '@/lib/db'
-import { stripHtml } from '@/lib/utils/stripHtml'
-import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/auth-user'
+import { db } from '@/lib/marketing/db'
+import { stripHtml } from '@/lib/marketing/utils/stripHtml'
+import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/marketing/auth-user'
 
 function parseJsonArray(raw: string): string[] {
   try {

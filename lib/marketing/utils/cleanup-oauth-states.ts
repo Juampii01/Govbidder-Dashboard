@@ -1,4 +1,4 @@
-import { db } from '@/lib/db'
+import { db } from '@/lib/marketing/db'
 
 /**
  * Deletes all OAuthState rows whose `expiresAt` is in the past.

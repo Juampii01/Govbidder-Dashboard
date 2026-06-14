@@ -9,15 +9,15 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
-import { db } from '@/lib/db'
-import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/auth-user'
+import { db } from '@/lib/marketing/db'
+import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/marketing/auth-user'
 import type {
   GetReelResponse,
   ReelDTO,
   TranscriptionDTO,
   AnalysisDTO,
-} from '@/lib/types/competidores'
-import type { ClaudeModelId } from '@/lib/claude/models'
+} from '@/lib/marketing/types/competidores'
+import type { ClaudeModelId } from '@/lib/marketing/claude/models'
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 

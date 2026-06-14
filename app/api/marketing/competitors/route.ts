@@ -4,21 +4,21 @@
  */
 
 import { after, NextRequest, NextResponse } from 'next/server'
-import { db } from '@/lib/db'
-import { CreateCompetitorSchema } from '@/lib/schemas/competidores'
-import { checkRateLimit } from '@/lib/utils/ratelimit'
-import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/auth-user'
+import { db } from '@/lib/marketing/db'
+import { CreateCompetitorSchema } from '@/lib/marketing/schemas/competidores'
+import { checkRateLimit } from '@/lib/marketing/utils/ratelimit'
+import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/marketing/auth-user'
 import {
   startRun,
   pollRun,
   fetchItems,
   mapItemToReelCreate,
-} from '@/lib/apify/instagram-reel-scraper'
+} from '@/lib/marketing/apify/instagram-reel-scraper'
 import type {
   CreateCompetitorResponse,
   ListCompetitorsResponse,
   CompetitorDTO,
-} from '@/lib/types/competidores'
+} from '@/lib/marketing/types/competidores'
 
 // Allow up to 5 min for background work on Vercel Pro/Enterprise
 export const maxDuration = 300

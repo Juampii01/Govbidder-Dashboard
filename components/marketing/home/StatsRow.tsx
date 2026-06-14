@@ -1,6 +1,6 @@
 'use client'
 
-import { useContentItems } from '@/hooks/useContentItems'
+import { useContentItems } from '@/hooks/marketing/useContentItems'
 
 function getMondayOfWeek(date: Date): Date {
   const d = new Date(date)

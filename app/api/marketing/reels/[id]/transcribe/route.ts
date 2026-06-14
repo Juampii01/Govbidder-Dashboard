@@ -16,11 +16,11 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
-import { db } from '@/lib/db'
-import { transcribeFromUrl } from '@/lib/groq/transcribe'
-import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/auth-user'
-import { checkRateLimit } from '@/lib/utils/ratelimit'
-import type { TranscribeResponse, TranscriptionDTO } from '@/lib/types/competidores'
+import { db } from '@/lib/marketing/db'
+import { transcribeFromUrl } from '@/lib/marketing/groq/transcribe'
+import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/marketing/auth-user'
+import { checkRateLimit } from '@/lib/marketing/utils/ratelimit'
+import type { TranscribeResponse, TranscriptionDTO } from '@/lib/marketing/types/competidores'
 
 // Allow up to 5 minutes — Groq is fast but the reel video can take time to
 // fetch on Groq's side.

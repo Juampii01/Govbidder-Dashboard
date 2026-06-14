@@ -9,11 +9,11 @@
  */
 
 import { NextResponse } from 'next/server'
-import { db } from '@/lib/db'
-import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/auth-user'
-import { checkRateLimit } from '@/lib/utils/ratelimit'
-import { TikTokUserInfoSchema, TikTokVideoListResponseSchema } from '@/lib/schemas/tiktok'
-import { encryptToken, decryptToken } from '@/lib/crypto'
+import { db } from '@/lib/marketing/db'
+import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/marketing/auth-user'
+import { checkRateLimit } from '@/lib/marketing/utils/ratelimit'
+import { TikTokUserInfoSchema, TikTokVideoListResponseSchema } from '@/lib/marketing/schemas/tiktok'
+import { encryptToken, decryptToken } from '@/lib/marketing/crypto'
 
 const MAX_PAGES = 3
 const VIDEOS_PER_PAGE = 20

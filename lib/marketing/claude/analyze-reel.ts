@@ -8,8 +8,8 @@
  */
 
 import Anthropic from '@anthropic-ai/sdk'
-import type { ClaudeModelId } from '@/lib/claude/models'
-import { estimateClaudeCost } from '@/lib/claude/models'
+import type { ClaudeModelId } from '@/lib/marketing/claude/models'
+import { estimateClaudeCost } from '@/lib/marketing/claude/models'
 
 // ─── Tool schema ─────────────────────────────────────────────────────────────
 

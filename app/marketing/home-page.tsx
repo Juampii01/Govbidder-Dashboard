@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { HomeContent } from '@/components/home/HomeContent'
+import { HomeContent } from '@/components/marketing/home/HomeContent'
 
 export const metadata: Metadata = {
   title: 'Inicio | Eternity Dashboard',

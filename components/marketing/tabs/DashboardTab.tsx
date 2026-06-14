@@ -2,9 +2,9 @@
 
 import { LayoutDashboard, Heart, MessageCircle, Users, Trophy, Clapperboard } from 'lucide-react'
 import Link from 'next/link'
-import { formatK } from '@/lib/utils/formatters'
-import { useInstagramDataContext } from '@/components/instagram/InstagramDataContext'
-import { userReelToView } from '@/lib/instagram/to-reel-view'
+import { formatK } from '@/lib/marketing/utils/formatters'
+import { useInstagramDataContext } from '@/components/marketing/instagram/InstagramDataContext'
+import { userReelToView } from '@/lib/marketing/instagram/to-reel-view'
 
 export function DashboardTab() {
   const { hasRealData, reels: realReels, summary, hasLoaded } = useInstagramDataContext()

@@ -1,4 +1,4 @@
-import { ContentCategory } from '@/lib/types'
+import { ContentCategory } from '@/lib/marketing/types'
 
 export const CATEGORY_COLORS: Record<ContentCategory, string> = {
   // Pipeline (legacy)

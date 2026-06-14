@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useCallback } from 'react'
-import { uploadToInstagramBucket } from '@/lib/instagram/upload'
+import { uploadToInstagramBucket } from '@/lib/marketing/instagram/upload'
 
 export type PublishKind = 'IMAGE' | 'REEL' | 'CAROUSEL'
 export type PublishPhase = 'idle' | 'validating' | 'uploading' | 'publishing' | 'done' | 'error'

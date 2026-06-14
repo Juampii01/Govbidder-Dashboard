@@ -2,8 +2,8 @@
 
 import { useState, useEffect, useCallback } from 'react'
 import { X, Plus, Lightbulb, ExternalLink, Trash2 } from 'lucide-react'
-import type { ContentFormat } from '@/lib/types'
-import { FORMAT_ICONS } from '@/components/pipeline/CategoryChip'
+import type { ContentFormat } from '@/lib/marketing/types'
+import { FORMAT_ICONS } from '@/components/marketing/pipeline/CategoryChip'
 import { toast } from 'sonner'
 
 const FORMAT_OPTIONS: { value: ContentFormat; label: string }[] = [

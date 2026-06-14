@@ -1,5 +1,5 @@
 import { Circle, CircleDashed, Flag, Check } from 'lucide-react'
-import { ContentCategory, UnifiedStatus } from '@/lib/types'
+import { ContentCategory, UnifiedStatus } from '@/lib/marketing/types'
 
 export type ViewMode = 'month' | 'week'
 

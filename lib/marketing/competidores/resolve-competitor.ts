@@ -8,7 +8,7 @@
  * so callers MUST pass the active client id for username lookups.
  */
 
-import { db } from '@/lib/db'
+import { db } from '@/lib/marketing/db'
 import type { Competitor } from '@prisma/client'
 
 /** Prisma CUID v1 heuristic: starts with "c", followed by 24 lowercase alphanumeric chars. */

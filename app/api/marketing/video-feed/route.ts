@@ -14,19 +14,19 @@
  * Ported from Smart-Scale's `app/api/video-feed/route.ts`.
  */
 import { NextRequest, NextResponse } from 'next/server'
-import { db } from '@/lib/db'
+import { db } from '@/lib/marketing/db'
 import {
   requireActiveClient,
   UnauthorizedError,
   ForbiddenError,
-} from '@/lib/auth-user'
-import { checkRateLimit } from '@/lib/utils/ratelimit'
-import { ConnectFeedSchema } from '@/lib/schemas/video-feed'
+} from '@/lib/marketing/auth-user'
+import { checkRateLimit } from '@/lib/marketing/utils/ratelimit'
+import { ConnectFeedSchema } from '@/lib/marketing/schemas/video-feed'
 import {
   fetchInstagramProfilePosts,
   type InstagramPost,
-} from '@/lib/instagram/profile-fetch'
-import { analyzeRankedItems } from '@/lib/claude/analyze-videos-batch'
+} from '@/lib/marketing/instagram/profile-fetch'
+import { analyzeRankedItems } from '@/lib/marketing/claude/analyze-videos-batch'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'

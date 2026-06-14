@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
-import type { ContentPiece } from '@/lib/types'
-import { logClientError } from '@/lib/client-errors'
+import type { ContentPiece } from '@/lib/marketing/types'
+import { logClientError } from '@/lib/marketing/client-errors'
 
 /**
  * Shared `/api/content` fetch with short-lived cache and in-flight dedup.

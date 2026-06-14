@@ -1,7 +1,7 @@
 'use client'
 
 import { PlayCircle, BarChart3, PlaySquare, Users, TrendingUp } from 'lucide-react'
-import { useSocialConnection } from '@/hooks/useSocialConnection'
+import { useSocialConnection } from '@/hooks/marketing/useSocialConnection'
 import { YT_GRADIENT_CSS, YT_RED } from './yt-theme'
 
 const features = [

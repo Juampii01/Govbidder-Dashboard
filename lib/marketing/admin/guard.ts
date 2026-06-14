@@ -7,7 +7,7 @@ import {
   requireSuperAdmin,
   UnauthorizedError,
   ForbiddenError,
-} from '@/lib/auth-user'
+} from '@/lib/marketing/auth-user'
 
 export async function adminAuthOr401(): Promise<
   { userId: string } | NextResponse

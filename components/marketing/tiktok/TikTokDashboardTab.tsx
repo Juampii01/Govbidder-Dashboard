@@ -1,8 +1,8 @@
 'use client'
 
 import { Users, Eye, Video, TrendingUp } from 'lucide-react'
-import { formatK } from '@/lib/utils/formatters'
-import { useTikTokChannelSummary } from '@/hooks/useTikTokData'
+import { formatK } from '@/lib/marketing/utils/formatters'
+import { useTikTokChannelSummary } from '@/hooks/marketing/useTikTokData'
 
 interface KPICardProps {
   label: string

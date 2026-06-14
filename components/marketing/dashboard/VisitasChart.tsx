@@ -3,7 +3,7 @@
 import {
   AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid,
 } from 'recharts'
-import { formatK } from '@/lib/utils/formatters'
+import { formatK } from '@/lib/marketing/utils/formatters'
 
 interface Props {
   data: { date: string; impressions: number; reach: number }[]

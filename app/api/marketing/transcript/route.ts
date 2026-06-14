@@ -15,32 +15,32 @@
  *   - `requireActiveClient()` for tenant scoping (httpOnly cookie, never body)
  *   - Zod schema for input validation
  *   - `checkRateLimit()` to throttle paid pipelines (Apify + Groq + Claude)
- *   - Prisma singleton via `@/lib/db`
+ *   - Prisma singleton via `@/lib/marketing/db`
  */
 import { NextRequest, NextResponse } from 'next/server'
-import { db } from '@/lib/db'
+import { db } from '@/lib/marketing/db'
 import {
   requireActiveClient,
   UnauthorizedError,
   ForbiddenError,
-} from '@/lib/auth-user'
-import { checkRateLimit } from '@/lib/utils/ratelimit'
+} from '@/lib/marketing/auth-user'
+import { checkRateLimit } from '@/lib/marketing/utils/ratelimit'
 import {
   TranscribeRequestSchema,
   DeleteTranscriptSchema,
-} from '@/lib/schemas/transcript'
+} from '@/lib/marketing/schemas/transcript'
 import {
   isInstagramUrl,
   resolveInstagramUrl,
-} from '@/lib/apify/instagram-url-resolver'
+} from '@/lib/marketing/apify/instagram-url-resolver'
 import {
   isYouTubeUrl,
   extractYouTubeId,
   getYouTubeTranscript,
   getYouTubeMetadataFromWatchPage,
-} from '@/lib/youtube/transcript-fetch'
-import { transcribeFromUrl } from '@/lib/groq/transcribe'
-import { summarizeTranscript } from '@/lib/claude/summarize-transcript'
+} from '@/lib/marketing/youtube/transcript-fetch'
+import { transcribeFromUrl } from '@/lib/marketing/groq/transcribe'
+import { summarizeTranscript } from '@/lib/marketing/claude/summarize-transcript'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'

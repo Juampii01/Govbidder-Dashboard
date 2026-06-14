@@ -5,8 +5,8 @@
  */
 import { NextResponse, type NextRequest } from 'next/server'
 import { z } from 'zod'
-import { db as prisma } from '@/lib/db'
-import { requireProfile, UnauthorizedError } from '@/lib/auth-user'
+import { db as prisma } from '@/lib/marketing/db'
+import { requireProfile, UnauthorizedError } from '@/lib/marketing/auth-user'
 
 export async function GET(): Promise<NextResponse> {
   try {

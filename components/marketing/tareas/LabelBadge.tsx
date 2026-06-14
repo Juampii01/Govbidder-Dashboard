@@ -1,4 +1,4 @@
-import { TaskLabel } from '@/lib/types'
+import { TaskLabel } from '@/lib/marketing/types'
 
 interface LabelBadgeProps {
   label: TaskLabel

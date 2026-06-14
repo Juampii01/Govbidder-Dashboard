@@ -1,4 +1,4 @@
-import type { GridCell } from '@/lib/types'
+import type { GridCell } from '@/lib/marketing/types'
 
 export const DAY_NAMES = ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom']
 

@@ -1,5 +1,5 @@
-import { db } from '@/lib/db'
-import type { CompetitorContext } from '@/lib/claude/chat-workspace'
+import { db } from '@/lib/marketing/db'
+import type { CompetitorContext } from '@/lib/marketing/claude/chat-workspace'
 
 const MAX_COMPETITORS = 10
 const TOP_REELS_PER_COMPETITOR = 5

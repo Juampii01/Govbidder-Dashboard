@@ -6,9 +6,9 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
-import { db } from '@/lib/db'
-import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/auth-user'
-import { AdCampaignsQuerySchema } from '@/lib/schemas/ads'
+import { db } from '@/lib/marketing/db'
+import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/marketing/auth-user'
+import { AdCampaignsQuerySchema } from '@/lib/marketing/schemas/ads'
 
 export async function GET(req: NextRequest): Promise<NextResponse> {
   let clientId: string

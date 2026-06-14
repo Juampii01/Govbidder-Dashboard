@@ -3,7 +3,7 @@
  * Imported by KanbanBoard, KanbanColumn and TaskModal.
  */
 
-import type { TaskColumnId } from '@/lib/types'
+import type { TaskColumnId } from '@/lib/marketing/types'
 
 export const KANBAN_COLUMNS: {
   id: TaskColumnId

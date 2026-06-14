@@ -16,11 +16,11 @@ import {
   Rss,
   Inbox,
 } from 'lucide-react'
-import { PageHeader } from '@/components/ui/PageHeader'
-import { EmptyState } from '@/components/ui/EmptyState'
-import { ConfirmDeleteModal } from '@/components/admin/ConfirmDeleteModal'
-import { formatK } from '@/lib/utils/formatters'
-import { formatDate } from '@/lib/utils/formatDate'
+import { PageHeader } from '@/components/marketing/ui/PageHeader'
+import { EmptyState } from '@/components/marketing/ui/EmptyState'
+import { ConfirmDeleteModal } from '@/components/marketing/admin/ConfirmDeleteModal'
+import { formatK } from '@/lib/marketing/utils/formatters'
+import { formatDate } from '@/lib/marketing/utils/formatDate'
 import { toast } from 'sonner'
 
 interface FeedPost {

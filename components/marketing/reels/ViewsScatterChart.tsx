@@ -5,9 +5,9 @@ import {
   ResponsiveContainer, ReferenceLine, Cell,
 } from 'recharts'
 import { useRouter } from 'next/navigation'
-import type { Reel } from '@/lib/types'
-import { getScatterColor } from '@/lib/utils/multiplier'
-import { formatK } from '@/lib/utils/formatters'
+import type { Reel } from '@/lib/marketing/types'
+import { getScatterColor } from '@/lib/marketing/utils/multiplier'
+import { formatK } from '@/lib/marketing/utils/formatters'
 
 interface Props {
   reels: Reel[]

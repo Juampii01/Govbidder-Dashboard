@@ -1,7 +1,7 @@
 'use client'
 import { Users, Eye, TrendingUp, Compass, FileText } from 'lucide-react'
 import { IG_GRADIENT_CSS, IG_GRADIENT } from './ig-theme'
-import type { InstagramAccountSummary } from '@/hooks/useInstagramData'
+import type { InstagramAccountSummary } from '@/hooks/marketing/useInstagramData'
 
 function fmt(n?: number | null) {
   if (n == null) return '—'

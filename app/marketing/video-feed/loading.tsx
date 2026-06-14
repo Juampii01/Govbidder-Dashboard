@@ -1,4 +1,4 @@
-import { Skeleton } from '@/components/ui/skeleton'
+import { Skeleton } from '@/components/marketing/ui/skeleton'
 
 /**
  * Mirrors VideoFeedView's connected state: PageHeader + account banner +

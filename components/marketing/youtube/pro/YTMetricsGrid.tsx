@@ -1,7 +1,7 @@
 'use client'
 
 import { Eye, ThumbsUp, MessageCircle, TrendingUp, Clock, Gauge, MousePointerClick, Timer, Calendar, Target, BarChart3, Flame } from 'lucide-react'
-import type { YouTubeVideoRow } from '@/hooks/useYouTubeData'
+import type { YouTubeVideoRow } from '@/hooks/marketing/useYouTubeData'
 
 const WEEKDAYS = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb']
 

@@ -1,7 +1,7 @@
 'use client'
 
 import { Trophy, AlertTriangle, Activity } from 'lucide-react'
-import { type AdCampaignRow } from '@/hooks/useAdsData'
+import { type AdCampaignRow } from '@/hooks/marketing/useAdsData'
 import { META_BLUE } from './ads-theme'
 
 interface AdsInsightsPanelProps {

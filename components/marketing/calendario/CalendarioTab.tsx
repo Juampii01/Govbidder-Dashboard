@@ -3,7 +3,7 @@
 import { useState, useCallback, useEffect, useMemo, useRef } from 'react'
 import { AnimatePresence, motion } from 'motion/react'
 import { CalendarDays, CalendarClock } from 'lucide-react'
-import { ContentItem, ContentPiece, ContentCategory, ContentTemplate, UnifiedStatus } from '@/lib/types'
+import { ContentItem, ContentPiece, ContentCategory, ContentTemplate, UnifiedStatus } from '@/lib/marketing/types'
 import { CalendarMonthView } from './CalendarMonthView'
 import { CalendarWeekView } from './CalendarWeekView'
 import { ContentItemModal } from './ContentItemModal'
@@ -11,7 +11,7 @@ import { TemplatePickerModal } from './TemplatePickerModal'
 import { DayItemsPopover } from './month/DayItemsPopover'
 import { KeyboardShortcutsDialog } from './KeyboardShortcutsDialog'
 import { addDays, toDateStr } from './month/calendarUtils'
-import { stripHtml } from '@/lib/utils/stripHtml'
+import { stripHtml } from '@/lib/marketing/utils/stripHtml'
 import { toast } from 'sonner'
 import {
   ViewMode,

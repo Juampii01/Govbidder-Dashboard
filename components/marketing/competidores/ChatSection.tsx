@@ -3,10 +3,10 @@
 import { useState, useEffect, useRef, useCallback } from 'react'
 import { Loader2, Send, AlertCircle } from 'lucide-react'
 import { toast } from 'sonner'
-import { ScrollArea } from '@/components/ui/scroll-area'
-import { ModelSelector } from '@/components/competidores/ModelSelector'
-import { DEFAULT_MODEL } from '@/lib/claude/models'
-import type { ClaudeModelId } from '@/lib/claude/models'
+import { ScrollArea } from '@/components/marketing/ui/scroll-area'
+import { ModelSelector } from '@/components/marketing/competidores/ModelSelector'
+import { DEFAULT_MODEL } from '@/lib/marketing/claude/models'
+import type { ClaudeModelId } from '@/lib/marketing/claude/models'
 import type {
   ReelDTO,
   TranscriptionDTO,
@@ -14,7 +14,7 @@ import type {
   ChatMessageDTO,
   ChatRequest,
   GetChatResponse,
-} from '@/lib/types/competidores'
+} from '@/lib/marketing/types/competidores'
 
 interface ChatSectionProps {
   reel: ReelDTO

@@ -1,7 +1,7 @@
 'use client'
 
 import { Users, Eye, Zap, Video, Share2 } from 'lucide-react'
-import type { TikTokAccountSummary } from '@/hooks/useTikTokData'
+import type { TikTokAccountSummary } from '@/hooks/marketing/useTikTokData'
 import { fmtTT, TT_TEAL } from './tt-theme'
 
 interface TTOverviewStatsProps {

@@ -3,8 +3,8 @@
 import { useState, useEffect, useRef } from 'react'
 import { motion } from 'motion/react'
 import { X, Calendar, Tag, Layers, Palette, Maximize2, Minimize2, Columns2, Smile } from 'lucide-react'
-import { ContentItem, UnifiedStatus, ContentCategory, ContentTemplate, ReelCategory, HistoriaCategory } from '@/lib/types'
-import { CATEGORY_COLORS, CATEGORY_LABELS } from '@/components/pipeline/CategoryChip'
+import { ContentItem, UnifiedStatus, ContentCategory, ContentTemplate, ReelCategory, HistoriaCategory } from '@/lib/marketing/types'
+import { CATEGORY_COLORS, CATEGORY_LABELS } from '@/components/marketing/pipeline/CategoryChip'
 import { DatePicker } from './DatePicker'
 import dynamic from 'next/dynamic'
 

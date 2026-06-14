@@ -5,7 +5,7 @@ import {
   PlusCircle, UploadCloud, X, Clock, AlertCircle,
 } from 'lucide-react'
 import { IG_GRADIENT_CSS, IG_GRADIENT } from './ig-theme'
-import { useInstagramPublish, type PublishKind } from '@/hooks/useInstagramPublish'
+import { useInstagramPublish, type PublishKind } from '@/hooks/marketing/useInstagramPublish'
 import { toast } from 'sonner'
 
 interface Post {

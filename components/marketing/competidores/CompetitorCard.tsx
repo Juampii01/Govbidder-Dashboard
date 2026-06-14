@@ -2,7 +2,7 @@
 
 import { useRouter } from 'next/navigation'
 import { Users } from 'lucide-react'
-import type { CompetitorDTO } from '@/lib/types/competidores'
+import type { CompetitorDTO } from '@/lib/marketing/types/competidores'
 
 interface CompetitorCardProps {
   competitor: CompetitorDTO

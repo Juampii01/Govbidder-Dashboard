@@ -11,8 +11,8 @@ import {
   DialogTitle,
   DialogDescription,
   DialogFooter,
-} from '@/components/ui/dialog'
-import { Button } from '@/components/ui/button'
+} from '@/components/marketing/ui/dialog'
+import { Button } from '@/components/marketing/ui/button'
 
 interface DeleteCompetitorDialogProps {
   open: boolean

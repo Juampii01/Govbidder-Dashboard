@@ -3,13 +3,13 @@
 import { useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Kanban, CalendarDays, CalendarClock, FileText, Wand2 } from 'lucide-react'
-import { cn } from '@/lib/utils'
-import { PageHeader } from '@/components/ui/PageHeader'
+import { cn } from '@/lib/marketing/utils'
+import { PageHeader } from '@/components/marketing/ui/PageHeader'
 
-const PipelineBoard   = dynamic(() => import('@/components/pipeline/PipelineBoard').then((m) => m.PipelineBoard),   { ssr: false })
-const CalendarioTab   = dynamic(() => import('@/components/calendario/CalendarioTab').then((m) => m.CalendarioTab), { ssr: false })
+const PipelineBoard   = dynamic(() => import('@/components/marketing/pipeline/PipelineBoard').then((m) => m.PipelineBoard),   { ssr: false })
+const CalendarioTab   = dynamic(() => import('@/components/marketing/calendario/CalendarioTab').then((m) => m.CalendarioTab), { ssr: false })
 const GuionesSection  = dynamic(() => import('./GuionesSection').then((m) => m.GuionesSection),                     { ssr: false })
-const CopyGenerator   = dynamic(() => import('@/components/copy/CopyGenerator').then((m) => m.CopyGenerator),       { ssr: false })
+const CopyGenerator   = dynamic(() => import('@/components/marketing/copy/CopyGenerator').then((m) => m.CopyGenerator),       { ssr: false })
 
 type SectionId =
   | 'pipeline'

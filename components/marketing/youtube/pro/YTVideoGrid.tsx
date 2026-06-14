@@ -2,7 +2,7 @@
 
 import { useState, useMemo } from 'react'
 import { LayoutGrid, List, Eye, ThumbsUp, MessageCircle, PlaySquare } from 'lucide-react'
-import type { YouTubeVideoRow } from '@/hooks/useYouTubeData'
+import type { YouTubeVideoRow } from '@/hooks/marketing/useYouTubeData'
 import { YTVideoCard } from './YTVideoCard'
 import { fmtViews, fmtDuration } from './yt-theme'
 

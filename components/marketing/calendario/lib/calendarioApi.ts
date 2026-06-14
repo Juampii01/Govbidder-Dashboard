@@ -1,4 +1,4 @@
-import { ContentPiece, ContentTemplate } from '@/lib/types'
+import { ContentPiece, ContentTemplate } from '@/lib/marketing/types'
 
 // ─── API helpers ──────────────────────────────────────────────────────────
 

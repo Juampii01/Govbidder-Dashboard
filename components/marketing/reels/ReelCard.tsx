@@ -3,9 +3,9 @@
 import Link from 'next/link'
 import { useState } from 'react'
 import { Eye, Heart, Bookmark, MessageCircle, Share2, ExternalLink, Clock } from 'lucide-react'
-import type { Reel } from '@/lib/types'
-import { MetricBadge } from '@/components/shared/MetricBadge'
-import { formatK } from '@/lib/utils/formatters'
+import type { Reel } from '@/lib/marketing/types'
+import { MetricBadge } from '@/components/marketing/shared/MetricBadge'
+import { formatK } from '@/lib/marketing/utils/formatters'
 
 interface Props {
   reel: Reel

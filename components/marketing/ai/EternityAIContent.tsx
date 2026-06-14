@@ -2,15 +2,15 @@
 
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { toast } from 'sonner'
-import { DEFAULT_MODEL } from '@/lib/claude/models'
-import type { ClaudeModelId } from '@/lib/claude/models'
+import { DEFAULT_MODEL } from '@/lib/marketing/claude/models'
+import type { ClaudeModelId } from '@/lib/marketing/claude/models'
 import { AIModelSelector } from './AIModelSelector'
-import { collectWorkspaceContext } from '@/lib/ai/collect-workspace-context'
+import { collectWorkspaceContext } from '@/lib/marketing/ai/collect-workspace-context'
 import { EmptyState } from './EmptyState'
 import { MessageList, type UIMessage } from './MessageList'
 import { ChatInput } from './ChatInput'
 import { ConversationSidebar } from './ConversationSidebar'
-import type { ConversationDTO, GetConversationResponse, ListConversationsResponse } from '@/lib/types/ai'
+import type { ConversationDTO, GetConversationResponse, ListConversationsResponse } from '@/lib/marketing/types/ai'
 
 export function EternityAIContent() {
   const [activeId, setActiveId] = useState<string | null>(null)

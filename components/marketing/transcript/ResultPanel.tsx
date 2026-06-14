@@ -8,8 +8,8 @@
  * The shape is identical so the same component works for both.
  */
 import { ExternalLink, FileText, Sparkles } from 'lucide-react'
-import { PlatformBadge } from '@/components/ui/PlatformBadge'
-import { CopyButton } from '@/components/ui/CopyButton'
+import { PlatformBadge } from '@/components/marketing/ui/PlatformBadge'
+import { CopyButton } from '@/components/marketing/ui/CopyButton'
 import { SummaryBlock } from './SummaryBlock'
 import type { CurrentResult } from './types'
 

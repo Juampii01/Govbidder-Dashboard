@@ -16,10 +16,10 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
-import { db } from '@/lib/db'
-import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/auth-user'
-import { decryptToken } from '@/lib/crypto'
-import { checkRateLimit } from '@/lib/utils/ratelimit'
+import { db } from '@/lib/marketing/db'
+import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/marketing/auth-user'
+import { decryptToken } from '@/lib/marketing/crypto'
+import { checkRateLimit } from '@/lib/marketing/utils/ratelimit'
 
 const GRAPH = 'https://graph.instagram.com'
 const GRAPH_VERSION = 'v23.0'

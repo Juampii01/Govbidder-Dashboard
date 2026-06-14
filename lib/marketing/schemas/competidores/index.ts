@@ -5,8 +5,8 @@
  */
 
 import { z } from 'zod'
-import { CLAUDE_MODELS } from '@/lib/claude/models'
-import type { ClaudeModelId } from '@/lib/claude/models'
+import { CLAUDE_MODELS } from '@/lib/marketing/claude/models'
+import type { ClaudeModelId } from '@/lib/marketing/claude/models'
 
 const claudeModelIds = CLAUDE_MODELS.map((m) => m.id) as [ClaudeModelId, ...ClaudeModelId[]]
 

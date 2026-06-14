@@ -4,9 +4,9 @@ import { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { motion } from 'motion/react'
 import { X } from 'lucide-react'
-import { ContentPiece, UnifiedStatus, ContentCategory, ContentFormat, ContentPlatform } from '@/lib/types'
+import { ContentPiece, UnifiedStatus, ContentCategory, ContentFormat, ContentPlatform } from '@/lib/marketing/types'
 import { CATEGORY_LABELS, CATEGORY_COLORS, FORMAT_ICONS, PLATFORM_ICONS } from './CategoryChip'
-import { DatePicker } from '@/components/calendario/DatePicker'
+import { DatePicker } from '@/components/marketing/calendario/DatePicker'
 
 interface PipelineModalProps {
   item?: ContentPiece | null

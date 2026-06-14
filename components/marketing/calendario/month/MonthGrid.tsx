@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useState } from 'react'
-import type { ContentItem, GridCell } from '@/lib/types'
+import type { ContentItem, GridCell } from '@/lib/marketing/types'
 import { DayCell } from './DayCell'
 import { EventBar } from './EventBar'
 import { DAY_NAMES, LANES_MAX, toDateStr, parseDate, daysBetween, assignLanes } from './calendarUtils'

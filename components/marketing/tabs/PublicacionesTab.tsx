@@ -2,9 +2,9 @@
 
 import { useMemo } from 'react'
 import { Image, Heart, MessageCircle } from 'lucide-react'
-import { formatK } from '@/lib/utils/formatters'
-import { useInstagramDataContext } from '@/components/instagram/InstagramDataContext'
-import { userReelToView } from '@/lib/instagram/to-reel-view'
+import { formatK } from '@/lib/marketing/utils/formatters'
+import { useInstagramDataContext } from '@/components/marketing/instagram/InstagramDataContext'
+import { userReelToView } from '@/lib/marketing/instagram/to-reel-view'
 
 export function PublicacionesTab() {
   const { hasRealData, reels: realReels, hasLoaded } = useInstagramDataContext()

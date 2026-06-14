@@ -7,7 +7,7 @@
  * Reels come from /api/reels/context (UserReel model, Prisma).
  */
 
-import type { WorkspaceContext } from '@/lib/schemas/ai'
+import type { WorkspaceContext } from '@/lib/marketing/schemas/ai'
 
 async function fetchTasks(): Promise<WorkspaceContext['tareas']> {
   try {

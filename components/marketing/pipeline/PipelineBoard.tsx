@@ -9,7 +9,7 @@ import { SortableContext, arrayMove, sortableKeyboardCoordinates, verticalListSo
 import { useDroppable } from '@dnd-kit/core'
 import { AnimatePresence } from 'motion/react'
 import { Plus } from 'lucide-react'
-import { ContentPiece, UnifiedStatus } from '@/lib/types'
+import { ContentPiece, UnifiedStatus } from '@/lib/marketing/types'
 import { PipelineCard } from './PipelineCard'
 import { PipelineModal } from './PipelineModal'
 import { toast } from 'sonner'

@@ -1,7 +1,7 @@
 'use client'
 import { Play, Eye, Heart, MessageCircle, Trophy } from 'lucide-react'
 import { IG_GRADIENT_CSS } from './ig-theme'
-import type { UserReelRow } from '@/hooks/useInstagramData'
+import type { UserReelRow } from '@/hooks/marketing/useInstagramData'
 
 function fmt(n: number) {
   if (n >= 1_000_000) return (n / 1_000_000).toFixed(1) + 'M'

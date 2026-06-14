@@ -3,11 +3,11 @@
 import { useState } from 'react'
 import { Loader2, Copy, Sparkles, AlertCircle, RefreshCcw } from 'lucide-react'
 import { toast } from 'sonner'
-import { Button } from '@/components/ui/button'
-import { Badge } from '@/components/ui/badge'
-import { ScrollArea } from '@/components/ui/scroll-area'
-import { CostBadge } from '@/components/competidores/CostBadge'
-import type { ReelDTO, TranscriptionDTO } from '@/lib/types/competidores'
+import { Button } from '@/components/marketing/ui/button'
+import { Badge } from '@/components/marketing/ui/badge'
+import { ScrollArea } from '@/components/marketing/ui/scroll-area'
+import { CostBadge } from '@/components/marketing/competidores/CostBadge'
+import type { ReelDTO, TranscriptionDTO } from '@/lib/marketing/types/competidores'
 
 interface TranscribeSectionProps {
   reel: ReelDTO

@@ -7,8 +7,8 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
-import { db } from '@/lib/db'
-import { getActiveClientId, getUserIdOrNull } from '@/lib/auth-user'
+import { db } from '@/lib/marketing/db'
+import { getActiveClientId, getUserIdOrNull } from '@/lib/marketing/auth-user'
 
 // ─── Validation ──────────────────────────────────────────────────────────────
 

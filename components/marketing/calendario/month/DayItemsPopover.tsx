@@ -3,7 +3,7 @@
 import { useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import { Check, Circle, CircleDashed, Flag, X } from 'lucide-react'
-import type { ContentItem, UnifiedStatus } from '@/lib/types'
+import type { ContentItem, UnifiedStatus } from '@/lib/marketing/types'
 
 interface DayItemsPopoverProps {
   date: string

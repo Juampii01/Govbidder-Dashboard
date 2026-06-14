@@ -11,7 +11,7 @@ import {
   ComposedChart,
   CartesianGrid,
 } from 'recharts'
-import { useMonthlyInsights } from '@/hooks/useAdsData'
+import { useMonthlyInsights } from '@/hooks/marketing/useAdsData'
 import { META_BLUE, META_GREEN, fmtSpend, fmtPct } from './ads-theme'
 
 interface CustomTooltipProps {

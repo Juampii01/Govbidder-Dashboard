@@ -22,15 +22,15 @@
 
 import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
-import { db } from '@/lib/db'
-import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/auth-user'
-import { decryptToken } from '@/lib/crypto'
-import { checkRateLimit } from '@/lib/utils/ratelimit'
+import { db } from '@/lib/marketing/db'
+import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/marketing/auth-user'
+import { decryptToken } from '@/lib/marketing/crypto'
+import { checkRateLimit } from '@/lib/marketing/utils/ratelimit'
 import {
   createImageContainer, createReelContainer, createCarouselImageItem, createCarouselVideoItem,
   createCarouselContainer, getContainerStatus, publishContainer, getPermalink,
   getContentPublishingLimit, type IGResult,
-} from '@/lib/instagram/client'
+} from '@/lib/marketing/instagram/client'
 
 // Vercel: allow up to 60s for video container processing
 export const maxDuration = 60

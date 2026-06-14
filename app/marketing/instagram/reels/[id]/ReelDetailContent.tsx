@@ -2,14 +2,14 @@
 
 import Link from 'next/link'
 import { ArrowLeft, ExternalLink, Clock } from 'lucide-react'
-import type { ReelDetail } from '@/lib/types'
-import { MetricBadge } from '@/components/shared/MetricBadge'
-import { formatK, formatPercent } from '@/lib/utils/formatters'
+import type { ReelDetail } from '@/lib/marketing/types'
+import { MetricBadge } from '@/components/marketing/shared/MetricBadge'
+import { formatK, formatPercent } from '@/lib/marketing/utils/formatters'
 import {
   AreaChart, Area, BarChart, Bar, RadarChart, Radar, PolarGrid, PolarAngleAxis,
   XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine,
 } from 'recharts'
-import { AskEternityButton } from '@/components/shared/AskEternityButton'
+import { AskEternityButton } from '@/components/marketing/shared/AskEternityButton'
 
 interface Props { reel: ReelDetail }
 

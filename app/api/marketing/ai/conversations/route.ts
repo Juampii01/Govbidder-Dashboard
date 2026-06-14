@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { db } from '@/lib/db'
-import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/auth-user'
+import { db } from '@/lib/marketing/db'
+import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/marketing/auth-user'
 import type {
   ConversationDTO,
   ListConversationsResponse,
-} from '@/lib/types/ai'
+} from '@/lib/marketing/types/ai'
 
 async function authOr401(): Promise<{ userId: string; clientId: string } | NextResponse> {
   try { return await requireActiveClient() } catch (err) {

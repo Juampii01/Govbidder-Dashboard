@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { createPortal } from 'react-dom'
 import { Copy, Trash2, RefreshCw, AlertTriangle } from 'lucide-react'
-import type { ContentItem } from '@/lib/types'
+import type { ContentItem } from '@/lib/marketing/types'
 
 interface QuickActionsProps {
   item: ContentItem

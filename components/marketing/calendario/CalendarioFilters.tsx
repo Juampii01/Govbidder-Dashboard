@@ -1,8 +1,8 @@
 'use client'
 
 import { X } from 'lucide-react'
-import { ContentCategory, UnifiedStatus } from '@/lib/types'
-import { CATEGORY_COLORS, CATEGORY_LABELS } from '@/components/pipeline/CategoryChip'
+import { ContentCategory, UnifiedStatus } from '@/lib/marketing/types'
+import { CATEGORY_COLORS, CATEGORY_LABELS } from '@/components/marketing/pipeline/CategoryChip'
 import { STATUSES, STATUS_META } from './lib/calendarioConstants'
 
 interface CalendarioFiltersProps {

@@ -14,12 +14,12 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
-import { db } from '@/lib/db'
-import { AIChatSchema } from '@/lib/schemas/ai'
-import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/auth-user'
-import { checkRateLimit } from '@/lib/utils/ratelimit'
-import { streamWorkspaceChat } from '@/lib/claude/chat-workspace'
-import { loadCompetitorsContext } from '@/lib/ai/load-competitors-context'
+import { db } from '@/lib/marketing/db'
+import { AIChatSchema } from '@/lib/marketing/schemas/ai'
+import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/marketing/auth-user'
+import { checkRateLimit } from '@/lib/marketing/utils/ratelimit'
+import { streamWorkspaceChat } from '@/lib/marketing/claude/chat-workspace'
+import { loadCompetitorsContext } from '@/lib/marketing/ai/load-competitors-context'
 
 export const maxDuration = 180
 

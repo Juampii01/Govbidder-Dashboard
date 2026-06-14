@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react'
 import { Plus, MessageSquare, Trash2, ChevronLeft, ChevronRight } from 'lucide-react'
-import type { ConversationDTO } from '@/lib/types/ai'
+import type { ConversationDTO } from '@/lib/marketing/types/ai'
 
 interface ConversationSidebarProps {
   conversations: ConversationDTO[]

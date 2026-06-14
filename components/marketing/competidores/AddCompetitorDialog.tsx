@@ -10,11 +10,11 @@ import {
   DialogTitle,
   DialogDescription,
   DialogFooter,
-} from '@/components/ui/dialog'
-import { Button } from '@/components/ui/button'
-import { ScrapeProgressDialog } from '@/components/competidores/ScrapeProgressDialog'
-import type { CreateCompetitorResponse } from '@/lib/types/competidores'
-import { addActive } from '@/lib/competidores/active-jobs'
+} from '@/components/marketing/ui/dialog'
+import { Button } from '@/components/marketing/ui/button'
+import { ScrapeProgressDialog } from '@/components/marketing/competidores/ScrapeProgressDialog'
+import type { CreateCompetitorResponse } from '@/lib/marketing/types/competidores'
+import { addActive } from '@/lib/marketing/competidores/active-jobs'
 
 type Limit = 10 | 20 | 30
 

@@ -7,18 +7,18 @@ import {
   useYouTubeChannelSummary,
   useYouTubeVideos,
   triggerYouTubeSync,
-} from '@/hooks/useYouTubeData'
-import { useSocialConnection } from '@/hooks/useSocialConnection'
-import { IGTabErrorBoundary } from '@/components/instagram/pro/IGTabErrorBoundary'
-import { YTNotConnected } from '@/components/youtube/pro/YTNotConnected'
-import { YTChannelHeader } from '@/components/youtube/pro/YTChannelHeader'
-import { YTTabNav, type YTTab } from '@/components/youtube/pro/YTTabNav'
-import { YTOverviewStats } from '@/components/youtube/pro/YTOverviewStats'
-import { YTTopVideos } from '@/components/youtube/pro/YTTopVideos'
-import { YTInsightsPanel } from '@/components/youtube/pro/YTInsightsPanel'
-import { YTVideoGrid } from '@/components/youtube/pro/YTVideoGrid'
-import { YTGrowthChart } from '@/components/youtube/pro/YTGrowthChart'
-import { YTMetricsGrid } from '@/components/youtube/pro/YTMetricsGrid'
+} from '@/hooks/marketing/useYouTubeData'
+import { useSocialConnection } from '@/hooks/marketing/useSocialConnection'
+import { IGTabErrorBoundary } from '@/components/marketing/instagram/pro/IGTabErrorBoundary'
+import { YTNotConnected } from '@/components/marketing/youtube/pro/YTNotConnected'
+import { YTChannelHeader } from '@/components/marketing/youtube/pro/YTChannelHeader'
+import { YTTabNav, type YTTab } from '@/components/marketing/youtube/pro/YTTabNav'
+import { YTOverviewStats } from '@/components/marketing/youtube/pro/YTOverviewStats'
+import { YTTopVideos } from '@/components/marketing/youtube/pro/YTTopVideos'
+import { YTInsightsPanel } from '@/components/marketing/youtube/pro/YTInsightsPanel'
+import { YTVideoGrid } from '@/components/marketing/youtube/pro/YTVideoGrid'
+import { YTGrowthChart } from '@/components/marketing/youtube/pro/YTGrowthChart'
+import { YTMetricsGrid } from '@/components/marketing/youtube/pro/YTMetricsGrid'
 
 function PageSkeleton() {
   return (

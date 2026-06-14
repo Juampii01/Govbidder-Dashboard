@@ -9,7 +9,7 @@
  * Los agentes de Ola 2 importan exclusivamente desde este módulo.
  */
 
-import type { ClaudeModelId } from '@/lib/claude/models'
+import type { ClaudeModelId } from '@/lib/marketing/claude/models'
 
 // ─── DTOs (wire shape) ─────────────────────────────────────────────────────
 

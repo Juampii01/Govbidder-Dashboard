@@ -26,10 +26,10 @@ import {
   Pie,
   Cell,
 } from 'recharts'
-import { useAudienceStats } from '@/hooks/useAudienceStats'
-import { useAudienceDemographics } from '@/hooks/useAudienceDemographics'
-import { useInstagramDataContext } from '@/components/instagram/InstagramDataContext'
-import { formatK } from '@/lib/utils/formatters'
+import { useAudienceStats } from '@/hooks/marketing/useAudienceStats'
+import { useAudienceDemographics } from '@/hooks/marketing/useAudienceDemographics'
+import { useInstagramDataContext } from '@/components/marketing/instagram/InstagramDataContext'
+import { formatK } from '@/lib/marketing/utils/formatters'
 
 // ─── Skeleton ─────────────────────────────────────────────────────────────────
 

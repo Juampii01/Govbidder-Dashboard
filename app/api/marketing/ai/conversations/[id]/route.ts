@@ -1,13 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { db } from '@/lib/db'
-import { CLAUDE_MODELS } from '@/lib/claude/models'
-import type { ClaudeModelId } from '@/lib/claude/models'
-import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/auth-user'
+import { db } from '@/lib/marketing/db'
+import { CLAUDE_MODELS } from '@/lib/marketing/claude/models'
+import type { ClaudeModelId } from '@/lib/marketing/claude/models'
+import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/marketing/auth-user'
 import type {
   AIMessageDTO,
   ConversationDTO,
   GetConversationResponse,
-} from '@/lib/types/ai'
+} from '@/lib/marketing/types/ai'
 
 async function authOr401(): Promise<{ userId: string; clientId: string } | NextResponse> {
   try { return await requireActiveClient() } catch (err) {

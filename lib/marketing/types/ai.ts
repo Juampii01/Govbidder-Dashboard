@@ -1,4 +1,4 @@
-import type { ClaudeModelId } from '@/lib/claude/models'
+import type { ClaudeModelId } from '@/lib/marketing/claude/models'
 
 export interface ConversationDTO {
   id: string

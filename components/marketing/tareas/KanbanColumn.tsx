@@ -4,7 +4,7 @@ import { useState, useRef, useEffect } from 'react'
 import { useDroppable } from '@dnd-kit/core'
 import { SortableContext, verticalListSortingStrategy } from '@dnd-kit/sortable'
 import { Plus, X } from 'lucide-react'
-import { Task, TaskColumnId } from '@/lib/types'
+import { Task, TaskColumnId } from '@/lib/marketing/types'
 import { TaskCard } from './TaskCard'
 
 interface KanbanColumnProps {

@@ -10,9 +10,9 @@
  */
 
 import Anthropic from '@anthropic-ai/sdk'
-import type { ClaudeModelId } from '@/lib/claude/models'
-import { estimateClaudeCost } from '@/lib/claude/models'
-import type { WorkspaceContext } from '@/lib/schemas/ai'
+import type { ClaudeModelId } from '@/lib/marketing/claude/models'
+import { estimateClaudeCost } from '@/lib/marketing/claude/models'
+import type { WorkspaceContext } from '@/lib/marketing/schemas/ai'
 
 interface HistoryMessage {
   role: string

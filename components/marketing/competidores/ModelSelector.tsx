@@ -1,8 +1,8 @@
 'use client'
 
-import { CLAUDE_MODELS, estimateClaudeCost } from '@/lib/claude/models'
-import type { ClaudeModelId } from '@/lib/claude/models'
-import { formatCostUsd } from '@/lib/utils/cost-format'
+import { CLAUDE_MODELS, estimateClaudeCost } from '@/lib/marketing/claude/models'
+import type { ClaudeModelId } from '@/lib/marketing/claude/models'
+import { formatCostUsd } from '@/lib/marketing/utils/cost-format'
 
 interface ModelSelectorProps {
   value: ClaudeModelId

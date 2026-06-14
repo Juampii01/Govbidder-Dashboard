@@ -6,7 +6,7 @@
  * /api/me 500s that manifested as "perdí super admin" symptom).
  *
  * Usage:
- *   import { logClientError } from '@/lib/client-errors'
+ *   import { logClientError } from '@/lib/marketing/client-errors'
  *   fetch('/api/x').catch((err) => logClientError(err, 'HomeContent:fetchIdeas'))
  *
  * For silent "fire-and-forget" paths (e.g. optimistic telemetry) pass

@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { Plus, X } from 'lucide-react'
 import { ChipEditor } from '../ChipEditor'
-import { CompetitorEntry } from '@/lib/types'
+import { CompetitorEntry } from '@/lib/marketing/types'
 
 const STORAGE_KEY = 'competencia'
 

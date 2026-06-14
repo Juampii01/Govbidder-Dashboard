@@ -1,7 +1,7 @@
 'use client'
 import { RefreshCw, Loader2, LogOut, CheckCircle2 } from 'lucide-react'
 import { IGAvatarRing, IG_GRADIENT_CSS } from './ig-theme'
-import type { InstagramAccountSummary } from '@/hooks/useInstagramData'
+import type { InstagramAccountSummary } from '@/hooks/marketing/useInstagramData'
 
 interface Props {
   summary: InstagramAccountSummary

@@ -15,22 +15,22 @@
  */
 
 import { NextResponse } from 'next/server'
-import { db } from '@/lib/db'
+import { db } from '@/lib/marketing/db'
 import {
   requireActiveClient,
   UnauthorizedError,
   ForbiddenError,
-} from '@/lib/auth-user'
+} from '@/lib/marketing/auth-user'
 import {
   InstagramAccountSchema,
   InstagramGraphErrorSchema,
   InstagramMediaListSchema,
   type InstagramMedia,
-} from '@/lib/schemas/instagram'
-import { accountToSnapshot, mediaToUserReel } from '@/lib/instagram/transform'
-import { getMediaInsights } from '@/lib/instagram/client'
-import { decryptToken } from '@/lib/crypto'
-import { checkRateLimit } from '@/lib/utils/ratelimit'
+} from '@/lib/marketing/schemas/instagram'
+import { accountToSnapshot, mediaToUserReel } from '@/lib/marketing/instagram/transform'
+import { getMediaInsights } from '@/lib/marketing/instagram/client'
+import { decryptToken } from '@/lib/marketing/crypto'
+import { checkRateLimit } from '@/lib/marketing/utils/ratelimit'
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -114,7 +114,7 @@ export async function POST(): Promise<NextResponse> {
       if (refreshRes.ok) {
         const d = await refreshRes.json() as { access_token: string; expires_in: number }
         const exp = new Date(); exp.setSeconds(exp.getSeconds() + d.expires_in);
-        const { encryptToken: enc } = await import('@/lib/crypto')
+        const { encryptToken: enc } = await import('@/lib/marketing/crypto')
         await db.socialConnection.update({ where: { id: conn.id }, data: { accessToken: enc(d.access_token), expiresAt: exp } })
         accessToken = d.access_token
       }

@@ -2,13 +2,13 @@
 
 import { LineChart, Line, XAxis, YAxis, Tooltip, ResponsiveContainer, CartesianGrid } from 'recharts'
 import { Users, Eye, Video, TrendingUp } from 'lucide-react'
-import { formatK } from '@/lib/utils/formatters'
-import { usePeriod } from '@/hooks/usePeriod'
+import { formatK } from '@/lib/marketing/utils/formatters'
+import { usePeriod } from '@/hooks/marketing/usePeriod'
 import {
   useYouTubeChannelSummary,
   useYouTubeSnapshots,
   type YouTubeSnapshotPoint,
-} from '@/hooks/useYouTubeData'
+} from '@/hooks/marketing/useYouTubeData'
 
 interface KPICardProps {
   label: string

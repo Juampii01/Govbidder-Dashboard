@@ -1,7 +1,7 @@
 'use client'
 
-import { CLAUDE_MODELS } from '@/lib/claude/models'
-import type { ClaudeModelId } from '@/lib/claude/models'
+import { CLAUDE_MODELS } from '@/lib/marketing/claude/models'
+import type { ClaudeModelId } from '@/lib/marketing/claude/models'
 
 interface AIModelSelectorProps {
   value: ClaudeModelId

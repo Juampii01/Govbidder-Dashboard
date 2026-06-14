@@ -1,4 +1,4 @@
-import { Skeleton } from '@/components/ui/skeleton'
+import { Skeleton } from '@/components/marketing/ui/skeleton'
 
 // Matches the 3-column layout of KanbanBoard.tsx (por-hacer | en-proceso | listo).
 export default function Loading() {

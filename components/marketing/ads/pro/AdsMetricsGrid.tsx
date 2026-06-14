@@ -1,7 +1,7 @@
 'use client'
 
 import { DollarSign, TrendingUp, Target, MousePointerClick, Eye, Users, Activity, Layers, Coins, Percent, Megaphone, Flame } from 'lucide-react'
-import type { AdCampaignRow } from '@/hooks/useAdsData'
+import type { AdCampaignRow } from '@/hooks/marketing/useAdsData'
 
 function fmt(n: number): string {
   if (!isFinite(n)) return '—'

@@ -10,9 +10,9 @@ import {
   Clock,
   MessageSquare,
 } from 'lucide-react'
-import { useInstagramDataContext } from '@/components/instagram/InstagramDataContext'
-import { useInstagramMessages, type IGConversation, type IGMessage } from '@/hooks/useInstagramMessages'
-import { Skeleton } from '@/components/ui/skeleton'
+import { useInstagramDataContext } from '@/components/marketing/instagram/InstagramDataContext'
+import { useInstagramMessages, type IGConversation, type IGMessage } from '@/hooks/marketing/useInstagramMessages'
+import { Skeleton } from '@/components/marketing/ui/skeleton'
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 

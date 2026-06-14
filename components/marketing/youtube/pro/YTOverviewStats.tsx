@@ -1,7 +1,7 @@
 'use client'
 
 import { Users, Eye, PlaySquare, BarChart3, TrendingUp } from 'lucide-react'
-import type { YouTubeChannelSummary, YouTubeVideoRow } from '@/hooks/useYouTubeData'
+import type { YouTubeChannelSummary, YouTubeVideoRow } from '@/hooks/marketing/useYouTubeData'
 import { fmtSubs, fmtViews, YT_RED } from './yt-theme'
 
 interface YTOverviewStatsProps {

@@ -12,8 +12,8 @@
  * invented stats to the TopBar.
  */
 import { NextRequest, NextResponse } from 'next/server'
-import { db } from '@/lib/db'
-import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/auth-user'
+import { db } from '@/lib/marketing/db'
+import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/marketing/auth-user'
 
 export interface GlobalStatsResponse {
   followers: number

@@ -1,7 +1,7 @@
 'use client'
 
 import { PlaySquare, Eye, ThumbsUp, MessageCircle, TrendingUp, TrendingDown } from 'lucide-react'
-import type { YouTubeVideoRow } from '@/hooks/useYouTubeData'
+import type { YouTubeVideoRow } from '@/hooks/marketing/useYouTubeData'
 import { fmtViews, fmtDuration, YT_RED } from './yt-theme'
 
 interface YTVideoCardProps {

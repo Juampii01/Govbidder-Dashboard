@@ -3,9 +3,9 @@
 import { Suspense, useState } from 'react'
 import dynamic from 'next/dynamic'
 import { Loader2, RefreshCw, Megaphone } from 'lucide-react'
-import { PageHeader } from '@/components/ui/PageHeader'
-import { ConnectButton } from '@/components/shared/ConnectButton'
-import { useAdsAccountSummary, triggerAdsSync } from '@/hooks/useAdsData'
+import { PageHeader } from '@/components/marketing/ui/PageHeader'
+import { ConnectButton } from '@/components/marketing/shared/ConnectButton'
+import { useAdsAccountSummary, triggerAdsSync } from '@/hooks/marketing/useAdsData'
 import { AdsTabNav, useAdsTab } from './AdsTabNav'
 
 const AdsDashboardTab = dynamic(

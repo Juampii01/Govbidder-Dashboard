@@ -3,12 +3,12 @@
 import { useState, useRef } from 'react'
 import { Loader2, Sparkles, ChevronDown, AlertCircle } from 'lucide-react'
 import { toast } from 'sonner'
-import { Button } from '@/components/ui/button'
-import { ModelSelector } from '@/components/competidores/ModelSelector'
-import { CostBadge } from '@/components/competidores/CostBadge'
-import { DEFAULT_MODEL, estimateClaudeCost, getModelMeta } from '@/lib/claude/models'
-import type { ClaudeModelId } from '@/lib/claude/models'
-import type { ReelDTO, TranscriptionDTO, AnalysisDTO, AnalyzeResponse } from '@/lib/types/competidores'
+import { Button } from '@/components/marketing/ui/button'
+import { ModelSelector } from '@/components/marketing/competidores/ModelSelector'
+import { CostBadge } from '@/components/marketing/competidores/CostBadge'
+import { DEFAULT_MODEL, estimateClaudeCost, getModelMeta } from '@/lib/marketing/claude/models'
+import type { ClaudeModelId } from '@/lib/marketing/claude/models'
+import type { ReelDTO, TranscriptionDTO, AnalysisDTO, AnalyzeResponse } from '@/lib/marketing/types/competidores'
 
 // Rough token estimate for pre-action cost display
 const ESTIMATE_INPUT_TOKENS = 1500

@@ -1,7 +1,7 @@
 'use client'
 
 import { useSearchParams, useRouter, usePathname } from 'next/navigation'
-import type { Period } from '@/lib/types'
+import type { Period } from '@/lib/marketing/types'
 
 const VALID_PERIODS: Period[] = [0, 7, 14, 30, 90]
 

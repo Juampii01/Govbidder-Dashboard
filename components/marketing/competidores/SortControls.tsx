@@ -1,7 +1,7 @@
 'use client'
 
 import { ArrowDownUp } from 'lucide-react'
-import type { ReelSortField, ReelSortDir } from '@/lib/types/competidores'
+import type { ReelSortField, ReelSortDir } from '@/lib/marketing/types/competidores'
 
 interface SortControlsProps {
   field: ReelSortField

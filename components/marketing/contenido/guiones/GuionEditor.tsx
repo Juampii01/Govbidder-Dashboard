@@ -10,7 +10,7 @@ import {
   Copy, Check, LayoutTemplate, Strikethrough,
   Minus, Clock, Wand2, FolderOpen,
 } from 'lucide-react'
-import type { GuionItem } from '@/lib/types'
+import type { GuionItem } from '@/lib/marketing/types'
 
 // ─── Constants ────────────────────────────────────────────────────────────────
 

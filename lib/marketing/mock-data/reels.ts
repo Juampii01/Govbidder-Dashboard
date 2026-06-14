@@ -1,4 +1,4 @@
-import type { Reel } from '@/lib/types'
+import type { Reel } from '@/lib/marketing/types'
 
 export const REELS: Reel[] = [
   {

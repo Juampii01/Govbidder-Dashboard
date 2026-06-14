@@ -12,12 +12,12 @@
 
 import { NextResponse } from 'next/server'
 import { headers } from 'next/headers'
-import { db } from '@/lib/db'
-import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/auth-user'
-import { checkRateLimit } from '@/lib/utils/ratelimit'
-import { MetaAdAccountsResponseSchema, MetaCampaignsResponseSchema } from '@/lib/schemas/ads'
-import { decryptToken } from '@/lib/crypto'
-import { META_GRAPH_BASE as GRAPH } from '@/lib/meta'
+import { db } from '@/lib/marketing/db'
+import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/marketing/auth-user'
+import { checkRateLimit } from '@/lib/marketing/utils/ratelimit'
+import { MetaAdAccountsResponseSchema, MetaCampaignsResponseSchema } from '@/lib/marketing/schemas/ads'
+import { decryptToken } from '@/lib/marketing/crypto'
+import { META_GRAPH_BASE as GRAPH } from '@/lib/marketing/meta'
 const DATE_PRESET = 'lifetime'
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────

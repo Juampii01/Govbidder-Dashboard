@@ -12,7 +12,7 @@ import {
   Clock,
   XCircle,
 } from 'lucide-react'
-import { useInstagramDataContext } from '@/components/instagram/InstagramDataContext'
+import { useInstagramDataContext } from '@/components/marketing/instagram/InstagramDataContext'
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 

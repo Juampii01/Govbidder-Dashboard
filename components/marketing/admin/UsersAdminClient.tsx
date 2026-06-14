@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { Loader2 } from 'lucide-react'
 import { toast } from 'sonner'
-import { logClientError } from '@/lib/client-errors'
+import { logClientError } from '@/lib/marketing/client-errors'
 
 type UserRole = 'ADMIN' | 'TEAM' | 'SETTER' | 'CLIENT'
 type ThemeKey = 'eternity' | 'govbidder'

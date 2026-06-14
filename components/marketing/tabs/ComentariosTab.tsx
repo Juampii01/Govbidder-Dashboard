@@ -12,10 +12,10 @@ import {
   AlertCircle,
   ChevronRight,
 } from 'lucide-react'
-import { useInstagramDataContext } from '@/components/instagram/InstagramDataContext'
-import { useInstagramComments, type InstagramComment } from '@/hooks/useInstagramComments'
-import { Skeleton } from '@/components/ui/skeleton'
-import { formatK } from '@/lib/utils/formatters'
+import { useInstagramDataContext } from '@/components/marketing/instagram/InstagramDataContext'
+import { useInstagramComments, type InstagramComment } from '@/hooks/marketing/useInstagramComments'
+import { Skeleton } from '@/components/marketing/ui/skeleton'
+import { formatK } from '@/lib/marketing/utils/formatters'
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 

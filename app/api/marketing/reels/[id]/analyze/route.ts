@@ -17,13 +17,13 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
-import { db } from '@/lib/db'
-import { analyzeReel } from '@/lib/claude/analyze-reel'
-import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/auth-user'
-import { AnalyzeSchema } from '@/lib/schemas/competidores'
-import { checkRateLimit } from '@/lib/utils/ratelimit'
-import type { AnalyzeResponse, AnalysisDTO } from '@/lib/types/competidores'
-import type { ClaudeModelId } from '@/lib/claude/models'
+import { db } from '@/lib/marketing/db'
+import { analyzeReel } from '@/lib/marketing/claude/analyze-reel'
+import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/marketing/auth-user'
+import { AnalyzeSchema } from '@/lib/marketing/schemas/competidores'
+import { checkRateLimit } from '@/lib/marketing/utils/ratelimit'
+import type { AnalyzeResponse, AnalysisDTO } from '@/lib/marketing/types/competidores'
+import type { ClaudeModelId } from '@/lib/marketing/claude/models'
 
 // Claude calls can take up to a minute on long transcriptions.
 export const maxDuration = 120

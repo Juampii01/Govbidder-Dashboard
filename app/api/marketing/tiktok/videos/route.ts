@@ -8,9 +8,9 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
-import { db } from '@/lib/db'
-import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/auth-user'
-import { TikTokVideosQuerySchema } from '@/lib/schemas/tiktok'
+import { db } from '@/lib/marketing/db'
+import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/marketing/auth-user'
+import { TikTokVideosQuerySchema } from '@/lib/marketing/schemas/tiktok'
 
 export async function GET(req: NextRequest): Promise<NextResponse> {
   let clientId: string

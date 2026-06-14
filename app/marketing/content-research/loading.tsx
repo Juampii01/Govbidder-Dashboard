@@ -1,4 +1,4 @@
-import { Skeleton } from '@/components/ui/skeleton'
+import { Skeleton } from '@/components/marketing/ui/skeleton'
 
 /**
  * Mirrors ContentResearchView: PageHeader + URL/timeframe/submit form +

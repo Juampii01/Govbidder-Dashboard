@@ -16,13 +16,13 @@ import {
   FileText,
   CheckCircle2,
 } from 'lucide-react'
-import { PageHeader } from '@/components/ui/PageHeader'
-import { EmptyState } from '@/components/ui/EmptyState'
-import { Section } from '@/components/ui/Section'
-import { ConfirmDeleteModal } from '@/components/admin/ConfirmDeleteModal'
-import { PlatformBadge, type Platform } from '@/components/ui/PlatformBadge'
-import { formatK } from '@/lib/utils/formatters'
-import { formatDate } from '@/lib/utils/formatDate'
+import { PageHeader } from '@/components/marketing/ui/PageHeader'
+import { EmptyState } from '@/components/marketing/ui/EmptyState'
+import { Section } from '@/components/marketing/ui/Section'
+import { ConfirmDeleteModal } from '@/components/marketing/admin/ConfirmDeleteModal'
+import { PlatformBadge, type Platform } from '@/components/marketing/ui/PlatformBadge'
+import { formatK } from '@/lib/marketing/utils/formatters'
+import { formatDate } from '@/lib/marketing/utils/formatDate'
 import { toast } from 'sonner'
 
 interface ResearchVideo {

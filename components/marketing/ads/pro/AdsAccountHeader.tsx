@@ -1,7 +1,7 @@
 'use client'
 
 import { RefreshCw, Loader2, Unlink, Megaphone } from 'lucide-react'
-import { type AdsAccountSummary } from '@/hooks/useAdsData'
+import { type AdsAccountSummary } from '@/hooks/marketing/useAdsData'
 import { META_BLUE, fmtSpend, fmtNum, fmtPct } from './ads-theme'
 
 interface AdsAccountHeaderProps {

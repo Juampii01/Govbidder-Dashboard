@@ -1,5 +1,5 @@
-import { SkeletonRows } from '@/components/ui/LoadingSkeletons'
-import { Skeleton } from '@/components/ui/skeleton'
+import { SkeletonRows } from '@/components/marketing/ui/LoadingSkeletons'
+import { Skeleton } from '@/components/marketing/ui/skeleton'
 
 export default function Loading() {
   return (

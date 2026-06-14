@@ -4,9 +4,9 @@ import { useState, useEffect } from 'react'
 import { createPortal } from 'react-dom'
 import { motion } from 'motion/react'
 import { X, Tag } from 'lucide-react'
-import { Task, TaskColumnId, TaskLabel } from '@/lib/types'
+import { Task, TaskColumnId, TaskLabel } from '@/lib/marketing/types'
 import { LabelBadge, LABEL_PRESETS } from './LabelBadge'
-import { DatePicker } from '@/components/calendario/DatePicker'
+import { DatePicker } from '@/components/marketing/calendario/DatePicker'
 import { KANBAN_COLUMNS } from './constants'
 
 interface TaskModalProps {

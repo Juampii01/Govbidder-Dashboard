@@ -1,9 +1,9 @@
 'use client'
 
 import { Eye, ThumbsUp, MessageSquare, Share2, Loader2, Film } from 'lucide-react'
-import { formatK } from '@/lib/utils/formatters'
-import { usePeriod } from '@/hooks/usePeriod'
-import { useTikTokVideos, type TikTokVideoRow } from '@/hooks/useTikTokData'
+import { formatK } from '@/lib/marketing/utils/formatters'
+import { usePeriod } from '@/hooks/marketing/usePeriod'
+import { useTikTokVideos, type TikTokVideoRow } from '@/hooks/marketing/useTikTokData'
 
 interface Props {
   connected: boolean

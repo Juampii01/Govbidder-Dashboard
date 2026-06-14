@@ -3,7 +3,7 @@
  * and ship to the client.
  */
 
-import type { YTVideo } from '@/lib/schemas/youtube'
+import type { YTVideo } from '@/lib/marketing/schemas/youtube'
 
 /**
  * Parses ISO-8601 duration strings like "PT1H2M3S" into seconds.

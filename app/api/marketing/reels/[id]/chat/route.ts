@@ -11,14 +11,14 @@
  */
 
 import { NextRequest, NextResponse } from 'next/server'
-import { db } from '@/lib/db'
-import { ChatSchema } from '@/lib/schemas/competidores'
-import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/auth-user'
-import { checkRateLimit } from '@/lib/utils/ratelimit'
-import { streamChat } from '@/lib/claude/chat-reel'
-import type { GetChatResponse, ChatMessageDTO } from '@/lib/types/competidores'
-import { CLAUDE_MODELS } from '@/lib/claude/models'
-import type { ClaudeModelId } from '@/lib/claude/models'
+import { db } from '@/lib/marketing/db'
+import { ChatSchema } from '@/lib/marketing/schemas/competidores'
+import { requireActiveClient, UnauthorizedError, ForbiddenError } from '@/lib/marketing/auth-user'
+import { checkRateLimit } from '@/lib/marketing/utils/ratelimit'
+import { streamChat } from '@/lib/marketing/claude/chat-reel'
+import type { GetChatResponse, ChatMessageDTO } from '@/lib/marketing/types/competidores'
+import { CLAUDE_MODELS } from '@/lib/marketing/claude/models'
+import type { ClaudeModelId } from '@/lib/marketing/claude/models'
 
 export const maxDuration = 120
 

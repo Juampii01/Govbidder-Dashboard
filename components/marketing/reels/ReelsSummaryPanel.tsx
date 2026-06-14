@@ -1,8 +1,8 @@
 'use client'
 
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, LineChart, Line, XAxis, YAxis } from 'recharts'
-import type { Reel } from '@/lib/types'
-import { formatK } from '@/lib/utils/formatters'
+import type { Reel } from '@/lib/marketing/types'
+import { formatK } from '@/lib/marketing/utils/formatters'
 import { Heart, Bookmark, MessageCircle, Share2 } from 'lucide-react'
 
 interface Props {

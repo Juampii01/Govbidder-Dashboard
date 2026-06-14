@@ -1,8 +1,8 @@
 'use client'
 
 import { DollarSign, Eye, MousePointer, TrendingUp, ShoppingCart, Percent } from 'lucide-react'
-import { useAdsAccountSummary, useMonthlyInsights } from '@/hooks/useAdsData'
-import { formatK } from '@/lib/utils/formatters'
+import { useAdsAccountSummary, useMonthlyInsights } from '@/hooks/marketing/useAdsData'
+import { formatK } from '@/lib/marketing/utils/formatters'
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer } from 'recharts'
 
 interface KPICardProps {

@@ -20,28 +20,28 @@
  * "transcribe one video" use case.
  */
 import { NextRequest, NextResponse } from 'next/server'
-import { db } from '@/lib/db'
+import { db } from '@/lib/marketing/db'
 import {
   requireActiveClient,
   UnauthorizedError,
   ForbiddenError,
-} from '@/lib/auth-user'
-import { checkRateLimit } from '@/lib/utils/ratelimit'
+} from '@/lib/marketing/auth-user'
+import { checkRateLimit } from '@/lib/marketing/utils/ratelimit'
 import {
   ResearchRequestSchema,
   DeleteResearchSchema,
-} from '@/lib/schemas/content-research'
+} from '@/lib/marketing/schemas/content-research'
 import {
   isYouTubeChannelUrl,
   resolveYouTubeChannel,
   getTopYouTubeVideos,
-} from '@/lib/youtube/channel-research'
+} from '@/lib/marketing/youtube/channel-research'
 import {
   fetchInstagramProfilePosts,
   extractInstagramUsername,
-} from '@/lib/instagram/profile-fetch'
-import { analyzeRankedItems } from '@/lib/claude/analyze-videos-batch'
-import { getYouTubeTranscript, extractYouTubeId } from '@/lib/youtube/transcript-fetch'
+} from '@/lib/marketing/instagram/profile-fetch'
+import { analyzeRankedItems } from '@/lib/marketing/claude/analyze-videos-batch'
+import { getYouTubeTranscript, extractYouTubeId } from '@/lib/marketing/youtube/transcript-fetch'
 
 export const runtime = 'nodejs'
 export const dynamic = 'force-dynamic'

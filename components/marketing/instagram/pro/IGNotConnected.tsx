@@ -1,7 +1,7 @@
 'use client'
 import { Camera, Zap, BarChart3, MessageCircle, Image } from 'lucide-react'
 import { IG_GRADIENT_CSS } from './ig-theme'
-import { useSocialConnection } from '@/hooks/useSocialConnection'
+import { useSocialConnection } from '@/hooks/marketing/useSocialConnection'
 
 const FEATURES = [
   { icon: BarChart3, label: 'Analytics en tiempo real', desc: 'Views, reach, saves, shares por post' },

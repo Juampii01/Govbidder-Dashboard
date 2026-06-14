@@ -1,8 +1,8 @@
 import 'server-only'
 
 import { headers } from 'next/headers'
-import { db as prisma } from '@/lib/db'
-import { createClient } from '@/lib/supabase/server'
+import { db as prisma } from '@/lib/marketing/db'
+import { createClient } from '@/lib/supabase-service'
 
 const PUBLIC_PATHS = ['/login', '/pending-approval', '/auth/reset-password']
 

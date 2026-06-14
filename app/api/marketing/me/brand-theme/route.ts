@@ -5,7 +5,7 @@
  * Kept to avoid 404s from any in-flight requests during deploy.
  */
 import { NextResponse } from 'next/server'
-import { requireUserId, UnauthorizedError } from '@/lib/auth-user'
+import { requireUserId, UnauthorizedError } from '@/lib/marketing/auth-user'
 
 export async function POST(): Promise<NextResponse> {
   try {

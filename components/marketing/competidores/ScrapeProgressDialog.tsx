@@ -10,9 +10,9 @@ import {
   DialogHeader,
   DialogTitle,
   DialogDescription,
-} from '@/components/ui/dialog'
-import type { GetJobResponse } from '@/lib/types/competidores'
-import { removeActive } from '@/lib/competidores/active-jobs'
+} from '@/components/marketing/ui/dialog'
+import type { GetJobResponse } from '@/lib/marketing/types/competidores'
+import { removeActive } from '@/lib/marketing/competidores/active-jobs'
 
 interface ScrapeProgressDialogProps {
   open: boolean

@@ -1,10 +1,10 @@
 'use client'
 import { Users, Globe, TrendingUp, BarChart3, MapPin, AlertCircle } from 'lucide-react'
-import { useAudienceStats } from '@/hooks/useAudienceStats'
-import { useAudienceDemographics } from '@/hooks/useAudienceDemographics'
-import { useInstagramDataContext } from '@/components/instagram/InstagramDataContext'
+import { useAudienceStats } from '@/hooks/marketing/useAudienceStats'
+import { useAudienceDemographics } from '@/hooks/marketing/useAudienceDemographics'
+import { useInstagramDataContext } from '@/components/marketing/instagram/InstagramDataContext'
 import { IG_GRADIENT, IG_GRADIENT_CSS } from './ig-theme'
-import { formatK } from '@/lib/utils/formatters'
+import { formatK } from '@/lib/marketing/utils/formatters'
 
 function BarRow({ label, value, max, color }: { label: string; value: number; max: number; color?: string }) {
   const pct = max > 0 ? (value / max) * 100 : 0

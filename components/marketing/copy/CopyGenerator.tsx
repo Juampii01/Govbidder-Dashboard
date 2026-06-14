@@ -5,8 +5,8 @@ import { Wand2, AlertTriangle, ArrowRight, RotateCcw } from 'lucide-react'
 import Link from 'next/link'
 import { CopyTypeSelector, CopyType } from './CopyTypeSelector'
 import { CopyResultList } from './CopyResultList'
-import { getICPContext, getICPSummary } from '@/lib/utils/getICPContext'
-import type { ContentCategory } from '@/lib/types'
+import { getICPContext, getICPSummary } from '@/lib/marketing/utils/getICPContext'
+import type { ContentCategory } from '@/lib/marketing/types'
 
 const CATEGORIAS: { id: ContentCategory; label: string }[] = [
   { id: 'motivacional', label: 'Motivacional' },

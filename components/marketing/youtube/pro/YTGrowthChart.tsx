@@ -10,7 +10,7 @@ import {
   ResponsiveContainer,
   CartesianGrid,
 } from 'recharts'
-import { useYouTubeSnapshots } from '@/hooks/useYouTubeData'
+import { useYouTubeSnapshots } from '@/hooks/marketing/useYouTubeData'
 import { fmtSubs, fmtViews, YT_RED } from './yt-theme'
 
 interface TooltipPayloadItem {

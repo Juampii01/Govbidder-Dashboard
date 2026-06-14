@@ -1,7 +1,7 @@
 'use client'
 
 import { Loader2 } from 'lucide-react'
-import { useAdCampaigns, type AdCampaignRow } from '@/hooks/useAdsData'
+import { useAdCampaigns, type AdCampaignRow } from '@/hooks/marketing/useAdsData'
 import { META_GREEN, fmtSpend, fmtNum, fmtPct } from './ads-theme'
 
 interface AdsCampaignTableProps {

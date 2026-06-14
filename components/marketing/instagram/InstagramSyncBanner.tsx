@@ -11,9 +11,9 @@
 
 import { useState } from 'react'
 import { Camera, Loader2, RefreshCw, AlertTriangle, CheckCircle2 } from 'lucide-react'
-import { useSocialConnection } from '@/hooks/useSocialConnection'
-import { ConnectAccountModal } from '@/components/shared/ConnectAccountModal'
-import type { InstagramAccountSummary } from '@/hooks/useInstagramData'
+import { useSocialConnection } from '@/hooks/marketing/useSocialConnection'
+import { ConnectAccountModal } from '@/components/marketing/shared/ConnectAccountModal'
+import type { InstagramAccountSummary } from '@/hooks/marketing/useInstagramData'
 
 interface Props {
   summary: InstagramAccountSummary | null

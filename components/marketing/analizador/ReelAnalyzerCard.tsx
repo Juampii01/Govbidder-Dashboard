@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import Image from 'next/image'
 import { Eye, Heart, MessageCircle, Share2, Loader2, Sparkles, Clapperboard } from 'lucide-react'
-import { formatK } from '@/lib/utils/formatters'
+import { formatK } from '@/lib/marketing/utils/formatters'
 import { StructureModal, type GuionStructure } from './StructureModal'
 
 interface ScrapedReel {

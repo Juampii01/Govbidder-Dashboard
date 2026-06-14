@@ -16,12 +16,12 @@ import {
 import { arrayMove, sortableKeyboardCoordinates } from '@dnd-kit/sortable'
 import { AnimatePresence } from 'motion/react'
 import { Plus, CheckSquare } from 'lucide-react'
-import { Task, TaskColumnId } from '@/lib/types'
+import { Task, TaskColumnId } from '@/lib/marketing/types'
 import { KANBAN_COLUMNS } from './constants'
 import { KanbanColumn } from './KanbanColumn'
 import { TaskCard } from './TaskCard'
 import { TaskModal } from './TaskModal'
-import { PageHeader } from '@/components/ui/PageHeader'
+import { PageHeader } from '@/components/marketing/ui/PageHeader'
 import { toast } from 'sonner'
 
 // ─── API shape ─────────────────────────────────────────────────────────────

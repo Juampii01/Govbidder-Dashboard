@@ -1,7 +1,7 @@
 'use client'
 
 import { Eye, Heart, MessageCircle, Share2, TrendingUp, Zap, Calendar, Target, BarChart3, Flame, Activity } from 'lucide-react'
-import type { TikTokVideoRow } from '@/hooks/useTikTokData'
+import type { TikTokVideoRow } from '@/hooks/marketing/useTikTokData'
 
 const WEEKDAYS = ['Dom', 'Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb']
 

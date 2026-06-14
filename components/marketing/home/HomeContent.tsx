@@ -2,13 +2,13 @@
 
 import { useState, useEffect, useMemo } from 'react'
 import { motion, useReducedMotion } from 'motion/react'
-import type { Period, DashboardStats } from '@/lib/types'
+import type { Period, DashboardStats } from '@/lib/marketing/types'
 import { GreetingBlock } from './GreetingBlock'
 import { StatGrid } from './StatGrid'
 import { PerformanceCharts } from './PerformanceCharts'
 import { QuickSummarySidebar } from './QuickSummarySidebar'
-import type { UserReelRow } from '@/hooks/useInstagramData'
-import type { InstagramAccountSummary } from '@/hooks/useInstagramData'
+import type { UserReelRow } from '@/hooks/marketing/useInstagramData'
+import type { InstagramAccountSummary } from '@/hooks/marketing/useInstagramData'
 
 const PERIODS: { label: string; value: Period }[] = [
   { label: '7d',  value: 7  },

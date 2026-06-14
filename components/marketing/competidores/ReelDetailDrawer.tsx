@@ -4,18 +4,18 @@ import { useState, useEffect, useCallback } from 'react'
 import { X, RefreshCcw, ExternalLink, AlertCircle } from 'lucide-react'
 import { toast } from 'sonner'
 import { Dialog as DialogPrimitive } from '@base-ui/react/dialog'
-import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs'
-import { Button } from '@/components/ui/button'
-import { ReelTab } from '@/components/competidores/ReelTab'
-import { TranscribeSection } from '@/components/competidores/TranscribeSection'
-import { AnalysisSection } from '@/components/competidores/AnalysisSection'
-import { ChatSection } from '@/components/competidores/ChatSection'
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/marketing/ui/tabs'
+import { Button } from '@/components/marketing/ui/button'
+import { ReelTab } from '@/components/marketing/competidores/ReelTab'
+import { TranscribeSection } from '@/components/marketing/competidores/TranscribeSection'
+import { AnalysisSection } from '@/components/marketing/competidores/AnalysisSection'
+import { ChatSection } from '@/components/marketing/competidores/ChatSection'
 import type {
   ReelDTO,
   TranscriptionDTO,
   AnalysisDTO,
   GetReelResponse,
-} from '@/lib/types/competidores'
+} from '@/lib/marketing/types/competidores'
 
 interface ReelDetailDrawerProps {
   reelId: string | null
