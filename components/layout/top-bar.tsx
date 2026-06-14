@@ -43,7 +43,7 @@ export function TopBar({
   const pathname = usePathname()
   const [profileOpen, setProfileOpen] = useState(false)
   const profileRef = useRef<HTMLDivElement | null>(null)
-  const { theme, setTheme } = useTheme()
+  const { theme, setTheme, resolvedTheme } = useTheme()
 
   const [isMac, setIsMac] = useState(true)
   useEffect(() => {
@@ -78,7 +78,7 @@ export function TopBar({
   const crumb = CRUMB_GROUPS[pathname] ?? null
 
   return (
-    <header className="sticky top-0 z-10 border-b-2 border-[#1e3a8a]/10 dark:border-[#1e3a8a]/30 bg-white/85 dark:bg-[#080d1e]/85 backdrop-blur-xl">
+    <header className="sticky top-0 z-10 border-b-2 border-[#1e3a8a]/10 dark:border-[#1e3a8a]/30 bg-white/85 dark:bg-[#0f1626]/85 backdrop-blur-xl">
       <div className="flex h-16 items-center gap-3 px-4 lg:px-6">
 
         {/* Mobile sidebar trigger */}
@@ -126,6 +126,17 @@ export function TopBar({
             enabledMonths={[]}
           />
         </div>
+
+        {/* Theme toggle — un click entre claro y oscuro (Sistema sigue en el menú) */}
+        <button
+          type="button"
+          onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+          title={resolvedTheme === "dark" ? "Cambiar a claro" : "Cambiar a oscuro"}
+          aria-label="Cambiar tema"
+          className="flex h-9 w-9 items-center justify-center rounded-full text-slate-500 transition-colors hover:bg-slate-100 dark:text-slate-300 dark:hover:bg-white/10"
+        >
+          {resolvedTheme === "dark" ? <Sun className="h-[18px] w-[18px]" /> : <Moon className="h-[18px] w-[18px]" />}
+        </button>
 
         {/* Notifications bell */}
         <NotificationsBell />

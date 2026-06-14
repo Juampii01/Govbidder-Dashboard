@@ -101,7 +101,7 @@ export function Sidebar({ open, onClose, collapsed, onToggleCollapse, role, depa
       <aside
         className={cn(
           "fixed left-0 top-0 z-50 h-full transition-all duration-300 ease-out",
-          "flex flex-col bg-white dark:bg-[#080d1e] border-r-2 border-[#1e3a8a]/10 dark:border-[#1e3a8a]/30",
+          "flex flex-col bg-white dark:bg-[#0f1626] border-r-2 border-[#1e3a8a]/10 dark:border-[#1e3a8a]/30",
           // Width transitions
           collapsed && !isMobile ? "lg:w-[80px]" : "lg:w-[240px]",
           "w-[240px]",

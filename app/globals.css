@@ -88,31 +88,33 @@
 
 /* (Dark mode tokens kept for legacy components that still use the `.dark` class) */
 .dark {
-  --background:        #080d1e;
-  --background-subtle: #0a1029;
-  --foreground:        #ffffff;
-  --card:              #0d1745;
-  --card-foreground:   #ffffff;
-  --card-elevated:     #152978;
-  --popover:           #0d1745;
-  --popover-foreground:#ffffff;
-  --muted:             #152978;
-  --muted-foreground:  rgba(255,255,255,0.55);
-  --subtle-foreground: rgba(255,255,255,0.30);
+  /* Paleta dark suavizada: slate-navy cómodo (no casi-negro) y con contraste
+     claro entre fondo y tarjetas para que no se funda todo. */
+  --background:        #0f1626;
+  --background-subtle: #131b2e;
+  --foreground:        #f1f5f9;   /* off-white, más amable que el blanco puro */
+  --card:              #1a2336;   /* claramente más claro que el fondo */
+  --card-foreground:   #f1f5f9;
+  --card-elevated:     #232e47;
+  --popover:           #1a2336;
+  --popover-foreground:#f1f5f9;
+  --muted:             #232e47;
+  --muted-foreground:  rgba(255,255,255,0.62);
+  --subtle-foreground: rgba(255,255,255,0.38);
   --primary:           #E42D2C;
   --primary-hover:     #c42423;
   --primary-foreground:#ffffff;
   --primary-tint:      rgba(228,45,44,0.10);
   --primary-soft:      #ff6b6a;
-  --secondary:         #152978;
-  --secondary-hover:   #1e3a8a;
-  --secondary-foreground:#ffffff;
-  --secondary-tint:    rgba(21,41,120,0.20);
-  --border:            rgba(255,255,255,0.07);
-  --border-subtle:     rgba(255,255,255,0.04);
-  --border-strong:     rgba(255,255,255,0.14);
-  --input:             rgba(255,255,255,0.03);
-  --input-border:      rgba(255,255,255,0.08);
+  --secondary:         #1e2a44;
+  --secondary-hover:   #283654;
+  --secondary-foreground:#f1f5f9;
+  --secondary-tint:    rgba(30,58,138,0.22);
+  --border:            rgba(255,255,255,0.10);
+  --border-subtle:     rgba(255,255,255,0.06);
+  --border-strong:     rgba(255,255,255,0.18);
+  --input:             rgba(255,255,255,0.04);
+  --input-border:      rgba(255,255,255,0.10);
   --input-focus:       rgba(228,45,44,0.40);
   --ring:              rgba(228,45,44,0.40);
 }
