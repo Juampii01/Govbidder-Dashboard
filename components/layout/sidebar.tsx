@@ -101,7 +101,7 @@ export function Sidebar({ open, onClose, collapsed, onToggleCollapse, role, depa
       <aside
         className={cn(
           "fixed left-0 top-0 z-50 h-full transition-all duration-300 ease-out",
-          "flex flex-col bg-white dark:bg-[#0f1626] border-r-2 border-[#1e3a8a]/10 dark:border-[#1e3a8a]/30",
+          "flex flex-col bg-white dark:bg-[#131b2e] border-r-2 border-[#1e3a8a]/10 dark:border-[#1e3a8a]/30",
           // Width transitions
           collapsed && !isMobile ? "lg:w-[80px]" : "lg:w-[240px]",
           "w-[240px]",
@@ -151,7 +151,7 @@ export function Sidebar({ open, onClose, collapsed, onToggleCollapse, role, depa
             return (
             <div key={group.label}>
               {showLabels && (
-                <p className="px-3 mb-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-[#1e3a8a]/70">
+                <p className="px-3 mb-1.5 text-[10px] font-bold uppercase tracking-[0.18em] text-[#1e3a8a]/70 dark:text-slate-400">
                   {group.label}
                 </p>
               )}
@@ -170,20 +170,22 @@ export function Sidebar({ open, onClose, collapsed, onToggleCollapse, role, depa
                         "group relative flex items-center rounded-xl transition-all duration-200",
                         showLabels ? "gap-2.5 px-3 py-2" : "justify-center h-10 w-12 mx-auto",
                         isActive
-                          ? "bg-[#1e3a8a]/[0.10] text-[#1e3a8a]"
-                          : "text-slate-600 hover:bg-slate-100 hover:text-slate-900"
+                          ? "bg-[#1e3a8a]/[0.10] text-[#1e3a8a] dark:bg-[#3b5bdb]/25 dark:text-[#9db8ff]"
+                          : "text-slate-600 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-white/5 dark:hover:text-white"
                       )}
                     >
                       {/* Active indicator bar */}
                       {isActive && (
-                        <span className="absolute left-0 top-1/2 h-6 w-[3px] -translate-y-1/2 rounded-r-full bg-[#1e3a8a] shadow-[0_0_12px_rgba(30,58,138,0.40)]" />
+                        <span className="absolute left-0 top-1/2 h-6 w-[3px] -translate-y-1/2 rounded-r-full bg-[#1e3a8a] dark:bg-[#9db8ff] shadow-[0_0_12px_rgba(30,58,138,0.40)]" />
                       )}
 
                       <Icon
                         className={cn(
                           "shrink-0 transition-colors",
                           showLabels ? "h-[16px] w-[16px]" : "h-[18px] w-[18px]",
-                          isActive ? "text-[#1e3a8a]" : "text-slate-500 group-hover:text-slate-700"
+                          isActive
+                            ? "text-[#1e3a8a] dark:text-[#9db8ff]"
+                            : "text-slate-500 group-hover:text-slate-700 dark:text-slate-400 dark:group-hover:text-slate-200"
                         )}
                       />
                       {showLabels && (

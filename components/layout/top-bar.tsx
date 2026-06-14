@@ -78,7 +78,7 @@ export function TopBar({
   const crumb = CRUMB_GROUPS[pathname] ?? null
 
   return (
-    <header className="sticky top-0 z-10 border-b-2 border-[#1e3a8a]/10 dark:border-[#1e3a8a]/30 bg-white/85 dark:bg-[#0f1626]/85 backdrop-blur-xl">
+    <header className="sticky top-0 z-10 border-b-2 border-[#1e3a8a]/10 dark:border-[#1e3a8a]/30 bg-white/85 dark:bg-[#131b2e]/85 backdrop-blur-xl">
       <div className="flex h-16 items-center gap-3 px-4 lg:px-6">
 
         {/* Mobile sidebar trigger */}
@@ -93,11 +93,11 @@ export function TopBar({
         {/* Page title with breadcrumb */}
         <div className="flex flex-col min-w-0">
           {crumb && (
-            <span className="hidden sm:inline text-[10px] font-bold uppercase tracking-[0.18em] text-[#1e3a8a]/70 leading-none">
+            <span className="hidden sm:inline text-[10px] font-bold uppercase tracking-[0.18em] text-[#1e3a8a]/70 dark:text-slate-400 leading-none">
               {crumb}
             </span>
           )}
-          <h1 className="text-[16px] sm:text-[18px] font-bold tracking-tight text-[#1e3a8a] mt-0.5 leading-none truncate">
+          <h1 className="text-[16px] sm:text-[18px] font-bold tracking-tight text-[#1e3a8a] dark:text-[#9db8ff] mt-0.5 leading-none truncate">
             {pageTitle}
           </h1>
         </div>

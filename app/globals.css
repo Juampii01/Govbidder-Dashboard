@@ -90,17 +90,20 @@
 .dark {
   /* Paleta dark suavizada: slate-navy cómodo (no casi-negro) y con contraste
      claro entre fondo y tarjetas para que no se funda todo. */
-  --background:        #0f1626;
-  --background-subtle: #131b2e;
-  --foreground:        #f1f5f9;   /* off-white, más amable que el blanco puro */
-  --card:              #1a2336;   /* claramente más claro que el fondo */
-  --card-foreground:   #f1f5f9;
-  --card-elevated:     #232e47;
-  --popover:           #1a2336;
-  --popover-foreground:#f1f5f9;
-  --muted:             #232e47;
-  --muted-foreground:  rgba(255,255,255,0.62);
-  --subtle-foreground: rgba(255,255,255,0.38);
+  /* Fondo navy menos negro + tarjetas claramente más claras (en dark las
+     superficies se separan por luminosidad, no por borde). Texto secundario
+     subido para cumplir contraste AA. */
+  --background:        #131b2e;
+  --background-subtle: #172138;
+  --foreground:        #f3f5f9;
+  --card:              #1e293f;   /* salto visible respecto al fondo */
+  --card-foreground:   #f3f5f9;
+  --card-elevated:     #29364f;
+  --popover:           #1e293f;
+  --popover-foreground:#f3f5f9;
+  --muted:             #29364f;
+  --muted-foreground:  rgba(255,255,255,0.72);   /* secundario legible (AA) */
+  --subtle-foreground: rgba(255,255,255,0.50);
   --primary:           #E42D2C;
   --primary-hover:     #c42423;
   --primary-foreground:#ffffff;
@@ -110,11 +113,11 @@
   --secondary-hover:   #283654;
   --secondary-foreground:#f1f5f9;
   --secondary-tint:    rgba(30,58,138,0.22);
-  --border:            rgba(255,255,255,0.10);
-  --border-subtle:     rgba(255,255,255,0.06);
-  --border-strong:     rgba(255,255,255,0.18);
-  --input:             rgba(255,255,255,0.04);
-  --input-border:      rgba(255,255,255,0.10);
+  --border:            rgba(255,255,255,0.12);
+  --border-subtle:     rgba(255,255,255,0.07);
+  --border-strong:     rgba(255,255,255,0.20);
+  --input:             rgba(255,255,255,0.05);
+  --input-border:      rgba(255,255,255,0.12);
   --input-focus:       rgba(228,45,44,0.40);
   --ring:              rgba(228,45,44,0.40);
 }
