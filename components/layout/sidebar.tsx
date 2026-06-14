@@ -8,8 +8,7 @@ import {
   X, BarChart3, DollarSign, LayoutGrid, FileBarChart,
   Users2, ListTodo, Users, Layers, Wrench, BookOpen, CalendarDays,
   Home, ChevronLeft, ChevronRight, Rss, FormInput, Shield, LayoutTemplate,
-  Megaphone, Instagram, Youtube, Music2, MonitorPlay, Palette,
-  Search, FlaskConical, MessageSquare, LayoutList, Database,
+  Megaphone,
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { type Role, isAdminOrAbove } from "@/lib/types/role"
@@ -62,18 +61,7 @@ const NAV_GROUPS: NavGroup[] = [
     label: "Marketing",
     visible: adminOnly,
     items: [
-      { name: "KPIs",         href: "/marketing",                  icon: Megaphone   },
-      { name: "Instagram",    href: "/marketing/instagram",        icon: Instagram   },
-      { name: "YouTube",      href: "/marketing/youtube",          icon: Youtube     },
-      { name: "TikTok",       href: "/marketing/tiktok",           icon: Music2      },
-      { name: "Ads",          href: "/marketing/ads",              icon: MonitorPlay },
-      { name: "Contenido",    href: "/marketing/contenido",        icon: Palette     },
-      { name: "Investigación",href: "/marketing/investigacion",    icon: Search      },
-      { name: "Analizador",   href: "/marketing/analizador",       icon: FlaskConical},
-      { name: "AI",           href: "/marketing/ai",               icon: MessageSquare},
-      { name: "Tareas CD",    href: "/marketing/tareas",           icon: LayoutList  },
-      { name: "Bases",        href: "/marketing/bases",            icon: Database    },
-      { name: "Full View",    href: "/contenido",                  icon: Rss         },
+      { name: "Content", href: "/marketing", icon: Megaphone },
     ],
   },
   {
