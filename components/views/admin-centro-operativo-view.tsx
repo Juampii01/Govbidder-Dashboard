@@ -9,6 +9,13 @@ import {
 } from "lucide-react"
 import { cn } from "@/lib/utils"
 import { Portal } from "@/components/ui/portal"
+import { createClient } from "@/lib/supabase"
+
+/** Headers con el Bearer token de la sesión (las rutas /api lo requieren). */
+async function authHeaders(): Promise<Record<string, string>> {
+  const { data: { session } } = await createClient().auth.getSession()
+  return session ? { Authorization: `Bearer ${session.access_token}` } : {}
+}
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -17,7 +24,7 @@ type ResourceType = "link" | "doc" | "video" | "file"
 interface Item {
   id: string
   title: string
-  url: string
+  url: string | null
   description: string | null
   content: string | null
   category: string
@@ -212,147 +219,6 @@ Dar de alta a un nuevo cliente en todos los sistemas de GovBidder.
   ],
 }
 
-const MOCK_SEED: Omit<Item, "id" | "created_at">[] = [
-  {
-    title: "SOP Zapier — Automatizaciones internas",
-    url: "#",
-    description: "Qué automatizaciones existen, cómo funcionan y qué hacer si hay un error.",
-    content: `## ¿Qué hace esta herramienta?
-Zapier conecta automáticamente las herramientas del equipo de GovBidder y ejecuta tareas sin intervención manual.
-
-## Automatizaciones existentes
-- Zap 1: Nuevo lead en formulario → CRM (GovBidder)
-- Zap 2: Pago confirmado → Email de bienvenida al cliente
-- Zap 3: Reporte mensual enviado → Notificación en Slack
-
-## Herramientas que conecta
-→ Typeform → GovBidder CRM → Slack
-→ Stripe → Email (Gmail) → CRM
-
-## Cómo acceder
-- URL: https://zapier.com
-- Usuario: Ver gestor de claves del equipo
-- Documentación: https://zapier.com/help
-
-## Qué hacer si hay un error
-1. Ir a Zapier → Task History y ver el error exacto
-2. Verificar que los campos mapeados siguen existiendo en la fuente
-3. Revisar si el token de conexión expiró (reconectar la app)
-4. Si persiste: escalar a [responsable técnico]
-
-## Dónde revisar cada automatización
-- Panel de Zaps: https://zapier.com/app/zaps
-- Task History: https://zapier.com/app/history`,
-    category: "sop-sistemas",
-    type: "doc",
-  },
-  {
-    title: "SOP Onboarding — Alta de clientes",
-    url: "#",
-    description: "Proceso paso a paso para dar de alta un nuevo cliente.",
-    content: `## Objetivo
-Dar de alta a un nuevo cliente en todos los sistemas de GovBidder correctamente.
-
-## Paso a paso
-
-→ Paso 1: Crear perfil en el CRM
-   - Ir a: govbidder.com/admin/clients
-   - Completar: nombre, email, canal, programa, cuotas
-   - Estado inicial: "activo"
-
-→ Paso 2: Enviar accesos al cliente
-   - Herramienta: Gmail
-   - Template: [link al template de bienvenida]
-   - Asegurarse de incluir: usuario, contraseña temporal, link al portal
-
-→ Paso 3: Configurar automatizaciones en Zapier
-   - Verificar que se dispare la Zap de nuevo cliente
-   - Confirmar que el cliente aparece en el CRM
-
-→ Paso 4: Agendar primera llamada de kickoff
-   - Herramienta: Calendly
-   - Enviar link de agendamiento al cliente
-
-→ Paso 5: Confirmar onboarding completo
-   - Checklist: perfil en CRM ✓, accesos enviados ✓, llamada agendada ✓
-
-## Qué revisar si algo falla
-1. Si el email no llegó: verificar spam o error en dirección
-2. Si Zapier no se disparó: revisar Task History en Zapier
-3. Escalar a: [responsable]`,
-    category: "sop-operativos",
-    type: "doc",
-  },
-  {
-    title: "Plantillas internas de seguimiento",
-    url: "#",
-    description: "Plantillas del equipo para seguimiento semanal y reportes.",
-    content: `## Descripción
-Colección de plantillas que usa el equipo de GovBidder para el seguimiento interno de clientes y métricas.
-
-## Links
-- Plantilla semanal: [agregar link]
-- Plantilla de reporte mensual: [agregar link]
-- Plantilla de onboarding checklist: [agregar link]
-
-## Notas de uso
-Copiar la plantilla antes de usar. No editar el original.
-
-## Última revisión
-[Agregar fecha]`,
-    category: "recursos-internos",
-    type: "file",
-  },
-  {
-    title: "Links importantes del equipo",
-    url: "#",
-    description: "Links frecuentes del equipo: Drive, Notion, herramientas.",
-    content: `## Descripción
-Colección de links que el equipo usa frecuentemente.
-
-## Links
-- Drive del equipo: [agregar link]
-- Notion / base de conocimiento: [agregar link]
-- Portal GovBidder: https://govbidder.com
-- CRM interno: https://govbidder.com/admin/clients
-- Zapier: https://zapier.com
-- Panel de pagos: [agregar link]
-
-## Notas de uso
-Actualizar cuando se agreguen nuevas herramientas al stack.
-
-## Última revisión
-[Agregar fecha]`,
-    category: "recursos-internos",
-    type: "link",
-  },
-  {
-    title: "Acceso Zapier",
-    url: "https://zapier.com",
-    description: "Acceso a la cuenta de Zapier del equipo GovBidder.",
-    content: `## Herramienta
-Zapier — plataforma de automatizaciones
-
-## URL de acceso
-https://zapier.com
-
-## Credenciales
-- Email/usuario: Ver gestor de claves del equipo
-- Contraseña: Ver gestor de claves del equipo (NO guardar aquí)
-
-## Permisos / plan
-Plan Profesional — incluye Zaps ilimitadas y acceso multi-usuario
-
-## Quién tiene acceso
-- [Agregar personas con acceso]
-
-## Notas
-Renovación anual. Verificar fecha de vencimiento en la cuenta.`,
-    category: "accesos",
-    type: "link",
-  },
-]
-
 // ─── Content Renderer ─────────────────────────────────────────────────────────
 
 function ContentRenderer({ content }: { content: string }) {
@@ -439,7 +305,7 @@ function SOPModal({
     try {
       const res = await fetch("/api/resources", {
         method: "PATCH",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", ...(await authHeaders()) },
         body: JSON.stringify({ id: item.id, content }),
       })
       const data = await res.json()
@@ -456,7 +322,7 @@ function SOPModal({
     if (!confirm(`¿Eliminar "${item.title}"?`)) return
     setDeleting(true)
     try {
-      await fetch(`/api/resources?id=${item.id}`, { method: "DELETE" })
+      await fetch(`/api/resources?id=${item.id}`, { method: "DELETE", headers: await authHeaders() })
       onDelete(item.id)
       onClose()
     } finally { setDeleting(false) }
@@ -665,7 +531,7 @@ function AddItemForm({
     try {
       const res = await fetch("/api/resources", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", ...(await authHeaders()) },
         body: JSON.stringify({ ...form, category: sectionId }),
       })
       const data = await res.json()
@@ -935,24 +801,17 @@ export function AdminCentroOperativoView() {
   const [activeSection, setActiveSection] = useState<SectionId>("sop-sistemas")
 
   useEffect(() => {
-    fetch("/api/resources")
-      .then(r => r.json())
-      .then(d => {
-        const fetched: Item[] = d.resources ?? []
-        const opCats: string[] = SECTIONS.map(s => s.id)
-        const existing = fetched.filter(i => opCats.includes(i.category))
-        if (existing.length === 0) {
-          const seeded = MOCK_SEED.map((s, idx) => ({
-            ...s,
-            id: `mock-${idx}`,
-            created_at: new Date().toISOString(),
-          }))
-          setItems([...fetched.filter(i => !opCats.includes(i.category)), ...seeded])
-        } else {
-          setItems(fetched)
+    ;(async () => {
+      try {
+        const res = await fetch("/api/resources", { headers: await authHeaders() })
+        if (res.ok) {
+          const d = await res.json()
+          setItems(d.resources ?? [])
         }
-      })
-      .finally(() => setLoading(false))
+      } finally {
+        setLoading(false)
+      }
+    })()
   }, [])
 
   const section = SECTIONS.find(s => s.id === activeSection)!

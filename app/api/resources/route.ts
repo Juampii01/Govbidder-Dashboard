@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server"
 import { createServiceClient } from "@/lib/supabase-service"
-import { requireUser, requireAdmin } from "@/lib/api-auth"
+import { requireUser, requireAdmin, pickAllowed } from "@/lib/api-auth"
 
 export async function GET(req: NextRequest) {
   const auth = await requireUser(req)
@@ -22,10 +22,14 @@ export async function POST(req: NextRequest) {
   if ("fail" in auth) return auth.fail
 
   const body = await req.json()
-  const { title, url, description, category, type } = body
+  const { title, url, description, content, category, type } = body
 
-  if (!title?.trim() || !url?.trim()) {
-    return NextResponse.json({ error: "Título y URL son requeridos" }, { status: 400 })
+  if (!title?.trim()) {
+    return NextResponse.json({ error: "Título es requerido" }, { status: 400 })
+  }
+  // Los links necesitan URL; los docs/SOPs viven en `content` y pueden no tenerla.
+  if ((type ?? "link") === "link" && !url?.trim()) {
+    return NextResponse.json({ error: "URL es requerida para recursos tipo link" }, { status: 400 })
   }
 
   const db = createServiceClient()
@@ -33,11 +37,34 @@ export async function POST(req: NextRequest) {
     .from("resources")
     .insert({
       title:       title.trim(),
-      url:         url.trim(),
+      url:         url?.trim() || null,
       description: description?.trim() || null,
+      content:     typeof content === "string" && content.trim() ? content : null,
       category:    category?.trim() || "General",
       type:        type || "link",
     })
+    .select()
+    .single()
+
+  if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+  return NextResponse.json({ resource: data })
+}
+
+// PATCH — editar un recurso (el Centro Operativo edita el content de los SOPs)
+export async function PATCH(req: NextRequest) {
+  const auth = await requireAdmin(req)
+  if ("fail" in auth) return auth.fail
+
+  const body = await req.json()
+  const { id } = body
+  if (!id) return NextResponse.json({ error: "id requerido" }, { status: 400 })
+  const updates = pickAllowed(body, ["title", "url", "description", "content", "category", "type"])
+
+  const db = createServiceClient()
+  const { data, error } = await db
+    .from("resources")
+    .update(updates)
+    .eq("id", id)
     .select()
     .single()
 

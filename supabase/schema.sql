@@ -241,8 +241,9 @@ create policy "service_role_all_followups" on public.crm_followups
 create table if not exists public.resources (
   id          uuid primary key default gen_random_uuid(),
   title       text not null,
-  url         text not null,
+  url         text,
   description text,
+  content     text,
   category    text not null default 'General',
   type        text not null default 'link',
   created_at  timestamptz not null default now()
