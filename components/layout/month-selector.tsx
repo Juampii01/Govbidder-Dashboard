@@ -59,20 +59,16 @@ export function MonthSelector({ value, onChange, enabledMonths }: MonthSelectorP
         onChange?.(v)
       }}
     >
-      <SelectTrigger className="w-[110px] sm:w-[140px] bg-white/5 text-slate-900 border-border text-xs sm:text-sm">
-        <SelectValue className="text-slate-900" />
+      <SelectTrigger className="w-[110px] sm:w-[140px] bg-card text-foreground border-border text-xs sm:text-sm">
+        <SelectValue />
       </SelectTrigger>
-      <SelectContent className="bg-black text-slate-900 border-border shadow-xl">
+      <SelectContent className="bg-popover text-popover-foreground border-border shadow-xl">
         {months.map((m) => (
           <SelectItem
             key={m.value}
             value={m.value}
             disabled={m.disabled}
-            className={
-              m.disabled
-                ? "text-slate-400"
-                : "text-slate-900 data-[highlighted]:bg-white/10 data-[highlighted]:text-slate-900 data-[state=checked]:bg-white/10 data-[state=checked]:text-slate-900"
-            }
+            className={m.disabled ? "text-muted-foreground" : undefined}
           >
             {m.value}
           </SelectItem>
