@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import { createClient } from "@/lib/supabase"
 import { createServiceClient } from "@/lib/supabase-service"
 import { isAdminOrAbove, isSuperAdminOrAbove, type Role } from "@/lib/types/role"
+import { requireUser } from "@/lib/api-auth"
 
 async function getUser(req: NextRequest) {
   const token = req.headers.get("authorization")?.replace("Bearer ", "")
@@ -10,12 +11,23 @@ async function getUser(req: NextRequest) {
   return user
 }
 
-// GET /api/admin/team — list all team members (profiles enriched with auth data)
+// GET /api/admin/team — list all team members.
+// Admins reciben el payload completo (enriquecido con auth.users). El resto
+// recibe solo lo mínimo que necesita la UI compartida (conteo por depto en
+// Inicio): sin emails, last_sign_in, notas ni contadores.
 export async function GET(req: NextRequest) {
-  const user = await getUser(req)
-  if (!user) return NextResponse.json({ error: "No autorizado" }, { status: 401 })
+  const auth = await requireUser(req)
+  if ("fail" in auth) return auth.fail
 
   const db = createServiceClient()
+
+  if (!isAdminOrAbove(auth.caller.role)) {
+    const { data, error } = await db
+      .from("profiles")
+      .select("id, full_name, department_id, avatar_url, status")
+    if (error) return NextResponse.json({ error: error.message }, { status: 500 })
+    return NextResponse.json({ members: data ?? [] })
+  }
 
   const [profilesRes, authRes] = await Promise.all([
     db.from("profiles").select("*"),

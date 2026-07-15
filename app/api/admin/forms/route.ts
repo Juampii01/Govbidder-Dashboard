@@ -1,18 +1,17 @@
 import { NextRequest, NextResponse } from "next/server"
-import { createClient } from "@/lib/supabase"
 import { createServiceClient } from "@/lib/supabase-service"
+import { requireAdmin, pickAllowed } from "@/lib/api-auth"
 
-async function getUser(req: NextRequest) {
-  const token = req.headers.get("authorization")?.replace("Bearer ", "")
-  if (!token) return null
-  const { data: { user } } = await createClient().auth.getUser(token)
-  return user
-}
+// Columnas editables vía PATCH (evita mass assignment).
+const FORM_EDITABLE = [
+  "slug", "title", "description", "fields",
+  "default_priority", "default_tags", "default_assignees", "is_active",
+] as const
 
-// GET — list all forms with submission counts
+// GET — list all forms with submission counts (admin only)
 export async function GET(req: NextRequest) {
-  const user = await getUser(req)
-  if (!user) return NextResponse.json({ error: "No autorizado" }, { status: 401 })
+  const auth = await requireAdmin(req)
+  if ("fail" in auth) return auth.fail
 
   const db = createServiceClient()
   const { data, error } = await db
@@ -23,10 +22,11 @@ export async function GET(req: NextRequest) {
   return NextResponse.json({ forms: data ?? [] })
 }
 
-// POST — create a new form
+// POST — create a new form (admin only)
 export async function POST(req: NextRequest) {
-  const user = await getUser(req)
-  if (!user) return NextResponse.json({ error: "No autorizado" }, { status: 401 })
+  const auth = await requireAdmin(req)
+  if ("fail" in auth) return auth.fail
+  const { user } = auth.caller
 
   let body: any
   try { body = await req.json() } catch { return NextResponse.json({ error: "JSON inválido" }, { status: 400 }) }
@@ -67,17 +67,18 @@ export async function POST(req: NextRequest) {
   return NextResponse.json({ form: data })
 }
 
-// PATCH — update an existing form
+// PATCH — update an existing form (admin only)
 export async function PATCH(req: NextRequest) {
-  const user = await getUser(req)
-  if (!user) return NextResponse.json({ error: "No autorizado" }, { status: 401 })
+  const auth = await requireAdmin(req)
+  if ("fail" in auth) return auth.fail
 
   const body = await req.json()
-  const { id, ...updates } = body
+  const { id } = body
   if (!id) return NextResponse.json({ error: "id requerido" }, { status: 400 })
+  const updates = pickAllowed(body, FORM_EDITABLE)
 
   // Slug validation if changed
-  if (updates.slug && !/^[a-z0-9-]+$/.test(updates.slug)) {
+  if (typeof updates.slug === "string" && !/^[a-z0-9-]+$/.test(updates.slug)) {
     return NextResponse.json({ error: "Slug solo puede tener letras minúsculas, números y guiones" }, { status: 400 })
   }
 
@@ -93,10 +94,11 @@ export async function PATCH(req: NextRequest) {
   return NextResponse.json({ form: data })
 }
 
-// DELETE — remove a form (cascades to submissions)
+// DELETE — remove a form (cascades to submissions) (admin only)
 export async function DELETE(req: NextRequest) {
-  const user = await getUser(req)
-  if (!user) return NextResponse.json({ error: "No autorizado" }, { status: 401 })
+  const auth = await requireAdmin(req)
+  if ("fail" in auth) return auth.fail
+  const { user } = auth.caller
 
   const { id } = await req.json()
   if (!id) return NextResponse.json({ error: "id requerido" }, { status: 400 })

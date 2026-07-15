@@ -1,35 +1,31 @@
 import { NextRequest, NextResponse } from "next/server"
-import { createClient } from "@/lib/supabase"
 import { createServiceClient } from "@/lib/supabase-service"
-import { isAdminOrAbove, type Role } from "@/lib/types/role"
+import { isAdminOrAbove } from "@/lib/types/role"
+import { requireUser, requireAdmin, pickAllowed } from "@/lib/api-auth"
 
-async function getUser(req: NextRequest) {
-  const token = req.headers.get("authorization")?.replace("Bearer ", "")
-  if (!token) return null
-  const { data: { user } } = await createClient().auth.getUser(token)
-  return user
-}
+// Columnas editables vía PATCH (evita mass assignment).
+const PERSONA_EDITABLE = [
+  "name", "email", "phone", "instagram", "scheduled_at",
+  "call_status", "sales_status", "owner", "source", "rating", "notes",
+] as const
 
 export async function GET(req: NextRequest) {
-  const user = await getUser(req)
-  if (!user) return NextResponse.json({ error: "No autorizado" }, { status: 401 })
+  const auth = await requireUser(req)
+  if ("fail" in auth) return auth.fail
+  const caller = auth.caller
 
   const db = createServiceClient()
 
   // Scoping para empleados: ven sólo las personas que tienen asignadas (owner = email).
   // Admins y super_admin ven todo.
-  const { data: callerProfile } = await db
-    .from("profiles").select("role").eq("id", user.id).single()
-  const callerRole = (callerProfile?.role as Role | undefined) ?? "user"
-
   let query = db
     .from("personas_agendadas")
     .select("*")
     .order("scheduled_at", { ascending: false, nullsFirst: false })
     .order("created_at", { ascending: false })
 
-  if (!isAdminOrAbove(callerRole)) {
-    query = query.eq("owner", user.email ?? "")
+  if (!isAdminOrAbove(caller.role)) {
+    query = query.eq("owner", caller.user.email ?? "")
   }
 
   const { data, error } = await query
@@ -43,8 +39,8 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  const user = await getUser(req)
-  if (!user) return NextResponse.json({ error: "No autorizado" }, { status: 401 })
+  const auth = await requireUser(req)
+  if ("fail" in auth) return auth.fail
 
   const body = await req.json()
   if (!body?.name?.trim()) {
@@ -75,14 +71,27 @@ export async function POST(req: NextRequest) {
 }
 
 export async function PATCH(req: NextRequest) {
-  const user = await getUser(req)
-  if (!user) return NextResponse.json({ error: "No autorizado" }, { status: 401 })
+  const auth = await requireUser(req)
+  if ("fail" in auth) return auth.fail
+  const caller = auth.caller
 
   const body = await req.json()
-  const { id, ...updates } = body
+  const { id } = body
   if (!id) return NextResponse.json({ error: "id requerido" }, { status: 400 })
+  const updates = pickAllowed(body, PERSONA_EDITABLE)
 
   const db = createServiceClient()
+
+  // Empleados solo pueden editar personas que tienen asignadas (mismo scope del GET).
+  if (!isAdminOrAbove(caller.role)) {
+    const { data: prev } = await db
+      .from("personas_agendadas").select("owner").eq("id", id).single()
+    if (!prev) return NextResponse.json({ error: "Persona no encontrada" }, { status: 404 })
+    if (prev.owner !== (caller.user.email ?? "")) {
+      return NextResponse.json({ error: "No podés editar esta persona" }, { status: 403 })
+    }
+  }
+
   const { data, error } = await db
     .from("personas_agendadas")
     .update(updates)
@@ -95,8 +104,8 @@ export async function PATCH(req: NextRequest) {
 }
 
 export async function DELETE(req: NextRequest) {
-  const user = await getUser(req)
-  if (!user) return NextResponse.json({ error: "No autorizado" }, { status: 401 })
+  const auth = await requireAdmin(req)
+  if ("fail" in auth) return auth.fail
 
   const { id } = await req.json()
   if (!id) return NextResponse.json({ error: "id requerido" }, { status: 400 })

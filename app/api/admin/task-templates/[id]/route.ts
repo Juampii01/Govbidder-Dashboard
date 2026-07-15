@@ -1,27 +1,27 @@
 import { NextRequest, NextResponse } from "next/server"
-import { createClient } from "@/lib/supabase"
 import { createServiceClient } from "@/lib/supabase-service"
+import { requireAdmin, pickAllowed } from "@/lib/api-auth"
 
-async function getUser(req: NextRequest) {
-  const token = req.headers.get("authorization")?.replace("Bearer ", "")
-  if (!token) return null
-  const { data: { user } } = await createClient().auth.getUser(token)
-  return user
-}
+// Columnas editables vía PATCH (evita mass assignment).
+const TEMPLATE_EDITABLE = [
+  "name", "description", "icon", "color",
+  "parent_title", "parent_description", "parent_priority", "parent_tags",
+  "parent_assignees", "parent_due_offset_days", "subtasks", "is_default",
+] as const
 
-// PATCH — update a template
+// PATCH — update a template (admin only)
 export async function PATCH(req: NextRequest, ctx: { params: Promise<{ id: string }> }) {
-  const user = await getUser(req)
-  if (!user) return NextResponse.json({ error: "No autorizado" }, { status: 401 })
+  const auth = await requireAdmin(req)
+  if ("fail" in auth) return auth.fail
 
   const { id } = await ctx.params
   const body = await req.json()
-  delete body.id  // prevent id override
+  const updates = pickAllowed(body, TEMPLATE_EDITABLE)
 
   const db = createServiceClient()
   const { data, error } = await db
     .from("task_templates")
-    .update(body)
+    .update(updates)
     .eq("id", id)
     .select()
     .single()
@@ -29,10 +29,10 @@ export async function PATCH(req: NextRequest, ctx: { params: Promise<{ id: strin
   return NextResponse.json({ template: data })
 }
 
-// DELETE — remove template
+// DELETE — remove template (admin only)
 export async function DELETE(req: NextRequest, ctx: { params: Promise<{ id: string }> }) {
-  const user = await getUser(req)
-  if (!user) return NextResponse.json({ error: "No autorizado" }, { status: 401 })
+  const auth = await requireAdmin(req)
+  if ("fail" in auth) return auth.fail
   const { id } = await ctx.params
 
   const db = createServiceClient()

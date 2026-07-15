@@ -1,27 +1,29 @@
 import { NextRequest, NextResponse } from "next/server"
-import { createClient } from "@/lib/supabase"
 import { createServiceClient } from "@/lib/supabase-service"
-import { isAdminOrAbove, type Role } from "@/lib/types/role"
+import { isAdminOrAbove } from "@/lib/types/role"
+import { requireUser, pickAllowed, type Caller } from "@/lib/api-auth"
 
-async function getUser(req: NextRequest) {
-  const token = req.headers.get("authorization")?.replace("Bearer ", "")
-  if (!token) return null
-  const { data: { user } } = await createClient().auth.getUser(token)
-  return user
-}
+// Columnas editables vía PATCH (evita mass assignment de created_by, etc.).
+const TASK_EDITABLE = [
+  "title", "description", "status", "priority", "owner", "assignees", "tags",
+  "due_at", "persona_id", "parent_id", "department_id", "sort_order",
+  "is_recurrence_template", "recurrence_rule", "recurrence_until",
+] as const
 
-/** Fetch caller profile (role + department) for scoping decisions. */
-async function getCallerProfile(userId: string) {
-  const db = createServiceClient()
-  const { data } = await db
-    .from("profiles")
-    .select("role, department_id")
-    .eq("id", userId)
-    .single()
-  return {
-    role: (data?.role as Role | undefined) ?? "user",
-    departmentId: ((data as any)?.department_id as string | null) ?? null,
-  }
+/** ¿El caller puede tocar esta task? (admins siempre; el resto si es suya o de su depto) */
+function canTouchTask(
+  caller: Caller,
+  task: { owner: string | null; assignees: string[] | null; department_id: string | null; created_by: string | null },
+): boolean {
+  if (isAdminOrAbove(caller.role)) return true
+  const email = caller.user.email ?? ""
+  if (!email) return false
+  return (
+    task.owner === email ||
+    (task.assignees ?? []).includes(email) ||
+    task.created_by === email ||
+    (caller.departmentId !== null && task.department_id === caller.departmentId)
+  )
 }
 
 // GET /api/admin/tasks
@@ -32,8 +34,9 @@ async function getCallerProfile(userId: string) {
 //   ?parent_id=xxx      get subtasks of a parent
 //   ?include_subtasks=true  default behavior returns top-level only; set true to also return all
 export async function GET(req: NextRequest) {
-  const user = await getUser(req)
-  if (!user) return NextResponse.json({ error: "No autorizado" }, { status: 401 })
+  const auth = await requireUser(req)
+  if ("fail" in auth) return auth.fail
+  const caller = auth.caller
 
   const personaId       = req.nextUrl.searchParams.get("persona_id")
   const owner           = req.nextUrl.searchParams.get("owner")
@@ -47,9 +50,8 @@ export async function GET(req: NextRequest) {
 
   // Scoping para empleados: ven solo tasks de su depto + las que tienen asignadas
   // por owner/assignees. Admins y super_admin ven todo.
-  const caller = await getCallerProfile(user.id)
   if (!isAdminOrAbove(caller.role)) {
-    const email = user.email ?? ""
+    const email = caller.user.email ?? ""
     if (caller.departmentId) {
       query = query.or(
         `department_id.eq.${caller.departmentId},owner.eq.${email},assignees.cs.{${email}}`
@@ -76,8 +78,9 @@ export async function GET(req: NextRequest) {
 }
 
 export async function POST(req: NextRequest) {
-  const user = await getUser(req)
-  if (!user) return NextResponse.json({ error: "No autorizado" }, { status: 401 })
+  const auth = await requireUser(req)
+  if ("fail" in auth) return auth.fail
+  const { user } = auth.caller
 
   const body = await req.json()
   if (!body?.title?.trim()) {
@@ -118,24 +121,35 @@ export async function POST(req: NextRequest) {
 }
 
 export async function PATCH(req: NextRequest) {
-  const user = await getUser(req)
-  if (!user) return NextResponse.json({ error: "No autorizado" }, { status: 401 })
+  const auth = await requireUser(req)
+  if ("fail" in auth) return auth.fail
+  const caller = auth.caller
 
   const body = await req.json()
-  const { id, ...updates } = body
+  const { id } = body
   if (!id) return NextResponse.json({ error: "id requerido" }, { status: 400 })
+  const updates = pickAllowed(body, TASK_EDITABLE)
+
+  const db = createServiceClient()
+
+  // Snapshot: sirve para el activity log Y para el check de ownership.
+  const { data: prev } = await db
+    .from("tasks")
+    .select("status, priority, assignees, owner, department_id, created_by")
+    .eq("id", id)
+    .single()
+  if (!prev) return NextResponse.json({ error: "Task no encontrada" }, { status: 404 })
+
+  if (!canTouchTask(caller, prev)) {
+    return NextResponse.json({ error: "No podés editar esta tarea" }, { status: 403 })
+  }
 
   // Auto-stamp completed_at on status flip
-  if (updates.status === "completada" && !updates.completed_at) {
+  if (updates.status === "completada") {
     updates.completed_at = new Date().toISOString()
   } else if (updates.status && updates.status !== "completada") {
     updates.completed_at = null
   }
-
-  const db = createServiceClient()
-
-  // Get current snapshot for activity log
-  const { data: prev } = await db.from("tasks").select("status, priority, assignees").eq("id", id).single()
 
   const { data, error } = await db
     .from("tasks")
@@ -147,12 +161,12 @@ export async function PATCH(req: NextRequest) {
   if (error) return NextResponse.json({ error: error.message }, { status: 500 })
 
   // Log meaningful changes
-  const author = user.email || user.id
+  const author = caller.user.email || caller.user.id
   const events: string[] = []
-  if (prev && updates.status && prev.status !== updates.status) {
+  if (updates.status && prev.status !== updates.status) {
     events.push(`Estado: ${prev.status} → ${updates.status}`)
   }
-  if (prev && updates.priority && prev.priority !== updates.priority) {
+  if (updates.priority && prev.priority !== updates.priority) {
     events.push(`Prioridad: ${prev.priority} → ${updates.priority}`)
   }
   for (const txt of events) {
@@ -163,16 +177,31 @@ export async function PATCH(req: NextRequest) {
 }
 
 export async function DELETE(req: NextRequest) {
-  const user = await getUser(req)
-  if (!user) return NextResponse.json({ error: "No autorizado" }, { status: 401 })
+  const auth = await requireUser(req)
+  if ("fail" in auth) return auth.fail
+  const caller = auth.caller
 
   const { id } = await req.json()
   if (!id) return NextResponse.json({ error: "id requerido" }, { status: 400 })
 
   const db = createServiceClient()
 
-  // Snapshot for audit
-  const { data: before } = await db.from("tasks").select("title,status,priority").eq("id", id).maybeSingle()
+  // Snapshot for audit + ownership check
+  const { data: before } = await db
+    .from("tasks")
+    .select("title,status,priority,owner,created_by")
+    .eq("id", id)
+    .maybeSingle()
+  if (!before) return NextResponse.json({ error: "Task no encontrada" }, { status: 404 })
+
+  // Borrar es más destructivo que editar: solo admins, el creador o el owner.
+  const email = caller.user.email ?? ""
+  const canDelete =
+    isAdminOrAbove(caller.role) ||
+    (email !== "" && (before.created_by === email || before.owner === email))
+  if (!canDelete) {
+    return NextResponse.json({ error: "No podés borrar esta tarea" }, { status: 403 })
+  }
 
   const { error } = await db.from("tasks").delete().eq("id", id)
   if (error) return NextResponse.json({ error: error.message }, { status: 500 })
@@ -180,7 +209,7 @@ export async function DELETE(req: NextRequest) {
   // Audit (fire and forget)
   const { audit } = await import("@/lib/audit")
   await audit(req, {
-    actor:     user.email ?? null,
+    actor:     caller.user.email ?? null,
     action:    "task.delete",
     entity:    "task",
     entity_id: id,
