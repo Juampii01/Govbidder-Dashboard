@@ -5,6 +5,14 @@ import {
   Link2, FileText, Video, File, Plus, Trash2, Search,
   ExternalLink, X, Loader2, FolderOpen,
 } from "lucide-react"
+import { createClient } from "@/lib/supabase"
+import { useConfirm } from "@/components/ui/confirm-dialog"
+
+/** Headers con el Bearer token de la sesión (las rutas /api lo requieren). */
+async function authHeaders(): Promise<Record<string, string>> {
+  const { data: { session } } = await createClient().auth.getSession()
+  return session ? { Authorization: `Bearer ${session.access_token}` } : {}
+}
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 
@@ -54,7 +62,7 @@ function AddResourceForm({ onAdd, onClose }: { onAdd: (r: Resource) => void; onC
     try {
       const res = await fetch("/api/resources", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { "Content-Type": "application/json", ...(await authHeaders()) },
         body: JSON.stringify(form),
       })
       const data = await res.json()
@@ -153,18 +161,25 @@ function ResourceCard({ resource, onDelete }: { resource: Resource; onDelete: (i
   const cfg = TYPE_CONFIG[resource.type] ?? TYPE_CONFIG.link
   const Icon = cfg.icon
   const [deleting, setDeleting] = useState(false)
+  const { confirm: confirmDialog, dialog } = useConfirm()
 
   const handleDelete = async () => {
-    if (!confirm(`¿Eliminar "${resource.title}"?`)) return
+    const ok = await confirmDialog({
+      title: `¿Eliminar "${resource.title}"?`,
+      confirmLabel: "Eliminar",
+      destructive: true,
+    })
+    if (!ok) return
     setDeleting(true)
     try {
-      await fetch(`/api/resources?id=${resource.id}`, { method: "DELETE" })
+      await fetch(`/api/resources?id=${resource.id}`, { method: "DELETE", headers: await authHeaders() })
       onDelete(resource.id)
     } finally { setDeleting(false) }
   }
 
   return (
     <div className="group rounded-2xl border border-border bg-card p-4 flex flex-col gap-3 hover:border-border transition-all">
+      {dialog}
       <div className="flex items-start justify-between gap-2">
         <div className="flex items-center gap-2.5 min-w-0">
           <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-muted flex-shrink-0">
@@ -213,10 +228,17 @@ export function ResourcesView() {
   const [showForm, setShowForm] = useState(false)
 
   useEffect(() => {
-    fetch("/api/resources")
-      .then(r => r.json())
-      .then(d => setResources(d.resources ?? []))
-      .finally(() => setLoading(false))
+    ;(async () => {
+      try {
+        const res = await fetch("/api/resources", { headers: await authHeaders() })
+        if (res.ok) {
+          const d = await res.json()
+          setResources(d.resources ?? [])
+        }
+      } finally {
+        setLoading(false)
+      }
+    })()
   }, [])
 
   const categories = ["Todos", ...Array.from(new Set(resources.map(r => r.category))).sort()]
@@ -235,11 +257,7 @@ export function ResourcesView() {
       {/* Header */}
       <div className="flex items-center justify-between gap-4 flex-wrap">
         <div>
-          <div className="flex items-center gap-2.5 mb-1">
-            <span className="h-4 w-[3px] rounded-full bg-[#1e3a8a]" />
-            <h1 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">Biblioteca</h1>
-          </div>
-          <p className="text-xs text-muted-foreground ml-[18px]">Links, docs y recursos guardados</p>
+          <p className="text-[13px] text-muted-foreground">Links, docs y recursos guardados</p>
         </div>
         <button
           onClick={() => setShowForm(v => !v)}

@@ -23,27 +23,31 @@ type CurrentUser = {
   clientId: string
 }
 
+// Título por ruta. Regla: el label del sidebar y este título tienen que
+// coincidir para las entradas de primer nivel (Inicio, Performance, Content…).
 const PAGE_TITLES: Record<string, string> = {
-  "/inicio":                      "Página Principal",
+  "/inicio":                      "Inicio",
   "/performance":                 "Performance",
   "/operacion":                   "Operación",
   "/configuracion":               "Configuración",
-  "/dashboard":                   "Panel",
-  "/sales":                       "Ingresos",
-  "/metrics":                     "Métricas",
+  "/dashboard":                   "Performance",
+  "/sales":                       "Performance",
+  "/metrics":                     "Performance",
   "/tools":                       "Herramientas",
   "/calendar":                    "Agenda",
   "/recursos":                    "Recursos",
   "/admin/personas":              "Personas Agendadas",
   "/admin/tasks":                 "Tareas",
   "/admin/team":                  "Equipo",
+  "/admin/departments":           "Departamentos",
   "/admin/reports":               "Cargar Métricas",
   "/admin/centro-operativo":      "Centro Operativo",
   "/admin/activity":               "Actividad",
   "/admin/forms":                  "Forms públicos",
   "/admin/task-templates":         "Templates de tareas",
-  "/contenido":                    "Contenido",
-  "/marketing":                    "Marketing · KPIs",
+  "/admin/audit-log":              "Audit Log",
+  "/contenido":                    "Content",
+  "/marketing":                    "Content",
   "/marketing/instagram":          "Instagram",
   "/marketing/youtube":            "YouTube",
   "/marketing/tiktok":             "TikTok",

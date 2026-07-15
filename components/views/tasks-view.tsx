@@ -26,6 +26,7 @@ import {
   CheckCircle2, Circle, Clock, User, Search, Keyboard,
   ArrowDownUp, ChevronDown, Inbox, CheckSquare, Square,
   Sparkles, Layers, Download, SlidersHorizontal, GripVertical, Upload,
+  MoreHorizontal,
 } from "lucide-react"
 
 // ─── Types ────────────────────────────────────────────────────────────────────
@@ -568,7 +569,7 @@ function DetailDrawer({
           {tab === "detail" && (
             <>
               {/* Status + priority */}
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="space-y-1.5">
                   <p className="text-[10px] font-bold uppercase tracking-widest text-[#1e3a8a]/60">Estado</p>
                   <select
@@ -676,7 +677,7 @@ function DetailDrawer({
                   </div>
                   {(task as any).is_recurrence_template && (
                     <>
-                      <div className="grid grid-cols-2 gap-2">
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         <select
                           value={(task as any).recurrence_rule ?? "weekly"}
                           onChange={e => onPatch(task.id, { recurrence_rule: e.target.value } as any)}
@@ -865,7 +866,7 @@ function NewTaskModal({
             <textarea value={description} onChange={e => setDescription(e.target.value)} placeholder="Detalle..." rows={3} className={`${inputCls} resize-none`} />
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div className="space-y-1.5">
               <p className="text-[10px] font-bold uppercase tracking-widest text-[#1e3a8a]/60">Prioridad</p>
               <select value={priority} onChange={e => setPriority(e.target.value as Priority)} className={inputCls + " capitalize"}>
@@ -1345,6 +1346,7 @@ export function TasksView() {
   const [showAiExtract, setShowAiExtract] = useState(false)
   const [showTemplates, setShowTemplates] = useState(false)
   const [showImport,    setShowImport]    = useState(false)
+  const [showTools,     setShowTools]     = useState(false)
   const [currentEmail,  setCurrentEmail]  = useState<string>("")
   const [draggingId,    setDraggingId]    = useState<string | null>(null)
   const [overColumn,    setOverColumn]    = useState<Status | null>(null)
@@ -1977,7 +1979,6 @@ export function TasksView() {
         {/* ─── Header ──────────────────────────────────────────────────── */}
         <div className="flex flex-wrap items-start justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-bold text-[#1e3a8a] tracking-tight">Tareas</h1>
             <p className="text-sm text-muted-foreground mt-0.5">
               {topLevel.length} {topLevel.length === 1 ? "tarea" : "tareas"}
               {counts.overdue > 0 && (
@@ -1991,7 +1992,7 @@ export function TasksView() {
             {/* View toggle */}
             <div className="inline-flex h-9 rounded-xl border border-border bg-card p-0.5">
               {[
-                { k: "board" as ViewMode,    Icon: LayoutGrid,   label: "Board",      shortcut: "1" },
+                { k: "board" as ViewMode,    Icon: LayoutGrid,   label: "Tablero",    shortcut: "1" },
                 { k: "list" as ViewMode,     Icon: List,         label: "Lista",      shortcut: "2" },
                 { k: "calendar" as ViewMode, Icon: CalendarDays, label: "Calendario", shortcut: "3" },
               ].map(v => (
@@ -2026,43 +2027,42 @@ export function TasksView() {
               </select>
             )}
 
-            <button
-              onClick={() => setShowTemplates(true)}
-              className="hidden sm:flex items-center gap-1.5 h-9 rounded-xl border border-border bg-card px-3 text-[12px] font-semibold text-muted-foreground hover:border-[#1e3a8a]/30 hover:text-[#1e3a8a] transition-all"
-              title="Aplicar template (T)"
-            >
-              <Layers className="h-3.5 w-3.5" />
-              Templates
-            </button>
-            <button
-              onClick={() => setShowAiExtract(true)}
-              className="hidden sm:flex items-center gap-1.5 h-9 rounded-xl border border-[#1e3a8a]/25 bg-gradient-to-br from-[#E42D2C]/[0.05] to-[#1e3a8a]/[0.05] px-3 text-[12px] font-semibold text-[#1e3a8a] hover:border-[#1e3a8a]/40 hover:from-[#E42D2C]/[0.08] hover:to-[#1e3a8a]/[0.08] transition-all"
-              title="Crear tareas desde texto con IA (I)"
-            >
-              <Sparkles className="h-3.5 w-3.5" />
-              IA Extract
-            </button>
-            <button
-              onClick={() => setShowImport(true)}
-              className="hidden md:flex h-9 w-9 items-center justify-center rounded-xl border border-border bg-card text-muted-foreground hover:text-[#1e3a8a] hover:border-[#1e3a8a]/30 transition-all"
-              title="Importar CSV"
-            >
-              <Upload className="h-4 w-4" />
-            </button>
-            <button
-              onClick={handleExportCSV}
-              className="hidden md:flex h-9 w-9 items-center justify-center rounded-xl border border-border bg-card text-muted-foreground hover:text-[#1e3a8a] hover:border-[#1e3a8a]/30 transition-all"
-              title="Exportar CSV"
-            >
-              <Download className="h-4 w-4" />
-            </button>
-            <button
-              onClick={() => setShowShortcuts(true)}
-              className="hidden md:flex h-9 w-9 items-center justify-center rounded-xl border border-border bg-card text-muted-foreground hover:text-[#1e3a8a] hover:border-[#1e3a8a]/30 transition-all"
-              title="Atajos (?)"
-            >
-              <Keyboard className="h-4 w-4" />
-            </button>
+            {/* Herramientas secundarias colapsadas: menos ruido en el header */}
+            <div className="relative">
+              <button
+                onClick={() => setShowTools(v => !v)}
+                className="flex h-9 w-9 items-center justify-center rounded-xl border border-border bg-card text-muted-foreground hover:text-[#1e3a8a] hover:border-[#1e3a8a]/30 transition-all"
+                title="Más herramientas"
+              >
+                <MoreHorizontal className="h-4 w-4" />
+              </button>
+              {showTools && (
+                <>
+                  <div className="fixed inset-0 z-40" onClick={() => setShowTools(false)} />
+                  <div className="absolute right-0 mt-2 w-60 z-50 overflow-hidden rounded-xl border border-border bg-popover py-1 shadow-[0_20px_40px_rgba(15,23,42,0.12)]">
+                    {[
+                      { Icon: Sparkles, label: "Crear con IA",       hint: "I", fn: () => setShowAiExtract(true) },
+                      { Icon: Layers,   label: "Aplicar template",   hint: "T", fn: () => setShowTemplates(true) },
+                      { Icon: Upload,   label: "Importar CSV",       hint: "",  fn: () => setShowImport(true) },
+                      { Icon: Download, label: "Exportar CSV",       hint: "",  fn: handleExportCSV },
+                      { Icon: Keyboard, label: "Atajos de teclado",  hint: "?", fn: () => setShowShortcuts(true) },
+                    ].map(item => (
+                      <button
+                        key={item.label}
+                        onClick={() => { setShowTools(false); item.fn() }}
+                        className="flex w-full items-center gap-2.5 px-3.5 py-2.5 text-left text-[12.5px] font-medium text-foreground hover:bg-muted transition-colors"
+                      >
+                        <item.Icon className="h-4 w-4 text-muted-foreground" />
+                        {item.label}
+                        {item.hint && (
+                          <kbd className="ml-auto rounded border border-border bg-muted px-1.5 text-[10px] text-muted-foreground">{item.hint}</kbd>
+                        )}
+                      </button>
+                    ))}
+                  </div>
+                </>
+              )}
+            </div>
             <button onClick={fetchAll} disabled={loading}
               className="flex h-9 w-9 items-center justify-center rounded-xl border border-border bg-card text-muted-foreground hover:text-foreground hover:border-border transition-all disabled:opacity-40"
               title="Refrescar"
@@ -2127,7 +2127,8 @@ export function TasksView() {
           </div>
         )}
 
-        {/* ─── Quick filter chips ──────────────────────────────────────── */}
+        {/* ─── Quick filter chips (ocultos cuando no hay ni una tarea) ── */}
+        {(tasks.length > 0 || loading) && (<>
         <div className="flex flex-wrap items-center gap-2">
           <FilterChip
             active={quickFilter === "all"}
@@ -2271,6 +2272,7 @@ export function TasksView() {
             </div>
           </div>
         </div>
+        </>)}
 
         {/* ─── Body ───────────────────────────────────────────────────── */}
         {loading ? (
@@ -2282,8 +2284,14 @@ export function TasksView() {
             <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-muted ring-1 ring-slate-200 mb-4">
               <Inbox className="h-6 w-6 text-muted-foreground" />
             </div>
-            <p className="text-[15px] font-semibold text-muted-foreground">No hay tareas que coincidan</p>
-            <p className="text-[13px] text-muted-foreground mt-1">Probá ajustar los filtros, o creá una nueva con <kbd className="rounded border border-border bg-muted px-1 text-[11px] font-bold text-muted-foreground">Q</kbd>.</p>
+            <p className="text-[15px] font-semibold text-muted-foreground">
+              {tasks.length === 0 ? "Todavía no hay tareas" : "No hay tareas que coincidan"}
+            </p>
+            <p className="text-[13px] text-muted-foreground mt-1">
+              {tasks.length === 0
+                ? "Creá la primera y organizá el trabajo del equipo."
+                : <>Probá ajustar los filtros, o creá una nueva con <kbd className="rounded border border-border bg-muted px-1 text-[11px] font-bold text-muted-foreground">Q</kbd>.</>}
+            </p>
             <button
               onClick={() => setShowNewForm(true)}
               className="mt-4 inline-flex items-center gap-1.5 h-9 rounded-xl bg-[#E42D2C] px-4 text-[12px] font-bold text-white hover:bg-[#c42423] transition-all"

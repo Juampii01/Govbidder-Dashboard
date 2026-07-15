@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback } from "react"
 import { createClient } from "@/lib/supabase"
 import { Portal } from "@/components/ui/portal"
+import { useConfirm } from "@/components/ui/confirm-dialog"
 import {
   DndContext, DragEndEvent, PointerSensor, useSensor, useSensors, closestCenter,
 } from "@dnd-kit/core"
@@ -556,6 +557,7 @@ export function FormsAdminView() {
   const [submissionsOf, setSubmissionsOf] = useState<TaskForm | null>(null)
   const [copiedId,      setCopiedId]      = useState<string | null>(null)
   const [error,         setError]         = useState(false)
+  const { confirm: confirmDialog, dialog } = useConfirm()
 
   const fetchForms = useCallback(async () => {
     setLoading(true)
@@ -585,7 +587,13 @@ export function FormsAdminView() {
   }
 
   const handleDelete = async (f: TaskForm) => {
-    if (!confirm(`¿Borrar el form "${f.title}"? Esto también borra todos sus submissions.`)) return
+    const ok = await confirmDialog({
+      title: `¿Borrar el form "${f.title}"?`,
+      message: "Esto también borra todos sus submissions.",
+      confirmLabel: "Borrar",
+      destructive: true,
+    })
+    if (!ok) return
     const { data: { session } } = await createClient().auth.getSession()
     if (!session) return
     const res = await fetch("/api/admin/forms", {
@@ -619,6 +627,7 @@ export function FormsAdminView() {
 
   return (
     <>
+      {dialog}
       {editing !== undefined && (
         <FormEditor
           form={editing}
@@ -635,7 +644,6 @@ export function FormsAdminView() {
         {/* Header */}
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
-            <h1 className="text-2xl font-bold text-[#1e3a8a] tracking-tight">Forms públicos</h1>
             <p className="text-sm text-muted-foreground mt-0.5">
               {forms.length} {forms.length === 1 ? "form" : "forms"} · cada submit crea una tarea automáticamente
             </p>

@@ -10,6 +10,7 @@ import {
 import { cn } from "@/lib/utils"
 import { Portal } from "@/components/ui/portal"
 import { createClient } from "@/lib/supabase"
+import { useConfirm } from "@/components/ui/confirm-dialog"
 
 /** Headers con el Bearer token de la sesión (las rutas /api lo requieren). */
 async function authHeaders(): Promise<Record<string, string>> {
@@ -292,7 +293,9 @@ function SOPModal({
   const [saving, setSaving] = useState(false)
   const [deleting, setDeleting] = useState(false)
   const [copied, setCopied] = useState(false)
+  const [saveError, setSaveError] = useState<string | null>(null)
   const textareaRef = useRef<HTMLTextAreaElement>(null)
+  const { confirm: confirmDialog, dialog } = useConfirm()
   const isAccesos = sectionId === "accesos"
   const templates = TEMPLATES[sectionId] ?? []
 
@@ -302,6 +305,7 @@ function SOPModal({
 
   const handleSave = async () => {
     setSaving(true)
+    setSaveError(null)
     try {
       const res = await fetch("/api/resources", {
         method: "PATCH",
@@ -313,13 +317,18 @@ function SOPModal({
         onUpdate({ ...item, content })
         setEditing(false)
       } else {
-        alert(data.error || "Error al guardar")
+        setSaveError(data.error || "Error al guardar")
       }
     } finally { setSaving(false) }
   }
 
   const handleDelete = async () => {
-    if (!confirm(`¿Eliminar "${item.title}"?`)) return
+    const ok = await confirmDialog({
+      title: `¿Eliminar "${item.title}"?`,
+      confirmLabel: "Eliminar",
+      destructive: true,
+    })
+    if (!ok) return
     setDeleting(true)
     try {
       await fetch(`/api/resources?id=${item.id}`, { method: "DELETE", headers: await authHeaders() })
@@ -342,6 +351,7 @@ function SOPModal({
 
   return (
     <Portal>
+      {dialog}
       {/* Backdrop */}
       <div
         className="fixed inset-0 z-[100] bg-slate-900/30"
@@ -469,10 +479,13 @@ function SOPModal({
           </div>
 
           <div className="flex items-center gap-2">
+            {saveError && (
+              <span className="text-[11px] text-[#E42D2C] font-medium">{saveError}</span>
+            )}
             {editing ? (
               <>
                 <button
-                  onClick={() => { setContent(item.content ?? ""); setEditing(false) }}
+                  onClick={() => { setContent(item.content ?? ""); setEditing(false); setSaveError(null) }}
                   className="rounded-lg px-3 py-1.5 text-xs text-muted-foreground hover:text-muted-foreground transition-colors"
                 >
                   Cancelar
@@ -825,11 +838,7 @@ export function AdminCentroOperativoView() {
     <div className="space-y-6">
       {/* Header */}
       <div>
-        <div className="flex items-center gap-2.5 mb-1">
-          <span className="h-4 w-[3px] rounded-full bg-[#1e3a8a]" />
-          <h1 className="text-sm font-semibold uppercase tracking-widest text-muted-foreground">Centro Operativo</h1>
-        </div>
-        <p className="text-xs text-muted-foreground ml-[18px]">
+        <p className="text-[13px] text-muted-foreground">
           Base interna de SOPs, recursos, accesos y procesos del equipo GovBidder.
         </p>
       </div>

@@ -139,7 +139,6 @@ export function ActivityView() {
       {/* Header */}
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-[#1e3a8a] tracking-tight">Actividad</h1>
           <p className="text-sm text-muted-foreground mt-0.5">
             Últimos 30 días — {filtered.length} eventos
           </p>

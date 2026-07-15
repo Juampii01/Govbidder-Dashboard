@@ -18,22 +18,26 @@ interface TopBarProps {
   onSignOut:        () => void
 }
 
+// Grupo de navegación por ruta — tiene que reflejar los hubs reales del
+// sidebar: Performance / Content / Operación / Configuración.
 const CRUMB_GROUPS: Record<string, string> = {
-  "/inicio":                "Inicio",
-  "/dashboard":             "General",
-  "/sales":                 "General",
-  "/metrics":               "General",
-  "/admin/reports":         "General",
-  "/admin/personas":        "Operación",
+  "/dashboard":             "Performance",
+  "/sales":                 "Performance",
+  "/metrics":               "Performance",
+  "/admin/personas":        "Performance",
+  "/admin/reports":         "Performance",
   "/admin/tasks":           "Operación",
-  "/admin/team":            "Operación",
-  "/admin/centro-operativo":"Operación",
-  "/admin/activity":         "Operación",
-  "/admin/forms":            "Operación",
-  "/admin/task-templates":   "Operación",
-  "/tools":                 "Programa",
-  "/recursos":              "Programa",
-  "/calendar":              "Programa",
+  "/calendar":              "Operación",
+  "/admin/team":            "Configuración",
+  "/admin/departments":     "Configuración",
+  "/admin/activity":        "Configuración",
+  "/admin/task-templates":  "Configuración",
+  "/admin/forms":           "Configuración",
+  "/admin/centro-operativo":"Configuración",
+  "/admin/audit-log":       "Configuración",
+  "/tools":                 "Configuración",
+  "/recursos":              "Configuración",
+  "/contenido":             "Content",
 }
 
 export function TopBar({

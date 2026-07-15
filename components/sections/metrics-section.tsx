@@ -177,7 +177,7 @@ export function MetricsSection({
           placeholder="Buscar métricas…"
           className={cn(
             "w-full sm:w-[260px] h-8 rounded-xl text-xs",
-            "bg-muted text-foreground placeholder:text-slate-300 border-border",
+            "bg-muted text-foreground placeholder:text-muted-foreground/60 border-border",
             "focus-visible:ring-1 focus-visible:ring-[#E42D2C]/30 focus-visible:border-[#E42D2C]/30"
           )}
         />
@@ -203,7 +203,7 @@ export function MetricsSection({
                   <span className="h-3 w-[2px] rounded-full bg-[#E42D2C]/60" />
                   <span className="text-xs font-semibold uppercase tracking-widest text-muted-foreground">{category}</span>
                 </div>
-                <span className="text-[10px] text-slate-300 tabular-nums">{items.length} campos</span>
+                <span className="text-[10px] text-muted-foreground/60 tabular-nums">{items.length} campos</span>
               </div>
 
               {/* Table */}
@@ -211,9 +211,9 @@ export function MetricsSection({
                 <table className="w-full">
                   <thead className="sticky top-0 bg-card/95 backdrop-blur-sm">
                     <tr className="border-b border-border">
-                      <th className="px-5 py-2.5 text-left text-[10px] font-semibold uppercase tracking-wider text-slate-300">Campo</th>
-                      <th className="px-5 py-2.5 text-right text-[10px] font-semibold uppercase tracking-wider text-slate-300">Mensual</th>
-                      <th className="px-5 py-2.5 text-right text-[10px] font-semibold uppercase tracking-wider text-slate-300">Últ. 12 meses</th>
+                      <th className="px-5 py-2.5 text-left text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/60">Campo</th>
+                      <th className="px-5 py-2.5 text-right text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/60">Mensual</th>
+                      <th className="px-5 py-2.5 text-right text-[10px] font-semibold uppercase tracking-wider text-muted-foreground/60">Últ. 12 meses</th>
                     </tr>
                   </thead>
                   <tbody>

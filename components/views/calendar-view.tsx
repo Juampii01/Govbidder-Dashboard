@@ -333,7 +333,6 @@ export function CalendarView() {
       {/* Header */}
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-[#1e3a8a] tracking-tight">Agenda</h1>
           <p className="text-sm text-muted-foreground mt-0.5">
             {counts.tasks} {counts.tasks === 1 ? "tarea" : "tareas"} · {counts.personas} {counts.personas === 1 ? "persona" : "personas"} agendadas
           </p>

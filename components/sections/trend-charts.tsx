@@ -220,7 +220,7 @@ function ChartCard({
           </ResponsiveContainer>
         ) : (
           <div className="h-[220px] flex items-center justify-center">
-            <p className="text-sm text-slate-300">Sin datos</p>
+            <p className="text-sm text-muted-foreground/60">Sin datos</p>
           </div>
         )}
       </div>

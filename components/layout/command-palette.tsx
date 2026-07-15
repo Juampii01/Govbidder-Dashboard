@@ -30,24 +30,24 @@ interface Item {
 
 const PAGES: Item[] = [
   // Inicio (smart home)
-  { id: "p:inicio",    kind: "page", title: "Página Principal", subtitle: "Estado del dashboard · qué requiere atención", icon: Activity, href: "/inicio", group: "Inicio", keywords: ["home","inicio","auditoria","estado","health"] },
+  { id: "p:inicio",    kind: "page", title: "Inicio", subtitle: "Estado del dashboard · qué requiere atención", icon: Activity, href: "/inicio", group: "Inicio", keywords: ["home","inicio","auditoria","estado","health","principal"] },
 
-  // General
-  { id: "p:dashboard", kind: "page", title: "Panel",           subtitle: "KPIs, rentabilidad, proyecciones", icon: BarChart3,    href: "/dashboard",       group: "General", keywords: ["dashboard","home","kpi","resumen"] },
-  { id: "p:revenue",   kind: "page", title: "Ingresos",        subtitle: "Embudo de ventas",                icon: DollarSign,   href: "/sales",           group: "General", keywords: ["sales","ventas","revenue","funnel"] },
-  { id: "p:metrics",   kind: "page", title: "Métricas",        subtitle: "Tabla completa de KPIs",          icon: LayoutGrid,   href: "/metrics",         group: "General", keywords: ["todas","tabla","numbers"] },
-  { id: "p:reports",   kind: "page", title: "Cargar Métricas", subtitle: "Form mensual de KPIs",            icon: FileBarChart, href: "/admin/reports",   group: "General", keywords: ["input","form","mes","cargar","reports"] },
+  // Performance
+  { id: "p:dashboard", kind: "page", title: "Panel",              subtitle: "KPIs, rentabilidad, proyecciones", icon: BarChart3,    href: "/performance",           group: "Performance", keywords: ["dashboard","home","kpi","resumen"] },
+  { id: "p:revenue",   kind: "page", title: "Ventas",             subtitle: "Embudo de ventas",                icon: DollarSign,   href: "/performance?tab=ventas", group: "Performance", keywords: ["sales","ventas","revenue","funnel","ingresos"] },
+  { id: "p:metrics",   kind: "page", title: "Métricas",           subtitle: "Tabla completa de KPIs",          icon: LayoutGrid,   href: "/performance?tab=metricas", group: "Performance", keywords: ["todas","tabla","numbers"] },
+  { id: "p:personas",  kind: "page", title: "Personas Agendadas", subtitle: "Pipeline de prospectos",          icon: Users2,       href: "/admin/personas",        group: "Performance", keywords: ["leads","prospectos","calls","agendadas"] },
+  { id: "p:reports",   kind: "page", title: "Cargar Métricas",    subtitle: "Form mensual de KPIs",            icon: FileBarChart, href: "/admin/reports",         group: "Performance", keywords: ["input","form","mes","cargar","reports"] },
 
   // Operación
-  { id: "p:personas", kind: "page", title: "Personas Agendadas", subtitle: "Pipeline de prospectos",       icon: Users2,   href: "/admin/personas",         group: "Operación", keywords: ["leads","prospectos","calls"] },
-  { id: "p:tasks",    kind: "page", title: "Tareas",             subtitle: "Gestión de pendientes",        icon: ListTodo, href: "/admin/tasks",            group: "Operación", keywords: ["todo","kanban","trabajo","tasks"] },
-  { id: "p:team",     kind: "page", title: "Equipo",             subtitle: "Miembros del equipo",          icon: Users,    href: "/admin/team",             group: "Operación", keywords: ["staff","gente","empleados","team"] },
-  { id: "p:ops",      kind: "page", title: "Centro Operativo",   subtitle: "Wiki interna · SOPs",          icon: Layers,   href: "/admin/centro-operativo", group: "Operación", keywords: ["sop","wiki","procedimientos","operations"] },
+  { id: "p:tasks",    kind: "page", title: "Tareas", subtitle: "Gestión de pendientes",      icon: ListTodo,     href: "/admin/tasks", group: "Operación", keywords: ["todo","kanban","trabajo","tasks"] },
+  { id: "p:schedule", kind: "page", title: "Agenda", subtitle: "Calendario del equipo",      icon: CalendarDays, href: "/calendar",    group: "Operación", keywords: ["schedule","calendario","calendar"] },
 
-  // Programa
-  { id: "p:tools",    kind: "page", title: "Herramientas",subtitle: "Tools internos",          icon: Wrench,        href: "/tools",    group: "Programa", keywords: ["tools","links","apps"] },
-  { id: "p:resources",kind: "page", title: "Recursos",    subtitle: "Biblioteca interna",      icon: BookOpen,      href: "/recursos", group: "Programa", keywords: ["resources","biblioteca","docs"] },
-  { id: "p:schedule", kind: "page", title: "Agenda",      subtitle: "Calendario del equipo",   icon: CalendarDays,  href: "/calendar", group: "Programa", keywords: ["schedule","calendario","calendar"] },
+  // Configuración
+  { id: "p:team",     kind: "page", title: "Equipo",           subtitle: "Miembros del equipo",   icon: Users,    href: "/admin/team",             group: "Configuración", keywords: ["staff","gente","empleados","team"] },
+  { id: "p:ops",      kind: "page", title: "Centro Operativo", subtitle: "Wiki interna · SOPs",   icon: Layers,   href: "/admin/centro-operativo", group: "Configuración", keywords: ["sop","wiki","procedimientos","operations"] },
+  { id: "p:tools",    kind: "page", title: "Herramientas",     subtitle: "Tools internos",        icon: Wrench,   href: "/tools",                  group: "Configuración", keywords: ["tools","links","apps"] },
+  { id: "p:resources",kind: "page", title: "Recursos",         subtitle: "Biblioteca interna",    icon: BookOpen, href: "/recursos",               group: "Configuración", keywords: ["resources","biblioteca","docs"] },
 ]
 
 const QUICK_ACTIONS = (router: ReturnType<typeof useRouter>): Item[] => [

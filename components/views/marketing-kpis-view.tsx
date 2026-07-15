@@ -307,12 +307,24 @@ export function MarketingKPIsView() {
       )}
 
       {!loading && !error && data && !data.connected && (
-        <div className="rounded-2xl border border-slate-200 bg-white p-8 flex flex-col items-center gap-3 text-center">
-          <TrendingUp className="h-8 w-8 text-slate-300" />
-          <p className="text-[14px] font-semibold text-slate-600">Sin datos de Content Dashboard</p>
-          <p className="text-[12px] text-slate-400 max-w-xs">
-            Tu usuario no está vinculado a un workspace en el Content Dashboard.
+        <div className="rounded-2xl border border-dashed border-border bg-card p-10 flex flex-col items-center gap-3 text-center">
+          <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#1e3a8a]/[0.08]">
+            <TrendingUp className="h-6 w-6 text-[#1e3a8a]" />
+          </div>
+          <p className="text-[15px] font-semibold text-foreground">Todavía no hay datos de contenido</p>
+          <p className="text-[13px] text-muted-foreground max-w-sm">
+            Conectá las redes (Instagram, YouTube, TikTok) desde el Content Dashboard
+            y acá vas a ver seguidores, alcance y performance de cada plataforma.
           </p>
+          <a
+            href={process.env.NEXT_PUBLIC_CONTENT_DASHBOARD_URL ?? "/marketing"}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-2 inline-flex items-center gap-2 rounded-xl bg-[#1e3a8a] px-4 py-2.5 text-[13px] font-semibold text-white hover:bg-[#1e3a8a]/90 transition-colors"
+          >
+            <ExternalLink className="h-4 w-4" />
+            Conectar redes
+          </a>
         </div>
       )}
 

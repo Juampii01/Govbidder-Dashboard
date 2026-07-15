@@ -71,7 +71,7 @@ function DetailDrawer({
   return (
     <Portal>
       <div className="fixed inset-0 z-[100] bg-slate-900/30" onClick={onClose} />
-      <div className="fixed right-0 top-0 bottom-0 z-[110] flex w-full max-w-[460px] flex-col border-l border-border shadow-2xl" style={{ backgroundColor: "#ffffff" }}>
+      <div className="fixed right-0 top-0 bottom-0 z-[110] flex w-full max-w-[460px] flex-col border-l border-border shadow-2xl bg-card">
 
         <div className="flex items-start justify-between gap-4 border-b border-border px-6 py-5">
           <div className="flex items-center gap-3 min-w-0 flex-1">
@@ -92,7 +92,7 @@ function DetailDrawer({
         <div className="flex-1 overflow-y-auto px-6 py-5 space-y-4">
 
           {/* Stats */}
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div className="rounded-xl border border-border bg-muted p-3">
               <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-widest text-[#1e3a8a]/80">
                 <Users2 className="h-3 w-3" /> Personas
@@ -130,7 +130,7 @@ function DetailDrawer({
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div className="space-y-1.5">
                 <p className="text-[10px] font-bold uppercase tracking-widest text-[#1e3a8a]/60">Rol</p>
                 <select
@@ -261,8 +261,7 @@ function InviteModal({
       <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
         <form
           onSubmit={handleSubmit}
-          className="relative w-full max-w-md max-h-[90vh] flex flex-col overflow-hidden rounded-3xl border border-border shadow-[0_30px_80px_rgba(15,23,42,0.20)] page-enter"
-          style={{ backgroundColor: "#ffffff" }}
+          className="relative w-full max-w-md max-h-[90vh] flex flex-col overflow-hidden rounded-3xl border border-border shadow-[0_30px_80px_rgba(15,23,42,0.20)] page-enter bg-card"
         >
           {/* Ambient glow */}
           <div className="pointer-events-none absolute -top-32 -right-32 h-[300px] w-[300px] rounded-full bg-[#E42D2C]/[0.08] blur-[80px]" />
@@ -314,7 +313,7 @@ function InviteModal({
               />
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div className="space-y-1.5">
                 <p className="text-[10px] font-bold uppercase tracking-widest text-[#1e3a8a]/80">Posición</p>
                 <input

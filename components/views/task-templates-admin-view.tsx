@@ -3,6 +3,7 @@
 import { useEffect, useState, useCallback } from "react"
 import { createClient } from "@/lib/supabase"
 import { Portal } from "@/components/ui/portal"
+import { useConfirm } from "@/components/ui/confirm-dialog"
 import {
   Loader2, Plus, X, Edit3, Trash2, RefreshCw, Layers,
   AlertCircle, Check, ChevronRight, Star, GitBranch,
@@ -171,7 +172,7 @@ function TemplateEditor({
               className="w-full rounded-xl border border-border bg-card px-3 py-2 text-[12.5px] text-muted-foreground outline-none focus:border-[#1e3a8a]/40 resize-none"
             />
 
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               <select
                 value={parentPriority}
                 onChange={e => setParentPriority(e.target.value as Priority)}
@@ -314,6 +315,7 @@ export function TaskTemplatesAdminView() {
   const [loading,   setLoading]   = useState(true)
   const [editing,   setEditing]   = useState<Template | null | undefined>(undefined)
   const [error,     setError]     = useState(false)
+  const { confirm: confirmDialog, dialog } = useConfirm()
 
   const fetchTemplates = useCallback(async () => {
     setLoading(true)
@@ -343,11 +345,17 @@ export function TaskTemplatesAdminView() {
   }
 
   const handleDelete = async (t: Template) => {
-    if (t.is_default) {
-      if (!confirm(`"${t.name}" es un template default. ¿Borrar igual? Se puede recuperar re-aplicando la migration.`)) return
-    } else {
-      if (!confirm(`¿Borrar "${t.name}"?`)) return
-    }
+    const ok = await confirmDialog(
+      t.is_default
+        ? {
+            title: `"${t.name}" es un template default`,
+            message: "¿Borrarlo igual? Se puede recuperar re-aplicando la migration.",
+            confirmLabel: "Borrar igual",
+            destructive: true,
+          }
+        : { title: `¿Borrar "${t.name}"?`, confirmLabel: "Borrar", destructive: true }
+    )
+    if (!ok) return
     const { data: { session } } = await createClient().auth.getSession()
     if (!session) return
     const res = await fetch(`/api/admin/task-templates/${t.id}`, {
@@ -359,6 +367,7 @@ export function TaskTemplatesAdminView() {
 
   return (
     <>
+      {dialog}
       {editing !== undefined && (
         <TemplateEditor
           template={editing}
@@ -371,7 +380,6 @@ export function TaskTemplatesAdminView() {
         {/* Header */}
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
-            <h1 className="text-2xl font-bold text-[#1e3a8a] tracking-tight">Templates de tareas</h1>
             <p className="text-sm text-muted-foreground mt-0.5">
               {templates.length} {templates.length === 1 ? "template" : "templates"} · usalos desde el botón "Templates" en /admin/tasks
             </p>

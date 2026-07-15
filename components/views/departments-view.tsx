@@ -61,8 +61,7 @@ function NewDeptModal({
       <div className="fixed inset-0 z-[110] flex items-center justify-center p-4">
         <form
           onSubmit={handleSubmit}
-          className="relative w-full max-w-md max-h-[90vh] flex flex-col overflow-hidden rounded-3xl border border-border shadow-[0_30px_80px_rgba(15,23,42,0.20)]"
-          style={{ backgroundColor: "#ffffff" }}
+          className="relative w-full max-w-md max-h-[90vh] flex flex-col overflow-hidden rounded-3xl border border-border shadow-[0_30px_80px_rgba(15,23,42,0.20)] bg-card"
         >
           <div className="relative shrink-0 px-6 pt-6 pb-5 border-b border-border">
             <button
@@ -220,7 +219,7 @@ function DeptCard({
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-2 gap-2 mb-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4">
         <div className="rounded-xl border border-border bg-muted p-2.5">
           <div className="flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-[#1e3a8a]/80">
             <Users2 className="h-3 w-3" /> Miembros

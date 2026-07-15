@@ -1,12 +1,8 @@
-import { DashboardLayout } from "@/components/layout/dashboard-layout"
-import { ContenidoView } from "@/components/views/marketing-view"
+import { redirect } from "next/navigation"
 
-export const metadata = { title: "Contenido" }
-
+// Puerta única de Content: el hub real vive en /marketing (KPIs nativos +
+// sub-secciones). El viejo iframe al Content Dashboard externo confundía:
+// dos entradas distintas para "contenido".
 export default function ContenidoPage() {
-  return (
-    <DashboardLayout>
-      <ContenidoView />
-    </DashboardLayout>
-  )
+  redirect("/marketing")
 }

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase";
 
@@ -149,106 +150,124 @@ export default function SignupPage() {
   }
 
   return (
-    <div className="relative min-h-screen bg-black text-white">
-      {/* Background */}
+    <div className="min-h-screen bg-white flex items-center justify-center px-6 py-12 relative overflow-hidden">
+
+      {/* Subtle ambient backdrop */}
       <div className="pointer-events-none absolute inset-0">
-        <div className="absolute inset-0 bg-[radial-gradient(700px_circle_at_20%_15%,rgba(255,255,255,0.10),transparent_55%),radial-gradient(700px_circle_at_80%_20%,rgba(255,255,255,0.08),transparent_55%),radial-gradient(900px_circle_at_50%_90%,rgba(255,255,255,0.06),transparent_55%)]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/70 to-black" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 h-[500px] w-[500px] rounded-full bg-[#E42D2C]/[0.05] blur-[160px]" />
+        <div className="absolute bottom-0 left-1/4 h-[400px] w-[400px] rounded-full bg-[#1e3a8a]/[0.04] blur-[140px]" />
       </div>
 
-      <div className="relative flex min-h-screen items-center justify-center px-6 py-12">
-        <div className="w-full max-w-md">
-          {/* Brand */}
-          <div className="mb-6 text-center">
-            <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-2xl border border-[#E42D2C]/30 bg-[#E42D2C]/10 backdrop-blur">
-              <span className="text-sm font-bold tracking-widest text-[#E42D2C]">GB</span>
-            </div>
-            <div className="text-xs font-semibold tracking-[0.35em] text-white/70">GOVBIDDER</div>
-            <h1 className="mt-2 text-2xl font-semibold tracking-tight">Crear cuenta</h1>
-            <p className="mt-1 text-sm text-white/60">Creá tu acceso al portal y confirmá el email para continuar.</p>
+      <div className="relative w-full max-w-[400px]">
+
+        {/* Logo */}
+        <div className="mb-8 flex justify-center">
+          <Image
+            src="/icon.png"
+            alt="GovBidder · The Bid That Wins"
+            width={260}
+            height={200}
+            className="h-auto w-[220px] object-contain"
+            priority
+          />
+        </div>
+
+        {/* Card */}
+        <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-[0_20px_60px_rgba(15,23,42,0.08)]">
+
+          <div className="mb-7 text-center">
+            <h1 className="text-[22px] font-bold tracking-tight text-slate-900">Crear cuenta</h1>
+            <p className="mt-1.5 text-[13px] text-slate-500">
+              Creá tu acceso y confirmá el email para continuar.
+            </p>
           </div>
 
-          {/* Card */}
-          <form
-            onSubmit={onSubmit}
-            className="rounded-2xl border border-white/10 bg-white/5 p-6 shadow-[0_30px_80px_rgba(0,0,0,0.65)] backdrop-blur-xl"
-          >
-            <div className="space-y-4">
-              <div className="space-y-2">
-                <label className="block text-sm text-white/70">Email</label>
-                <input
-                  className="h-11 w-full rounded-xl border border-white/10 bg-black/30 px-3 text-white outline-none placeholder:text-white/30 focus:border-white/20 focus:ring-2 focus:ring-white/10"
-                  placeholder="you@domain.com"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  required
-                  autoComplete="email"
-                />
-              </div>
+          <form onSubmit={onSubmit} className="space-y-4">
 
-              <div className="space-y-2">
-                <label className="block text-sm text-white/70">Contraseña</label>
-                <input
-                  className="h-11 w-full rounded-xl border border-white/10 bg-black/30 px-3 text-white outline-none placeholder:text-white/30 focus:border-white/20 focus:ring-2 focus:ring-white/10"
-                  placeholder="Mínimo 6 caracteres"
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                  required
-                  minLength={6}
-                  autoComplete="new-password"
-                />
-              </div>
-
-              {err ? (
-                <div className="rounded-xl border border-white/10 bg-black/40 p-3 text-sm text-white/80">
-                  {err}
-                </div>
-              ) : null}
-
-              {msg ? (
-                <div className="rounded-xl border border-white/10 bg-black/30 p-3 text-sm text-white/75">
-                  {msg}
-                </div>
-              ) : null}
-
-              {pendingConfirmEmail ? (
-                <button
-                  type="button"
-                  onClick={onResendConfirmation}
-                  disabled={resendLoading}
-                  className="h-11 w-full rounded-xl border border-white/10 bg-white/5 text-sm font-semibold text-white/90 transition hover:bg-white/10 disabled:opacity-60"
-                >
-                  {resendLoading ? "Reenviando…" : "Reenviar email de confirmación"}
-                </button>
-              ) : null}
-
-              <button
-                type="submit"
-                disabled={loading}
-                className="h-11 w-full rounded-xl bg-white text-sm font-semibold text-black transition hover:bg-white/90 disabled:opacity-60"
-              >
-                {loading ? "Creando…" : "Crear cuenta"}
-              </button>
-
-              <div className="flex items-center justify-between pt-1">
-                <a href="/login" className="text-sm text-white/65 underline-offset-4 hover:text-white hover:underline">
-                  Ya tengo cuenta → Login
-                </a>
-                <a
-                  href="/forgot-password"
-                  className="text-sm text-white/65 underline-offset-4 hover:text-white hover:underline"
-                >
-                  ¿Olvidaste tu contraseña?
-                </a>
-              </div>
-
+            <div className="space-y-1.5">
+              <label className="block text-[11px] font-semibold uppercase tracking-widest text-slate-500">
+                Email
+              </label>
+              <input
+                className="h-12 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm text-slate-900 outline-none placeholder:text-slate-400 transition-all focus:border-[#E42D2C] focus:ring-2 focus:ring-[#E42D2C]/15"
+                placeholder="tu@email.com"
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                autoComplete="email"
+                autoFocus
+              />
             </div>
+
+            <div className="space-y-1.5">
+              <label className="block text-[11px] font-semibold uppercase tracking-widest text-slate-500">
+                Contraseña
+              </label>
+              <input
+                className="h-12 w-full rounded-xl border border-slate-200 bg-white px-4 text-sm text-slate-900 outline-none placeholder:text-slate-400 transition-all focus:border-[#E42D2C] focus:ring-2 focus:ring-[#E42D2C]/15"
+                placeholder="Mínimo 6 caracteres"
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                required
+                minLength={6}
+                autoComplete="new-password"
+              />
+            </div>
+
+            {err && (
+              <div className="rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-[12px] leading-relaxed text-red-700">
+                {err}
+              </div>
+            )}
+
+            {msg && (
+              <div className="rounded-xl border border-[#1e3a8a]/20 bg-[#1e3a8a]/[0.04] px-4 py-3 text-[12px] leading-relaxed text-[#1e3a8a]">
+                {msg}
+              </div>
+            )}
+
+            {pendingConfirmEmail && (
+              <button
+                type="button"
+                onClick={onResendConfirmation}
+                disabled={resendLoading}
+                className="h-12 w-full rounded-full border border-slate-200 bg-white text-sm font-semibold text-slate-700 transition-all hover:border-[#E42D2C]/40 hover:text-[#E42D2C] disabled:opacity-50"
+              >
+                {resendLoading ? "Reenviando…" : "Reenviar email de confirmación"}
+              </button>
+            )}
+
+            <button
+              type="submit"
+              disabled={loading}
+              className="mt-2 h-12 w-full rounded-full bg-[#E42D2C] text-sm font-bold text-white transition-all hover:bg-[#c42423] hover:shadow-[0_8px_24px_rgba(228,45,44,0.30)] disabled:opacity-50 active:scale-[0.98]"
+            >
+              {loading ? (
+                <span className="flex items-center justify-center gap-2">
+                  <span className="h-4 w-4 animate-spin rounded-full border-2 border-white/40 border-t-white" />
+                  Creando…
+                </span>
+              ) : (
+                "Crear cuenta"
+              )}
+            </button>
           </form>
 
-          <p className="mt-6 text-center text-xs text-white/35">© {new Date().getFullYear()} GovBidder</p>
+          <div className="mt-7 flex items-center justify-between text-[11px]">
+            <a href="/login" className="text-slate-500 transition-colors hover:text-[#E42D2C]">
+              Ya tengo cuenta → Iniciar sesión
+            </a>
+            <a href="/forgot-password" className="text-slate-500 transition-colors hover:text-[#E42D2C]">
+              ¿Olvidaste tu contraseña?
+            </a>
+          </div>
         </div>
+
+        <p className="mt-8 text-center text-[10px] uppercase tracking-[0.22em] text-slate-300">
+          © {new Date().getFullYear()} GovBidder · The Bid That Wins
+        </p>
       </div>
     </div>
   );

@@ -486,7 +486,15 @@ export function InicioView() {
           </div>
         </div>
 
-        {/* STATS STRIP at bottom of hero */}
+        {/* STATS STRIP at bottom of hero — con todo en cero (DB nueva) se
+            reemplaza por un microcopy en vez de un renglón de ceros. */}
+        {counts.overdueTasks + counts.stalePersonas + counts.activePersonas + counts.teamMembers === 0 ? (
+        <div className="relative border-t border-border bg-muted/40 px-5 py-4 text-center">
+          <p className="text-[12px] text-muted-foreground">
+            Todavía sin datos — cargá el primer reporte y creá las primeras tareas para ver la actividad acá.
+          </p>
+        </div>
+        ) : (
         <div className="relative border-t border-border bg-muted/40 grid grid-cols-2 sm:grid-cols-4">
           {[
             { label: "Tareas vencidas",  val: counts.overdueTasks,      icon: ListTodo, accent: counts.overdueTasks > 0 ? "red" as const : "neutral" as const },
@@ -524,6 +532,7 @@ export function InicioView() {
             )
           })}
         </div>
+        )}
       </div>
 
       {/* DEPARTAMENTOS — vista de comando: cada depto con tasks + miembros */}
@@ -769,7 +778,7 @@ export function InicioView() {
                 icon={TrendingDown}
                 title="Métricas en caída"
                 count={declining.length}
-                href="/dashboard"
+                href="/performance"
                 accent="red"
                 severity={declining.length > 2 ? "high" : "medium"}
               >

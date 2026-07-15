@@ -122,6 +122,35 @@
   --ring:              rgba(228,45,44,0.40);
 }
 
+/* ─── Compat: vocabulario de vars del sub-app Content/Marketing ──────────────
+   components/marketing/** consume estas vars inline (var(--accent), etc.) y
+   hasta ahora NO estaban definidas en ningún CSS importado — los colores del
+   sub-app quedaban indefinidos. Se mapean al tema principal para que respete
+   light/dark hasta unificar el shell. */
+:root {
+  --accent:               #E42D2C;
+  --accent-foreground:    #ffffff;
+  --destructive:          var(--danger);
+  --stat-icon:            #1e3a8a;
+  --stat-icon-secondary:  #E42D2C;
+  --platform-youtube:     #ff0000;
+  --platform-tiktok:      #0f172a;
+  --platform-meta:        #1877f2;
+  --platform-instagram:   #e1306c;
+  --gradient-accent:      linear-gradient(135deg, #E42D2C 0%, #1e3a8a 100%);
+  --shadow-card:          0 1px 2px rgba(15,23,42,0.06);
+  --shadow-card-sm:       0 1px 1px rgba(15,23,42,0.04);
+  --shadow-modal:         0 30px 80px rgba(15,23,42,0.25);
+  --color-eternity-gold:  #d4a437;
+}
+.dark {
+  --stat-icon:            #9db8ff;
+  --platform-tiktok:      #f1f5f9;
+  --shadow-card:          0 1px 2px rgba(0,0,0,0.35);
+  --shadow-card-sm:       0 1px 1px rgba(0,0,0,0.25);
+  --shadow-modal:         0 30px 80px rgba(0,0,0,0.55);
+}
+
 @theme inline {
   --font-sans: "Geist", "Inter", system-ui, -apple-system, sans-serif;
   --font-mono: "Geist Mono", "JetBrains Mono", monospace;

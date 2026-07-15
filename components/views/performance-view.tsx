@@ -4,6 +4,7 @@ import { useState } from "react"
 import Link from "next/link"
 import { BarChart3, DollarSign, Users2, LayoutGrid, FileBarChart, Info } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { useMonthlyReports } from "@/hooks/use-monthly-reports"
 
 // Panel (composición del antiguo /dashboard)
 import { BusinessKPIs }      from "@/components/sections/business-kpis"
@@ -27,6 +28,32 @@ const TABS: { id: Tab; label: string; icon: any; desc: string }[] = [
 ]
 
 function PanelContent() {
+  const { reports, loading } = useMonthlyReports()
+
+  // Sin datos: un solo empty state con CTA en vez de secciones que
+  // desaparecen en silencio y dejan huecos mudos.
+  if (!loading && reports.length === 0) {
+    return (
+      <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-border bg-card py-20 px-6 text-center">
+        <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-[#1e3a8a]/[0.08] mb-4">
+          <FileBarChart className="h-6 w-6 text-[#1e3a8a]" />
+        </div>
+        <p className="text-[15px] font-semibold text-foreground">Todavía no hay métricas cargadas</p>
+        <p className="text-[13px] text-muted-foreground mt-1 max-w-md">
+          Cargá el reporte del mes y acá vas a ver los KPIs del negocio,
+          rentabilidad, proyecciones y tendencias — todo se arma solo.
+        </p>
+        <Link
+          href="/admin/reports"
+          className="mt-5 inline-flex items-center gap-2 rounded-xl bg-[#1e3a8a] px-4 py-2.5 text-[13px] font-semibold text-white hover:bg-[#1e3a8a]/90 transition-colors"
+        >
+          <FileBarChart className="h-4 w-4" />
+          Cargar el primer reporte
+        </Link>
+      </div>
+    )
+  }
+
   return (
     <div className="space-y-14">
       <BusinessKPIs />
@@ -50,7 +77,6 @@ export function PerformanceView({ initialTab = "panel" }: { initialTab?: string 
       {/* Header */}
       <div className="flex flex-wrap items-start justify-between gap-3">
         <div>
-          <h1 className="text-2xl font-bold text-foreground">Performance</h1>
           <p className="text-[13px] text-muted-foreground mt-0.5">{current.desc}</p>
         </div>
         <Link
