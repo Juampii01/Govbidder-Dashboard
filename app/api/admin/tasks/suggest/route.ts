@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server"
 import Anthropic from "@anthropic-ai/sdk"
 import { createClient } from "@/lib/supabase"
+import { rateLimit } from "@/lib/rate-limit"
 
 // Edge runtime: latencia más baja, ideal para llamadas cortas a la IA
 // (este endpoint solo recibe título+descripción y devuelve JSON).
@@ -39,6 +40,15 @@ REGLAS:
 export async function POST(req: NextRequest) {
   const user = await getUser(req)
   if (!user) return NextResponse.json({ error: "No autorizado" }, { status: 401 })
+
+  // Anti-abuso de costos: 20 llamadas de AI por usuario por hora.
+  const rl = rateLimit({ key: `ai:suggest:${user.id}`, limit: 20, windowMs: 3600_000 })
+  if (!rl.allowed) {
+    return NextResponse.json(
+      { error: "Límite de uso de AI alcanzado, probá de nuevo en un rato" },
+      { status: 429, headers: { "Retry-After": String(Math.ceil(rl.retryAfterMs / 1000)) } },
+    )
+  }
 
   const apiKey = process.env.ANTHROPIC_API_KEY
   if (!apiKey) return NextResponse.json({ error: "AI no configurada" }, { status: 503 })

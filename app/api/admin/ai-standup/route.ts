@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server"
 import Anthropic from "@anthropic-ai/sdk"
 import { createClient } from "@/lib/supabase"
 import { createServiceClient } from "@/lib/supabase-service"
+import { rateLimit } from "@/lib/rate-limit"
 
 async function getUser(req: NextRequest) {
   const token = req.headers.get("authorization")?.replace("Bearer ", "")
@@ -64,6 +65,15 @@ interface DigestComment {
 export async function POST(req: NextRequest) {
   const user = await getUser(req)
   if (!user) return NextResponse.json({ error: "No autorizado" }, { status: 401 })
+
+  // Anti-abuso de costos: 20 llamadas de AI por usuario por hora.
+  const rl = rateLimit({ key: `ai:standup:${user.id}`, limit: 20, windowMs: 3600_000 })
+  if (!rl.allowed) {
+    return NextResponse.json(
+      { error: "Límite de uso de AI alcanzado, probá de nuevo en un rato" },
+      { status: 429, headers: { "Retry-After": String(Math.ceil(rl.retryAfterMs / 1000)) } },
+    )
+  }
 
   const apiKey = process.env.ANTHROPIC_API_KEY
   if (!apiKey) {
