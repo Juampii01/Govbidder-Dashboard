@@ -555,9 +555,11 @@ export function FormsAdminView() {
   const [editing,       setEditing]       = useState<TaskForm | null | undefined>(undefined) // undefined = closed
   const [submissionsOf, setSubmissionsOf] = useState<TaskForm | null>(null)
   const [copiedId,      setCopiedId]      = useState<string | null>(null)
+  const [error,         setError]         = useState(false)
 
   const fetchForms = useCallback(async () => {
     setLoading(true)
+    setError(false)
     try {
       const { data: { session } } = await createClient().auth.getSession()
       if (!session) return
@@ -565,6 +567,9 @@ export function FormsAdminView() {
         headers: { Authorization: `Bearer ${session.access_token}` },
       })
       if (res.ok) setForms((await res.json()).forms ?? [])
+      else setError(true)
+    } catch {
+      setError(true)
     } finally { setLoading(false) }
   }, [])
 
@@ -658,6 +663,16 @@ export function FormsAdminView() {
         {loading ? (
           <div className="flex items-center justify-center py-20">
             <Loader2 className="h-6 w-6 animate-spin text-[#E42D2C]/40" />
+          </div>
+        ) : error ? (
+          <div className="flex flex-col items-center justify-center py-24 text-center">
+            <p className="text-[15px] font-semibold text-muted-foreground">No se pudieron cargar los forms</p>
+            <button
+              onClick={fetchForms}
+              className="mt-3 rounded-xl border border-border bg-card px-4 py-2 text-[13px] font-medium text-foreground hover:border-[#E42D2C]/40 transition-colors"
+            >
+              Reintentar
+            </button>
           </div>
         ) : forms.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-24 text-center">

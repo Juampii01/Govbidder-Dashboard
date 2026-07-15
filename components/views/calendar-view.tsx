@@ -250,10 +250,12 @@ export function CalendarView() {
   const [cursor,  setCursor]  = useState(new Date())
   const [items,   setItems]   = useState<AgendaItem[]>([])
   const [loading, setLoading] = useState(true)
+  const [error,   setError]   = useState(false)
   const [filter,  setFilter]  = useState<"all" | "tasks" | "personas">("all")
 
   const fetchAll = useCallback(async () => {
     setLoading(true)
+    setError(false)
     try {
       const supabase = createClient()
       const { data: { session } } = await supabase.auth.getSession()
@@ -264,6 +266,7 @@ export function CalendarView() {
         fetch("/api/admin/tasks", { headers }),
         fetch("/api/admin/personas", { headers }),
       ])
+      if (!tasksRes.ok && !personasRes.ok) setError(true)
 
       const out: AgendaItem[] = []
       const now = Date.now()
@@ -305,6 +308,8 @@ export function CalendarView() {
       }
 
       setItems(out)
+    } catch {
+      setError(true)
     } finally { setLoading(false) }
   }, [])
 
@@ -403,6 +408,16 @@ export function CalendarView() {
       {loading ? (
         <div className="flex items-center justify-center py-20">
           <Loader2 className="h-6 w-6 animate-spin text-[#E42D2C]/40" />
+        </div>
+      ) : error ? (
+        <div className="flex flex-col items-center justify-center py-24 text-center">
+          <p className="text-[15px] font-semibold text-muted-foreground">No se pudo cargar el calendario</p>
+          <button
+            onClick={fetchAll}
+            className="mt-3 rounded-xl border border-border bg-card px-4 py-2 text-[13px] font-medium text-foreground hover:border-[#E42D2C]/40 transition-colors"
+          >
+            Reintentar
+          </button>
         </div>
       ) : (
         <div className="grid gap-6 lg:grid-cols-[1fr_360px]">
