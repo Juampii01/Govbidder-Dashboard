@@ -118,8 +118,8 @@ supabase/
 
 - **RLS recursivo en `profiles`**: nunca crear una policy en `profiles` que haga sub-query a `profiles`. Causa `infinite recursion detected in policy for relation 'profiles'`. Usar la función `SECURITY DEFINER` `public.is_admin()` para checks de admin. Ver `supabase/hotfix-profiles-recursion.sql` como referencia.
 - **Dos Supabase clients**: `lib/supabase.ts` (anon, client-side) vs `lib/supabase-service.ts` (service role, server-only). Nunca usar el service client en código que llegue al browser.
-- **`@supabase/supabase-js` está en `"latest"`**: la versión no está pinneada. Puede romperse con updates inesperados en CI.
-- **Cron routes** (`app/api/cron/`): se invocan desde Vercel Cron — no tienen auth de usuario, usan service role.
+- **Authz en API routes**: `proxy.ts` (ex-middleware) solo refresca sesión, NO gatea. Cada route valida con `requireUser`/`requireAdmin` de `lib/api-auth.ts` — toda ruta nueva debe usarlos (el service client bypasea RLS, el check en la route es la única defensa).
+- **Cron routes** (`app/api/cron/`): se invocan desde Vercel Cron con `Authorization: Bearer <CRON_SECRET>`. Fail-closed: sin `CRON_SECRET` en el entorno devuelven 401.
 - **ThemeProvider**: dark mode está activo. Todos los colores deben funcionar en ambos modos.
 - **No hay test runner configurado**: no hay jest/vitest/playwright en el repo. Validar con `npx tsc --noEmit` y `npm run lint`.
 

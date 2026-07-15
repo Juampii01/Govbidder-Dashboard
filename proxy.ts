@@ -2,7 +2,8 @@ import { NextResponse, type NextRequest } from "next/server"
 import { createServerClient } from "@supabase/ssr"
 
 /**
- * Middleware de sesión Supabase (patrón oficial @supabase/ssr para App Router).
+ * Proxy de sesión Supabase (patrón oficial @supabase/ssr para App Router;
+ * en Next 16 la convención `middleware.ts` pasó a llamarse `proxy.ts`).
  *
  * En cada request: lee las cookies de auth, valida/rota el token con
  * supabase.auth.getUser() y vuelve a escribir las cookies actualizadas en la
@@ -10,7 +11,7 @@ import { createServerClient } from "@supabase/ssr"
  * API routes (incluido todo /api/marketing/*) lean la misma sesión que el
  * browser. Sin esto, las routes que dependen de cookies devuelven 401.
  */
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   let response = NextResponse.next({ request })
 
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL

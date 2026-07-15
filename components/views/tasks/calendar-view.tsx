@@ -33,6 +33,8 @@ const PRIORITY_COLOR: Record<string, string> = {
 
 export function CalendarView({ tasks, onTaskClick, onDayClick }: Props) {
   const [cursor, setCursor] = useState<Date>(new Date())
+  // Timestamp estable por montaje (Date.now() directo en render viola react-hooks/purity)
+  const [now] = useState(() => new Date())
 
   // Build calendar grid: weeks covering whole month
   const grid = useMemo(() => {
@@ -61,21 +63,19 @@ export function CalendarView({ tasks, onTaskClick, onDayClick }: Props) {
   }, [tasks])
 
   const overdueCount = useMemo(() => {
-    const now = Date.now()
     return tasks.filter(t =>
-      t.due_at && new Date(t.due_at).getTime() < now &&
+      t.due_at && new Date(t.due_at).getTime() < now.getTime() &&
       t.status !== "completada" && t.status !== "cancelada"
     ).length
-  }, [tasks])
+  }, [tasks, now])
 
   const upcomingCount = useMemo(() => {
-    const now    = new Date()
-    const in7    = addDays(now, 7)
+    const in7 = addDays(now, 7)
     return tasks.filter(t =>
       t.due_at && t.status !== "completada" && t.status !== "cancelada" &&
       isWithinInterval(parseISO(t.due_at), { start: now, end: in7 })
     ).length
-  }, [tasks])
+  }, [tasks, now])
 
   const monthLabel = format(cursor, "MMMM yyyy", { locale: es })
   const weekDays   = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb", "Dom"]
