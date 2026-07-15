@@ -473,6 +473,11 @@ create table if not exists public.ai_diagnosis_results (
 create index if not exists idx_ai_diag_user_id    on public.ai_diagnosis_requests(user_id);
 create index if not exists idx_ai_diag_request_id on public.ai_diagnosis_results(request_id);
 
+-- Sin policies: acceso solo vía service role (las API routes). RLS habilitado
+-- bloquea el acceso directo con anon/authenticated por PostgREST.
+alter table public.ai_diagnosis_requests enable row level security;
+alter table public.ai_diagnosis_results  enable row level security;
+
 -- ─── OUTBOUND EVENTS ─────────────────────────────────────────
 create table if not exists public.outbound_events (
   id            uuid primary key default gen_random_uuid(),
