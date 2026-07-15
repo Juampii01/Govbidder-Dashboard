@@ -23,8 +23,8 @@ const VERSION = 'v1'
  * Encrypt a plaintext token. Returns a versioned, dot-separated payload
  * safe to store in a TEXT column.
  *
- * If OAUTH_TOKEN_ENCRYPTION_KEY is not set, returns plaintext with a warning
- * (legacy/graceful mode — set the key in production for encryption at rest).
+ * Throws if OAUTH_TOKEN_ENCRYPTION_KEY is missing or malformed — never stores
+ * tokens as plaintext.
  */
 export function encryptToken(plaintext: string): string {
   const raw = process.env[KEY_ENV]
@@ -32,17 +32,19 @@ export function encryptToken(plaintext: string): string {
     throw new Error('OAUTH_TOKEN_ENCRYPTION_KEY is not set — refusing to store token as plaintext')
   }
   if (!/^[0-9a-f]{64}$/i.test(raw)) {
-    console.error(`[crypto] ${KEY_ENV} must be exactly 64 hex characters — skipping encryption`)
-    return plaintext
+    throw new Error(`${KEY_ENV} must be exactly 64 hex characters — refusing to store token as plaintext`)
   }
-  const key = Buffer.from(raw, 'hex')
-  const iv = randomBytes(IV_LENGTH_BYTES)
+  const key = new Uint8Array(Buffer.from(raw, 'hex'))
+  const iv = new Uint8Array(randomBytes(IV_LENGTH_BYTES))
   const cipher = createCipheriv('aes-256-gcm', key, iv)
-  const encrypted = Buffer.concat([cipher.update(plaintext, 'utf8'), cipher.final()])
+  const encrypted = Buffer.concat([
+    new Uint8Array(cipher.update(plaintext, 'utf8')),
+    new Uint8Array(cipher.final()),
+  ])
   const tag = cipher.getAuthTag()
   return [
     VERSION,
-    iv.toString('base64url'),
+    Buffer.from(iv).toString('base64url'),
     tag.toString('base64url'),
     encrypted.toString('base64url'),
   ].join('.')
@@ -72,13 +74,16 @@ export function decryptToken(payload: string): string {
     throw new Error('DECRYPTION_KEY_MALFORMED')
   }
   const [, ivB64, tagB64, cipherB64] = parts
-  const key = Buffer.from(raw, 'hex')
-  const iv = Buffer.from(ivB64, 'base64url')
-  const tag = Buffer.from(tagB64, 'base64url')
-  const ct = Buffer.from(cipherB64, 'base64url')
+  const key = new Uint8Array(Buffer.from(raw, 'hex'))
+  const iv = new Uint8Array(Buffer.from(ivB64, 'base64url'))
+  const tag = new Uint8Array(Buffer.from(tagB64, 'base64url'))
+  const ct = new Uint8Array(Buffer.from(cipherB64, 'base64url'))
   const decipher = createDecipheriv('aes-256-gcm', key, iv)
   decipher.setAuthTag(tag)
-  const plaintext = Buffer.concat([decipher.update(ct), decipher.final()]).toString('utf8')
+  const plaintext = Buffer.concat([
+    new Uint8Array(decipher.update(ct)),
+    new Uint8Array(decipher.final()),
+  ]).toString('utf8')
   return plaintext
 }
 

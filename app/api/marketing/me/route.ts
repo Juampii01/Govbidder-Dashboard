@@ -10,16 +10,16 @@ import { requireProfile, UnauthorizedError } from '@/lib/marketing/auth-user'
 
 export async function GET(): Promise<NextResponse> {
   try {
-    const { userId, role, profile } = await requireProfile()
+    const profile = await requireProfile()
     const clientName = profile.clientId
       ? (await prisma.client.findUnique({ where: { id: profile.clientId }, select: { name: true } }))?.name ?? null
       : null
     return NextResponse.json({
-      userId,
+      userId: profile.id,
       email: profile.email,
       displayName: profile.displayName,
       avatarUrl: profile.avatarUrl,
-      role: role.toLowerCase(),
+      role: profile.role.toLowerCase(),
       clientId: profile.clientId,
       clientName,
       themeKey: profile.themeKey ?? 'eternity',
@@ -41,7 +41,7 @@ const PatchSchema = z.object({
 
 export async function PATCH(req: NextRequest): Promise<NextResponse> {
   try {
-    const { userId } = await requireProfile()
+    const { id: userId } = await requireProfile()
     const body = await req.json().catch(() => null)
     const parsed = PatchSchema.safeParse(body)
     if (!parsed.success) {
