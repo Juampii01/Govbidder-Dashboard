@@ -53,7 +53,7 @@ export async function sendEmail(p: EmailPayload): Promise<EmailResult> {
 
 interface BaseTemplateOpts {
   recipientName?: string
-  appUrl:         string  // base URL of the dashboard, ej "https://sales-dashboard-zeta-rose.vercel.app"
+  appUrl:         string  // base URL of the dashboard, ej "https://govbidder-dashboard.vercel.app"
 }
 
 export function taskAssignedEmail(opts: BaseTemplateOpts & {

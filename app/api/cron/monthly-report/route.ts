@@ -20,7 +20,7 @@ export async function GET(req: NextRequest) {
     return NextResponse.json({ ok: true, skipped: "RESEND_API_KEY no configurada" })
   }
 
-  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://sales-dashboard-zeta-rose.vercel.app"
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL ?? "https://govbidder-dashboard.vercel.app"
   const db = createServiceClient()
   const now = new Date()
 
