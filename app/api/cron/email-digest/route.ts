@@ -10,12 +10,10 @@ import { sendEmail, digestEmail } from "@/lib/email"
  * Si Resend no está configurado, retorna 200 sin enviar (degrada gracefully).
  */
 export async function GET(req: NextRequest) {
+  // Fail-closed: sin CRON_SECRET configurado el endpoint no corre.
   const cronSecret = process.env.CRON_SECRET
-  if (cronSecret) {
-    const auth = req.headers.get("authorization")
-    if (auth !== `Bearer ${cronSecret}`) {
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
-    }
+  if (!cronSecret || req.headers.get("authorization") !== `Bearer ${cronSecret}`) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 })
   }
 
   if (!process.env.RESEND_API_KEY) {
