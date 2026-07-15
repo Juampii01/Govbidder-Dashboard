@@ -130,7 +130,7 @@ export function Sidebar({ open, onClose, collapsed, onToggleCollapse, role, depa
 
           {/* Mobile close button */}
           <button
-            className="lg:hidden absolute right-3 flex h-8 w-8 items-center justify-center rounded-lg text-slate-500 hover:text-slate-900 hover:bg-slate-100 transition-all"
+            className="lg:hidden absolute right-3 flex h-8 w-8 items-center justify-center rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted transition-all"
             onClick={onClose}
             aria-label="Cerrar"
           >
@@ -217,7 +217,7 @@ export function Sidebar({ open, onClose, collapsed, onToggleCollapse, role, depa
           className={cn(
             "hidden lg:flex absolute top-[20px] -right-3 z-10",
             "h-6 w-6 items-center justify-center rounded-full",
-            "border border-[#1e3a8a]/15 bg-white text-slate-500",
+            "border border-[#1e3a8a]/15 bg-card text-muted-foreground",
             "shadow-[0_2px_8px_rgba(15,23,42,0.08)]",
             "transition-all duration-200",
             "hover:border-[#1e3a8a]/40 hover:text-[#1e3a8a] hover:scale-110",
